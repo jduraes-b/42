@@ -6,7 +6,7 @@
 #    By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 17:31:07 by jduraes-          #+#    #+#              #
-#    Updated: 2023/05/15 01:23:55 by jduraes-         ###   ########.fr        #
+#    Updated: 2023/05/16 15:55:44 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,3 +34,4 @@ clean:
 fclean:	clean
 	${RM} ${NAME}
 re:	fclean all
+.PHONY: all clean fclean re bonus
