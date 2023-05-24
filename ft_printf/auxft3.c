@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxft2.c                                           :+:      :+:    :+:   */
+/*   auxft3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 18:02:07 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/05/24 18:12:50 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/05/24 18:15:36 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/05/24 18:48:35 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-static int	algcount(unsigned int n)
+static int	algcount(unsigned long long n)
 {
 	int	i;
 
@@ -32,29 +32,33 @@ static int	algcount(unsigned int n)
 	return (i);
 }
 
-int	ft_puthex(unsigned int nb, char *base)
+int	ft_putp(unsigned long long n)
 {
-	long	n;
+	char	*base;
 
-	n = nb;
+	base = "0123456789abcdef";
 	if (n < 16)
 	{
 		ft_putchar(base[n]);
 	}
 	if (n >= 16)
 	{
-		ft_puthex((n / 16), base);
-		ft_puthex((n % 16), base);
+		ft_putp(n / 16);
+		ft_putp(n % 16);
 	}
-	return (algcount(nb));
+	return (algcount(n));
 }
 
-int	lowhex(unsigned int n)
+int	ft_ispointer(unsigned long long n)
 {
-	return (ft_puthex(n, "0123456789abcdef"));
-}
-
-int	caphex(unsigned int n)
-{
-	return (ft_puthex(n, "0123456789ABCDEF"));
+	if (!n)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	else
+	{
+		write(1, "0x", 2);
+		return (2 + ft_putp(n));
+	}
 }

@@ -6,12 +6,12 @@
 #    By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 20:32:32 by jduraes-          #+#    #+#              #
-#    Updated: 2023/05/18 19:09:41 by jduraes-         ###   ########.fr        #
+#    Updated: 2023/05/24 18:29:23 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libftprintf.a
-FTS =	auxft.c ft_printf.c ft_isu.c
+FTS =	auxft.c ft_printf.c ft_isu.c auxft2.c auxft3.c
 SRC =	${FTS}
 OBJS =	$(SRC:.c=.o)
 HEADER =	ft_printf.h

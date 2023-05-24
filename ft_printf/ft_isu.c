@@ -27,10 +27,10 @@ static int	algcount(unsigned int x)
 
 int	ft_isu(unsigned int n)
 {
-	char	vec[11];
-	unsigned int		i;
-	unsigned int		alg;
-	
+	char			vec[11];
+	unsigned int	i;
+	unsigned int	alg;
+
 	alg = algcount(n);
 	i = alg;
 	vec[i] = '\0';
@@ -40,6 +40,6 @@ int	ft_isu(unsigned int n)
 		n = n / 10;
 		i--;
 	}
-	write (1, vec, alg);
+	write(1, vec, alg);
 	return (alg);
 }
