@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:37:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/08 22:16:19 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/10 04:51:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,13 @@ char	*clean_stash(char *stash, int start, int newstashsize)
 	new = (char *)malloc(sizeof(char) * newstashsize + 1);
 	if (stash[start] == '\n')
 		start++;
-	while (stash[i])
+	while (stash[start])
 	{
 		new[i] = stash[start];
 		i++;
 		start++;
 	}
+	new[i] = '\0';
 	return (new);
 }
 
@@ -81,6 +82,7 @@ char	*cut_stash(char *stash, int end)
 		line[i] = stash[i];
 		i++;
 	}
+	line[i] = '\0';
 	newstashsize = ft_strlen(stash) - end;
 	stash = clean_stash(stash, end, newstashsize);
 	return (line);
