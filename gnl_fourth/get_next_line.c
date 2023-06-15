@@ -5,23 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 20:16:13 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/15 17:28:34 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/06/15 18:41:17 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/06/15 19:28:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*fillstash(int fd, char **stash, int *end)
+static char	*get_line(char **stash)
+{
+	char	*line;
+	int		end;
+	int		newstashsize;
+
+	end = ft_strlenplus(*stash, '\n') + 1;
+	newstashsize = ft_strlenplus(*stash, '\0') - end;
+	line = ft_substr((*stash), 0, end);
+	*stash = ft_memmove(*stash, &((*stash)[end]), newstashsize - 1);
+	(*stash)[newstashsize] = '\0';
+	return (line);
+}
+
+static char	*fillstash(int fd, char **stash)
 {
 	char	*temp;
 	ssize_t	bytes;
 
 	bytes = 1;
-	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!temp)
 		return (NULL);
-	while (analyze(stash, &end) == -1 && bytes > 0)
+	while (ft_strlenplus(*stash, '\n') == -1 && bytes > 0)
 	{
 		bytes = read(fd, temp, BUFFER_SIZE);
 		if (bytes == -1)
@@ -34,31 +48,8 @@ static char	*fillstash(int fd, char **stash, int *end)
 		*stash = ft_strjoin(*stash, temp);
 	}
 	free(temp);
-	if (ft_strlen(*stash) != 0)
+	if (ft_strlenplus(*stash, '\0') != 0)
 		return (*stash);
-	free(*stash);
-	return (NULL);
-}
-
-static char	*get_line(char **stash, int end)
-{
-	char	*line;
-	int		i;
-	int		newstashsize;
-
-	i = 0;
-	line = malloc(sizeof(char) * (end + 1));
-	while (i <= end)
-	{
-		line[i] = (*stash)[i];
-		i++;
-	}
-	line[i] = '\0';
-	newstashsize = ft_strlen(*stash) - end;
-	*stash = clean_stash(stash, end, newstashsize);
-	if (ft_strlen(line) > 0)
-		return (line);
-	free(line);
 	free(*stash);
 	return (NULL);
 }
@@ -66,20 +57,16 @@ static char	*get_line(char **stash, int end)
 char	*get_next_line(int fd)
 {
 	static char	*stash[FOPEN_MAX];
-	char		*nextline;
-	int			end;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	end = 0;
 	if (stash[fd] == NULL)
 	{
 		stash[fd] = malloc(sizeof(char) * 1);
 		stash[fd][0] = '\0';
 	}
-	stash[fd] = fillstash(fd, &stash[fd], &end);
+	stash[fd] = fillstash(fd, &stash[fd]);
 	if (!stash[fd])
 		return (NULL);
-	nextline = get_line(&stash[fd], end);
-	return (nextline);
+	return (get_line(&stash[fd]));
 }

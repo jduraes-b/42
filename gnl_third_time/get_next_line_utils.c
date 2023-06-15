@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 20:26:07 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/13 21:05:23 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:06:03 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 		ii++;
 	}
-	str[i] = '\0';
 	free(s1);
+	str[i] = '\0';
 	return (str);
 }
 
@@ -87,11 +87,4 @@ char	*clean_stash(char **stash, int start, int newstashsize)
 	new[i] = '\0';
 	free(*stash);
 	return (new);
-}
-
-void	firststash(char **stash, int *begin)
-{
-	*stash = malloc(sizeof(char) * 1);
-	*stash[0] = '\0';
-	*(begin) = 1;
 }
