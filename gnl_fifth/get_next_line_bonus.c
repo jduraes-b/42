@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*clean_stash(char *stash)
 {
@@ -88,27 +88,27 @@ static char	*get_stash(int fd, char *stash, int *bytecheck)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[FOPEN_MAX];
 	char		*line;
 	int			bytecheck;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	if (stash == NULL)
+	if (stash[fd] == NULL)
 	{
-		stash = malloc(sizeof(char) * 1);
-		stash[0] = 0;
+		stash[fd] = malloc(sizeof(char) * 1);
+		stash[fd][0] = 0;
 	}
 	bytecheck = 0;
-	stash = get_stash(fd, stash, &bytecheck);
-	if (!stash)
+	stash[fd] = get_stash(fd, stash[fd], &bytecheck);
+	if (!stash[fd])
 		return (NULL);
-	line = get_line(stash, bytecheck);
+	line = get_line(stash[fd], bytecheck);
 	if (!bytecheck)
-		stash = clean_stash(stash);
+		stash[fd] = clean_stash(stash[fd]);
 	else
-		stash[0] = 0;
-	if (!stash)
+		stash[fd][0] = 0;
+	if (!stash[fd])
 		return (NULL);
 	return (line);
 }
