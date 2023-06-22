@@ -26,6 +26,7 @@ int	main(void)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
+	if (line)
+		free(line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 20:16:13 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/15 17:28:34 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:45:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*fillstash(int fd, char **stash, int *end)
 	return (NULL);
 }
 
-char	*get_line(char **stash, int end)
+static char	*get_line(char **stash, int end)
 {
 	char	*line;
 	int		i;
@@ -48,12 +48,15 @@ char	*get_line(char **stash, int end)
 
 	i = 0;
 	line = malloc(sizeof(char) * (end + 1));
+	if (!line)
+		return (NULL);
 	while (i <= end)
 	{
 		line[i] = (*stash)[i];
 		i++;
 	}
-	line[i] = '\0';
+	if (line)
+		line[i] = '\0';
 	newstashsize = ft_strlen(*stash) - end;
 	*stash = clean_stash(stash, end, newstashsize);
 	if (ft_strlen(line) > 0)

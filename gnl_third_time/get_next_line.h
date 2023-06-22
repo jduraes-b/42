@@ -28,7 +28,6 @@ char	*get_next_line(int fd);
 
 int		ft_strlen(char *s);
 char	*fillstash(int fd, char **stash, int *end);
-char	*get_line(char **stash, int end);
 char	*ft_strjoin(char *s1, char *s2);
 char	*clean_stash(char **stash, int start, int newstashsize);
 int	analyze(char **stash, int **i);

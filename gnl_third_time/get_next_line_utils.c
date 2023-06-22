@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 20:26:07 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/15 17:06:03 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:59:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ int	ft_strlen(char *s)
 	if (!s)
 		return (0);
 	while (s[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -72,7 +70,7 @@ int	analyze(char **stash, int **i)
 char	*clean_stash(char **stash, int start, int newstashsize)
 {
 	int			i;
-	static char	*new;
+	char	*new;
 
 	i = 0;
 	new = malloc(sizeof(char) * newstashsize);
@@ -84,7 +82,8 @@ char	*clean_stash(char **stash, int start, int newstashsize)
 		i++;
 		start++;
 	}
-	new[i] = '\0';
+	if (new)
+		new[i] = '\0';
 	free(*stash);
 	return (new);
 }
