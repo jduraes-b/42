@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME =	pipex.a
-FTS =	
+FTS =	pipex.c pipex_utils.c
 SRC =	$(FTS)
 OBJS =	$(SRC:.c=.o)
 HEADER =	pipex.h
@@ -22,11 +22,11 @@ LIBFTPATH =	$(LIBFT)/libft.a
 RM =	rm -f
 CC =	cc -g
 %.o:%.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -g $(<:.c=.o)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 $(NAME):	$(OBJS)
+	ar rcs $(NAME) $(OBJS) $(HEADER)
 	make bonus -C $(LIBFT) all
 	cp $(LIBFTPATH) $(NAME)
-	ar rcs $(NAME) $(OBJS) $(HEADER)
 all:	$(NAME)
 clean:
 	$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:08:44 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/05/11 16:50:13 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:03:57 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include "ft_printf.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
