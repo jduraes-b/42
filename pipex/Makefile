@@ -9,16 +9,15 @@
 #    Updated: 2023/06/28 19:58:38 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+OUT = pipex
 NAME =	pipex.a
-FTS =	pipex.c pipex_utils.c
-SRC =	$(FTS)
-OBJS =	$(SRC:.c=.o)
+SRC =	pipex.c pipex_utils.c
+OBJS =	${SRC:.c=.o}
 HEADER =	pipex.h
 INCLUDE =	-I .
 CFLAGS =	-Wall -Wextra -Werror
 LIBFT =	libft
-LIBFTPATH =	$(LIBFT)/libft.a
+LIBFTPATH =	${LIBFT}/libft.a
 RM =	rm -f
 CC =	cc -g
 %.o:%.c
