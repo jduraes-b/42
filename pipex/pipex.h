@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:45:23 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/28 19:47:46 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:34:54 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,10 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <signal.h>
+
+char	**findpaths(char **envp);
+char	*getcmdpath(char **paths, char *cmd, char **envp);
+void	doublefree(char **str);
+void	execute(char *cmd, char **envp);
 
 #endif

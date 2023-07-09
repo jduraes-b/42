@@ -10,29 +10,32 @@
 #                                                                              #
 # **************************************************************************** #
 OUT = pipex
-NAME =	pipex.a
 SRC =	pipex.c pipex_utils.c
 OBJS =	${SRC:.c=.o}
 HEADER =	pipex.h
 INCLUDE =	-I .
 CFLAGS =	-Wall -Wextra -Werror
 LIBFT =	libft
-LIBFTPATH =	${LIBFT}/libft.a
 RM =	rm -f
 CC =	cc -g
-%.o:%.c
+
+.o:.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
-$(NAME):	$(OBJS)
-	ar rcs $(NAME) $(OBJS) $(HEADER)
+	
+$(OUT):	$(OBJS)
 	make bonus -C $(LIBFT) all
-	cp $(LIBFTPATH) $(NAME)
-all:	$(NAME)
+	$(CC) $(OBJS) -L $(LIBFT) -lft -o $(OUT)
+	
+all:	$(OUT)
+
 clean:
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT)
+	
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT)
+	
 re:	fclean all
 	make re -C $(LIBFT)
 
