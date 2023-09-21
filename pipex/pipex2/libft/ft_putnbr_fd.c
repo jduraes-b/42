@@ -40,7 +40,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n < 0)
 	{
-		write (fd, "-", 1);
+		write(fd, "-", 1);
 		n = -n;
 	}
 	i = algcount(n);
@@ -52,5 +52,5 @@ void	ft_putnbr_fd(int n, int fd)
 		n = n / 10;
 		i--;
 	}
-	write (fd, str, alg);
+	write(fd, str, alg);
 }

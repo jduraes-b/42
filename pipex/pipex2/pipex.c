@@ -6,34 +6,69 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:23:32 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/09/20 22:25:48 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:09:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-/*
-void	child(int *f, int *fd, char **argv, char** evnp)
+
+char	*findpath(char *cmd, char **envp)
 {
-	close(fd[0]);
-	dup2(f[0], STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
-	execute(argv[2], envp);
+	char	**pathlines;
+	char	*path;
+	int		i;
+
+	i = 0;
+	while (!ft_strnstr(envp[i], "PATH=", 5))
+		i++;
+	path = ft_substr(envp[i], 5, ft_strlen(envp[i]));
+	pathlines = ft_split(path, ':');
+	i = 0;
+	while (pathlines[i])
+	{
+		path = ft_strjoin(pathlines[i], "/");
+		path = ft_strjoin(path, cmd);
+		if (access(path, F_OK) == 0)
+		{
+			doublefree(pathlines);
+			return (path);
+		}
+		free(path);
+		i++;
+	}
+	doublefree(pathlines);
+	perror("path/cmd error");
+	return (NULL);
 }
 
-void	parent(int *f, int *fd, char **argv, char** envp);
+void	execute(char *cmd, char **envp)
 {
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	dup2(f[1], STDOUT_FILENO);
-	execute(argv[3], envp);
-}*/
+	char	**cmdpparam;
+	char	*path;
 
-void	pipex(int *f, char** argv, char** envp)
+	path = findpath(cmd, envp);
+	cmdpparam = ft_split(cmd, 45);
+	if (!path)
+	{
+		free(path);
+		doublefree(cmdpparam);
+		perror("path error");
+		exit(EXIT_FAILURE);
+	}
+	if (execve(path, cmdpparam, envp) == -1)
+	{
+		free(path);
+		doublefree(cmdpparam);
+		perror("execution error");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	pipex(int *f, int *p, char **argv, char **envp)
 {
 	int	pid;
-	int	fd[2];
 
-	if (pipe(fd) == -1)
+	if (pipe(p) == -1)
 		perror("pipe");
 	pid = fork();
 	if (pid == -1)
@@ -43,27 +78,25 @@ void	pipex(int *f, char** argv, char** envp)
 	}
 	if (pid == 0)
 	{
-	//	child(f, fd, argv, envp);
-		close(fd[0]);
+		close(p[0]);
 		dup2(f[0], STDIN_FILENO);
-		dup2(fd[1], STDOUT_FILENO);
+		dup2(p[1], STDOUT_FILENO);
 		execute(argv[2], envp);
 	}
 	else
 	{
 		waitpid(pid, NULL, 0);
-	//	parent(f, fd, argv, envp);
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
+		close(p[1]);
+		dup2(p[0], STDIN_FILENO);
 		dup2(f[1], STDOUT_FILENO);
 		execute(argv[3], envp);
 	}
-
 }
 
-int	main(int argc, char** argv, char** envp)
+int	main(int argc, char **argv, char **envp)
 {
 	int	f[2];
+	int	p[2];
 
 	if (argc == 5)
 	{
@@ -74,7 +107,7 @@ int	main(int argc, char** argv, char** envp)
 			perror("file");
 			exit(EXIT_FAILURE);
 		}
-		pipex(f, argv, envp);
+		pipex(f, p, argv, envp);
 	}
 	else
 	{
@@ -83,4 +116,3 @@ int	main(int argc, char** argv, char** envp)
 	}
 	return (0);
 }
-

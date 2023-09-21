@@ -95,10 +95,12 @@ char	*ft_itoa(int n)
 }
 /*
 #include <stdio.h>
+
 int	main(int argc, char *argv[])
 {
-	int	n;
+	int		n;
 	char	*str;
+
 	if (argc == 2)
 	{
 		n = ft_atoi(argv[1]);

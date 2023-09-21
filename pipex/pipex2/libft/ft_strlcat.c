@@ -14,9 +14,9 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char		*asrc;
-	size_t		i;
-	size_t		sizedst;
+	char	*asrc;
+	size_t	i;
+	size_t	sizedst;
 
 	i = 0;
 	asrc = (char *)src;

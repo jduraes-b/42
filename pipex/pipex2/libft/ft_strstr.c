@@ -28,13 +28,14 @@ char	*ft_strstr(char *str, char *to_find)
 			if (to_find[ii + 1] == '\0')
 				return (&str[i]);
 			++ii;
-		}	
+		}
 		++i;
-	}	
+	}
 	return (0);
 }
 /*
 #include <stdio.h>
+
 int	main(void)
 {
 	char *str = "Sera que t3m bandido?";
