@@ -41,7 +41,7 @@ static char	*get_line(char *stash, int eof)
 	int		end;
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (eof)
 		end = ft_strlenplus(stash, 0) + 1;
 	else
@@ -49,11 +49,8 @@ static char	*get_line(char *stash, int eof)
 	line = malloc(sizeof(char) * end + 1);
 	if (!line)
 		return (NULL);
-	while (i < end)
-	{
+	while (++i < end)
 		line[i] = stash[i];
-		i++;
-	}
 	line[i] = 0;
 	return (line);
 }

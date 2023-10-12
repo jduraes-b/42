@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 19:29:04 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:42:36 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:17:10 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ char	*findpath(char *cmd, char **envp)
 	char	*temp;
 	int		i;
 
-	i = 0;
-	while (!ft_strnstr(envp[i], "PATH=", 5))
-		i++;
-	path = ft_substr(envp[i], 5, ft_strlen(envp[i]));
-	pathlines = ft_split(path, ':');
-	free(path);
-	i = 0;
-	while (pathlines[i])
+	i = -1;
+	while (envp[++i] && !ft_strnstr(envp[i], "PATH=", 5))
+		;
+	pathlines = ft_split(envp[i] + 5, ':');
+	i = -1;
+	while (pathlines[++i])
 	{
 		temp = ft_strjoin(pathlines[i], "/");
 		path = ft_strjoin(temp, cmd);
@@ -37,7 +35,6 @@ char	*findpath(char *cmd, char **envp)
 			return (path);
 		}
 		free(path);
-		i++;
 	}
 	doublefree(pathlines);
 	return (NULL);
