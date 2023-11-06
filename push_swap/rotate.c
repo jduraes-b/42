@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 18:59:31 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/06 18:34:47 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/06 21:19:15 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/06 21:40:49 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <string.h>
-# include <ctype.h>
-# include <stdarg.h>
-# include <stdbool.h>
-# include <limits.h>
-
-typedef struct	s_stack
+void	rotate(t_stack *root)
 {
-	int	number;
-	int	position;
-	struct	s_stack	*prev;
-	struct	s_stack	*next;
-}	t_stack;
+	t_stack	*temp;
+	t_stack	*curr;
 
-int	wrongargs(char **argv);
-t_stack	*create_stack(int size, char** content);
+	temp = root;
+	root = root->next;
+	curr = root;
+	while (curr->next != NULL)
+		curr = curr->next;
+	curr->next = temp;
+	curr->next->next = NULL;
+}
 
-#endif
+void	rrotate(t_stack *root)
+{
+	t_stack	*temp;
+	t_stack *curr;
+
+	curr = root;
+	while (curr->next->next != NULL)
+		curr = curr->next;
+	temp = curr->next;
+	curr->next = NULL;
+	temp->next = root;
+}
