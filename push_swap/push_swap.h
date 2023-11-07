@@ -23,11 +23,12 @@ typedef struct	s_stack
 {
 	int	number;
 	int	position;
-	struct	s_stack	*prev;
+//	struct	s_stack	*prev;
 	struct	s_stack	*next;
 }	t_stack;
 
 int	wrongargs(char **argv);
 t_stack	*create_stack(int size, char** content);
+void	rotate(t_stack **root);
 
 #endif

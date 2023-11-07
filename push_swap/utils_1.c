@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+/*int	**transformer(char** source)
+{
+	
+}
+*/
 int	wrongargs(char **argv)
 {
 	int	i;
