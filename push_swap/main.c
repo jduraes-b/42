@@ -14,12 +14,15 @@
 
 void	push_swap(int argc, char** argv)
 {
-	t_stack	*root;
+	t_stack	*aroot;
 	t_stack	*curr;
+	t_stack	*broot;
 
-	root = NULL;
-	root = create_stack(argc, argv);
-	rotate(&root);
+	broot = NULL;
+	
+	aroot = NULL;
+	aroot = create_stack(argc, argv);
+	rrotate(&root);
 	curr = root;
 	while(curr != NULL)
 	{

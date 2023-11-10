@@ -30,5 +30,6 @@ typedef struct	s_stack
 int	wrongargs(char **argv);
 t_stack	*create_stack(int size, char** content);
 void	rotate(t_stack **root);
+void	rrotate(t_stack **root);
 
 #endif
