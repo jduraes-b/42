@@ -1,48 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:02:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/13 18:01:19 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/13 21:10:53 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/13 21:14:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **root)
+int	minnr(t_stack **node)
 {
-	t_stack	*temp;
+	int	i;
 
-	temp = (*root);
-	*root = (*root)->next;
-	temp->next = (*root)->next;
-	(*root)->next = temp;
-}
-
-void	sa(t_stack **a)
-{
-	write(1, "sa\n", 3);
-	swap(a);
-}
-
-void	sb(t_stack **b)
-{
-	write(1, "sb\n", 3);
-	swap(b);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	write(1, "ss\n", 3);
-	swap(a);
-	swap(b);
-}
-
-void	rra(t_stack **a)
-{
-	write(1, "rra\n", 4);
-	rrotate(a);
+	i = (*node)->number;
+	while (*node)
+	{
+		if ((*node)->number < i)
+			i = (*node)->number;
+		*node = (*node)->next;
+	}
+	return (i);
 }

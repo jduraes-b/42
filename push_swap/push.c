@@ -1,48 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:02:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/13 18:01:19 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/12 17:15:57 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/12 17:34:17 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **root)
+void	push(t_stack **source, t_stack **target)
 {
-	t_stack	*temp;
+	t_stack		*temp;
 
-	temp = (*root);
-	*root = (*root)->next;
-	temp->next = (*root)->next;
-	(*root)->next = temp;
+	temp = *source;
+	*source = (*source)->next;
+	temp->next = *target;
+	*target = temp;
 }
 
-void	sa(t_stack **a)
+void	pa(t_stack **a, t_stack **b)
 {
-	write(1, "sa\n", 3);
-	swap(a);
+	ft_printf("pa\n");
+	push(a, b);
 }
 
-void	sb(t_stack **b)
+void	pb(t_stack **b, t_stack **a)
 {
-	write(1, "sb\n", 3);
-	swap(b);
+	ft_printf("pb\n");
+	push(b, a);
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	rrb(t_stack **b)
 {
-	write(1, "ss\n", 3);
-	swap(a);
-	swap(b);
+	write (1, "rrb\n", 4);
+	rrotate(b);
 }
 
-void	rra(t_stack **a)
+void	rrr(t_stack **a, t_stack **b)
 {
-	write(1, "rra\n", 4);
+	write(1, "rrr\n", 4);
 	rrotate(a);
+	rrotate(b);
 }
