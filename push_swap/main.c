@@ -22,16 +22,11 @@ void	push_swap(int argc, char** argv)
 	
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
-	//sa(&aroot);
-	pb(&aroot, &broot);
-	pb(&aroot, &broot);
-	rr(&aroot, &broot);
-	ss(&aroot, &broot);
-	//sb(&broot);
+	stuff (&aroot, &broot);
 	curr = aroot;
 	while(curr != NULL)
 	{
-		ft_printf("%d\n", curr->number);
+		ft_printf("%d %d\n", curr->number, curr->go);
 		curr= curr->next;
 	}
 	write(1, "\n", 1);
