@@ -42,7 +42,7 @@ void	newnr(t_stack *curr, char** content, int i)
 {
 	t_stack	*new;
 	
-	new = malloc(sizeof(t_stack));
+	new = calloc(1, sizeof(t_stack));
 	if (!new)
 		return;
 	new->number = ft_atoi(content[i]);
@@ -57,7 +57,7 @@ t_stack	*create_stack(int size, char** content)
 	int	i;
 
 	i = 1;
-	root = malloc(sizeof(t_stack));
+	root = ft_calloc(1, sizeof(t_stack));
 	if (root == NULL)
 		return (NULL);
 	root->number = ft_atoi(content[i++]);

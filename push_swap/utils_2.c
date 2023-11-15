@@ -40,6 +40,21 @@ int	maxnr(t_stack **node)
 	return (i);
 }
 
+int	findex(t_stack **st, int n)
+{
+	int		i;
+	t_stack	*curr;
+	
+	curr = *st;
+	i = 0;
+	while (curr->number != n)
+	{
+		i++;
+		curr = curr->next;
+	}
+	return (i);
+}
+
 int	ps_lstsize(t_stack *st)
 {
 	int	i;

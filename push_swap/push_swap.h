@@ -22,6 +22,7 @@
 typedef struct	s_stack
 {
 	int	number;
+	int	f_index;
 	int	position;
 	int	cost;
 	int	go;
@@ -50,5 +51,7 @@ void	goorno(t_stack *st);
 void	stuff(t_stack **a, t_stack **b);
 int	ps_lstsize(t_stack *st);
 void    sendsmall(t_stack **a, t_stack **b);
+void    setfinalindex(t_stack *a);
+int	findex(t_stack **st, int n);
 
 #endif
