@@ -12,45 +12,28 @@
 
 #include "push_swap.h"
 
-void	setcosts(t_stack **s, t_stack **t)
+int	bottomhcost(int sprice, int tprice, int ssize, int tsize)
 {
-	int	ssize;
-	int	sprice;
-	int	tprice;
-	t_stack	temp;
-	t_stack	*curr;
-	
-	curr = *s;
-	ssize = ps_lstsize(*a);
-	sprice = 1;
-	while (curr)
+	if (tprice > tsize / 2)
 	{
-		sprice = sprice + curr->position;
-		tprice = howmanyrotate(curr, t);
-		curr->cost = getfinalprice(sprice, tprice, (ps_lstsize(*s), ps_lstsize(*t));
-		curr = curr->next;
+		if (sprice >= tprice)
+			return ((tprice - tsize / 2) + ((sprice - ssize / 2) - (tprice - tsize / 2)));
+		else
+			return ((sprice - ssize / 2) + ((tprice - tsize / 2) - (sprice - ssize / 2)));
 	}
+	return ((sprice - ssize / 2) + tprice);
 }
 
-int	getfinalcost(int sprice, int tprice, int ssize, int tsize)
-{	
-	if (sprice > ssize / 2)
+int	tophcost(int sprice, int tprice, int ssize, int tsize)
+{
+	(void) ssize;
+	if (tprice <= tsize / 2)
 	{
-		if (tprice > tsize / 2)
-		{
-			sprice = ssize - sprice;
-			tprice = tsize - tprice;
-			return (sprice + (ft_av(sprice - tprice) + 1);
-		}
+		if (sprice >= tprice)
+			return (tprice + (sprice - tprice));
 		else
-		{
-			sprice = ssize - sprice;
-			return (sprice + tprice);
-		}
+			return (sprice + ((tprice - tsize / 2) - sprice));
 	}
-	else
-		if (tprice < tsize / 2)
-			return (sprice - ft_av(sprice - tprice);
 	return (sprice + tprice);
 }
 
@@ -59,7 +42,7 @@ int	howmanyrotate(t_stack *s, t_stack **t)
 	t_stack	*ts;
 	t_stack	*tt;
 	int	tsize;
-	int	tprice;
+	int	price;
 	
 	ts = s;
 	tt = *t;
@@ -67,7 +50,7 @@ int	howmanyrotate(t_stack *s, t_stack **t)
 	tsize = ps_lstsize(tt);
 	while (tt)
 	{
-		if (ts->position = tt->position - 1)
+		if (ts->position == tt->position - 1)
 			return (price);
 		else
 			{
@@ -76,4 +59,26 @@ int	howmanyrotate(t_stack *s, t_stack **t)
 			}
 	}
 	return (price);
+}
+
+void	setcosts(t_stack **s, t_stack **t)
+{
+	int	ssize;
+	int	sprice;
+	int	tprice;
+	t_stack	*curr;
+	
+	curr = *s;
+	ssize = ps_lstsize(*s);
+	sprice = 0;
+	while (curr)
+	{
+		sprice = sprice + curr->position;
+		tprice = howmanyrotate(curr, t);
+		if (curr->position > (ps_lstsize(*s) / 2))
+			curr->cost = tophcost(sprice, tprice, ps_lstsize(*s), ps_lstsize(*t));
+		else
+			curr->cost = bottomhcost(sprice, tprice, ps_lstsize(*s), ps_lstsize(*t));
+		curr = curr->next;
+	}
 }

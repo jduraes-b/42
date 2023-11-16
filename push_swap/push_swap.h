@@ -55,7 +55,8 @@ void    setfinalindex(t_stack *a);
 void	whereami(t_stack **st);
 void	refresh(t_stack **a, t_stack **b);
 void	setcosts(t_stack **s, t_stack **t);
-int	getfinalcost(int sprice, int tprice, int ssize, int tsize);
+int	tophcost(int sprice, int tprice, int ssize, int tsize);
+int	bottomhcost(int sprice, int tprice, int ssize, int tsize);
 int	howmanyrotate(t_stack *s, t_stack **t);
 
 #endif
