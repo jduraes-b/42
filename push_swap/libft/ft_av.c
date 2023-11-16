@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   ft_av.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 18:16:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/15 19:51:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/16 20:11:21 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/16 20:12:40 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	stuff(t_stack **a, t_stack **b)
+int	ft_av(int n)
 {
-	goorno(*a);
-	setfinalindex(*a);
-	sendsmall(a, b);
-	refresh(a, b);
-	setcosts(a, b);
+	if (n > 0)
+		return (n);
+	return (-n);
 }
-
-/*void	idk(t_stack **a, t_stack **b)
-{
-	
-}*/

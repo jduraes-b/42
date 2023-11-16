@@ -26,14 +26,14 @@ void	push_swap(int argc, char** argv)
 	curr = aroot;
 	while(curr != NULL)
 	{
-		ft_printf("%d %d\n", curr->number, curr->f_index);
+		ft_printf("%d %d\n", curr->number, curr->cost);
 		curr= curr->next;
 	}
 	write(1, "\n", 1);
 	curr = broot;
 	while(curr != NULL)
 	{
-		ft_printf("%d\n", curr->number);
+		ft_printf("%d %d\n", curr->number, curr->position);
 		curr= curr->next;
 	}
 }
