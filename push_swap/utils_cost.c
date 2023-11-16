@@ -12,35 +12,68 @@
 
 #include "push_swap.h"
 
-void	setcosts(t_stack **a, t_stack **b)
+void	setcosts(t_stack **s, t_stack **t)
 {
+	int	ssize;
+	int	sprice;
+	int	tprice;
+	t_stack	temp;
 	t_stack	*curr;
-	t_stack *temp;
-	int	index;
-	int	size;
-
-	curr = *a;
-	size = ps_lstsize(a);
-	index = 1;
+	
+	curr = *s;
+	ssize = ps_lstsize(*a);
+	sprice = 1;
 	while (curr)
 	{
-		curr->cost = findcost(curr, *b, index, size);
+		sprice = sprice + curr->position;
+		tprice = howmanyrotate(curr, t);
+		curr->cost = getfinalprice(sprice, tprice, (ps_lstsize(*s), ps_lstsize(*t));
+		curr = curr->next;
 	}
 }
 
-int	findcost(t_stack *curr, t_stack *b, int index, int size)
-{
-	int	price;
-	int	tprice;
-	t_stack	*temp;
-
-	temp = b;
-	if (index > size / 2)
-		price = size - index;
-	else
-		price = index;
-	while (temp)
+int	getfinalcost(int sprice, int tprice, int ssize, int tsize)
+{	
+	if (sprice > ssize / 2)
 	{
-		if (curr->f_index 
+		if (tprice > tsize / 2)
+		{
+			sprice = ssize - sprice;
+			tprice = tsize - tprice;
+			return (sprice + (ft_av(sprice - tprice) + 1);
+		}
+		else
+		{
+			sprice = ssize - sprice;
+			return (sprice + tprice);
+		}
 	}
+	else
+		if (tprice < tsize / 2)
+			return (sprice - ft_av(sprice - tprice);
+	return (sprice + tprice);
+}
+
+int	howmanyrotate(t_stack *s, t_stack **t)
+{
+	t_stack	*ts;
+	t_stack	*tt;
+	int	tsize;
+	int	tprice;
+	
+	ts = s;
+	tt = *t;
+	price = 0;
+	tsize = ps_lstsize(tt);
+	while (tt)
+	{
+		if (ts->position = tt->position - 1)
+			return (price);
+		else
+			{
+				price++;
+				tt = tt->next;
+			}
+	}
+	return (price);
 }

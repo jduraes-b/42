@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:19:06 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/15 19:12:59 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:52:25 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,10 @@ void	setfinalindex(t_stack *a)
 		}
 		temp->f_index = i++;
 	}
+}
+
+void	refresh(t_stack **a, t_stack **b)
+{
+	whereami(a);
+	whereami(b);
 }
