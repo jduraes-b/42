@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:19:06 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/16 18:52:25 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:46:44 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	goorno(t_stack *st)
 {
-	int	small;
-	int	ammount;
+	int		small;
+	int		ammount;
 	t_stack	*temp;
 	t_stack	*curr;
 
@@ -23,7 +23,7 @@ void	goorno(t_stack *st)
 	small = (st)->number;
 	temp = st;
 	while (ammount)
-	{	
+	{
 		curr = st;
 		small = INT_MAX;
 		while (curr)
@@ -43,8 +43,8 @@ void	goorno(t_stack *st)
 void	sendsmall(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
-	int	times;
-	
+	int		times;
+
 	times = ps_lstsize(*a) / 2;
 	temp = *a;
 	while (*a && times)
@@ -61,13 +61,13 @@ void	sendsmall(t_stack **a, t_stack **b)
 
 void	setfinalindex(t_stack *a)
 {
-	int	small;
-	int	i;
+	int		small;
+	int		i;
 	t_stack	*temp;
 	t_stack	*curr;
 
 	temp = a;
-	i = 1;
+	i = 0;
 	while (i <= ps_lstsize(a))
 	{
 		curr = a;
@@ -89,4 +89,15 @@ void	refresh(t_stack **a, t_stack **b)
 {
 	whereami(a);
 	whereami(b);
+}
+
+int	issorted(t_stack *s)
+{
+	while (s)
+	{
+		if (s->next && s->number > s->next->number)
+			return (0);
+		s = s->next;
+	}
+	return (1);
 }

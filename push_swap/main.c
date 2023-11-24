@@ -12,22 +12,23 @@
 
 #include "push_swap.h"
 
-void	push_swap(int argc, char** argv)
+void	push_swap(int argc, char **argv)
 {
 	t_stack	*aroot;
 	t_stack	*curr;
 	t_stack	*broot;
 
 	broot = NULL;
-	
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
+	if (ps_lstsize(aroot) == 3)
+		sort_three(&aroot);
 	stuff (&aroot, &broot);
 	curr = aroot;
-	while(curr != NULL)
+	while (curr != NULL)
 	{
 		ft_printf("%d %d\n", curr->number, curr->cost);
-		curr= curr->next;
+		curr = curr->next;
 	}
 	write(1, "\n", 1);
 	curr = broot;
@@ -38,7 +39,7 @@ void	push_swap(int argc, char** argv)
 	}
 }
 
-int	main(int argc, char** argv)
+int	main(int argc, char **argv)
 {
 	if (argc > 1)
 	{

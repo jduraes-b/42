@@ -14,10 +14,10 @@
 
 int	wrongargs(char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	long	nr;
-	
+
 	i = 1;
 	j = 0;
 	nr = 0;
@@ -38,23 +38,23 @@ int	wrongargs(char **argv)
 	return (0);
 }
 
-void	newnr(t_stack *curr, char** content, int i)
+void	newnr(t_stack *curr, char **content, int i)
 {
 	t_stack	*new;
-	
+
 	new = calloc(1, sizeof(t_stack));
 	if (!new)
-		return;
+		return ;
 	new->number = ft_atoi(content[i]);
 	new->next = NULL;
 	curr->next = new;
 }
 
-t_stack	*create_stack(int size, char** content)
+t_stack	*create_stack(int size, char **content)
 {
 	t_stack	*root;
 	t_stack	*curr;
-	int	i;
+	int		i;
 
 	i = 1;
 	root = ft_calloc(1, sizeof(t_stack));
@@ -64,10 +64,10 @@ t_stack	*create_stack(int size, char** content)
 	root->next = NULL;
 	curr = root;
 	while (i < size)
-	{	
+	{
 		newnr(curr, content, i);
 		curr = curr->next;
 		i++;
 	}
-	return(root);
+	return (root);
 }

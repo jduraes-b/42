@@ -13,50 +13,58 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-# include <string.h>
 # include <ctype.h>
+# include <limits.h>
 # include <stdarg.h>
 # include <stdbool.h>
-# include <limits.h>
+# include <string.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int	number;
-	int	f_index;
-	int	position;
-	int	cost;
-	int	go;
-//	struct	s_stack	*prev;
-	struct	s_stack	*next;
-}	t_stack;
+	int				number;
+	int				f_index;
+	int				position;
+	int				cost;
+	int				go;
+	int				sprice;
+	int				tprice;
+	int				half;
+	//	struct	s_stack	*prev;
+	struct s_stack	*next;
+}					t_stack;
 
-int	wrongargs(char **argv);
-t_stack	*create_stack(int size, char** content);
-void	rotate(t_stack **root);
-void	rrotate(t_stack **root);
-void	swap(t_stack **root);
-void	push(t_stack **source, t_stack **target);
-void	sa(t_stack **a);
-void	sb(t_stack **b);
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **a, t_stack **b);
-void	ra(t_stack **a);
-void	rb(t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-void	ss(t_stack **a, t_stack **b);
-void	rra(t_stack **a);
-void	rrb(t_stack **b);
-void	rrr(t_stack **a, t_stack **b);
-void	goorno(t_stack *st);
-void	stuff(t_stack **a, t_stack **b);
-int	ps_lstsize(t_stack *st);
-void    sendsmall(t_stack **a, t_stack **b);
-void    setfinalindex(t_stack *a);
-void	whereami(t_stack **st);
-void	refresh(t_stack **a, t_stack **b);
-void	setcosts(t_stack **s, t_stack **t);
-int	tophcost(int sprice, int tprice, int ssize, int tsize);
-int	bottomhcost(int sprice, int tprice, int ssize, int tsize);
-int	howmanyrotate(t_stack *s, t_stack **t);
+int					wrongargs(char **argv);
+t_stack				*create_stack(int size, char **content);
+void				rotate(t_stack **root);
+void				rrotate(t_stack **root);
+void				swap(t_stack **root);
+void				push(t_stack **source, t_stack **target);
+void				sa(t_stack **a);
+void				sb(t_stack **b);
+void				pa(t_stack **a, t_stack **b);
+void				pb(t_stack **a, t_stack **b);
+void				ra(t_stack **a);
+void				rb(t_stack **b);
+void				rr(t_stack **a, t_stack **b);
+void				ss(t_stack **a, t_stack **b);
+void				rra(t_stack **a);
+void				rrb(t_stack **b);
+void				rrr(t_stack **a, t_stack **b);
+int					minnr(t_stack *node);
+int					maxnr(t_stack *node);
+void				goorno(t_stack *st);
+void				stuff(t_stack **a, t_stack **b);
+int					ps_lstsize(t_stack *st);
+void				sendsmall(t_stack **a, t_stack **b);
+void				setfinalindex(t_stack *a);
+void				whereami(t_stack **st);
+void				refresh(t_stack **a, t_stack **b);
+void				setcosts(t_stack **s, t_stack **t);
+int					tophcost(int sprice, int tprice, int tsize);
+int					bottomhcost(int sprice, int tprice, int ssize, int tsize);
+int					howmanyrotate(t_stack *s, t_stack **t);
+int					targetfindex(int sfindex, t_stack *t);
+int					issorted(t_stack *s);
+void				sort_three(t_stack **s);
 
 #endif
