@@ -29,7 +29,7 @@ void	rotate(t_stack **root)
 void	rrotate(t_stack **root)
 {
 	t_stack	*temp;
-	t_stack *curr;
+	t_stack	*curr;
 
 	curr = *root;
 	temp = *root;

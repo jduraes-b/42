@@ -1,48 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:15:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/12 17:34:17 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/24 18:06:07 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/24 18:57:07 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack **source, t_stack **target)
+void	sort_three(t_stack **s)
 {
-	t_stack	*temp;
-
-	temp = *source;
-	*source = (*source)->next;
-	temp->next = *target;
-	*target = temp;
+	if (minnr(*s) == (*s)->number)
+	{
+		ra(s);
+		sa(s);
+	}
+	else if (maxnr(*s) == (*s)->number)
+	{
+		ra(s);
+		if (!issorted(*s))
+			sa(s);
+	}
+	else
+	{
+		if (maxnr(*s) == (*s)->next->number)
+			rra(s);
+		else
+			sa(s);
+	}
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	sort_to_three(t_stack **s, t_stack **t)
 {
-	ft_printf("pa\n");
-	push(b, a);
+	while (ps_lstsize(*s) > 3)
+	{
+		setcosts(s, t);
+		apply(s, t);
+	}
 }
 
-void	pb(t_stack **a, t_stack **b)
-{
-	ft_printf("pb\n");
-	push(a, b);
-}
-
-void	rrb(t_stack **b)
-{
-	write(1, "rrb\n", 4);
-	rrotate(b);
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	write(1, "rrr\n", 4);
-	rrotate(a);
-	rrotate(b);
-}
+void	apply(t_stack **s, t_stack **t);

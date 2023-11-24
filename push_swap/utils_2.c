@@ -12,30 +12,30 @@
 
 #include "push_swap.h"
 
-int	minnr(t_stack **node)
+int	minnr(t_stack *node)
 {
 	int	i;
 
-	i = (*node)->number;
-	while (*node)
+	i = (node)->number;
+	while (node)
 	{
-		if ((*node)->number < i)
-			i = (*node)->number;
-		*node = (*node)->next;
+		if ((node)->number < i)
+			i = (node)->number;
+		node = (node)->next;
 	}
 	return (i);
 }
 
-int	maxnr(t_stack **node)
+int	maxnr(t_stack *node)
 {
 	int	i;
 
-	i = (*node)->number;
-	while (*node)
+	i = (node)->number;
+	while (node)
 	{
-		if ((*node)->number > i)
-			i = (*node)->number;
-		*node = (*node)->next;
+		if ((node)->number > i)
+			i = (node)->number;
+		node = (node)->next;
 	}
 	return (i);
 }
@@ -44,9 +44,9 @@ void	whereami(t_stack **st)
 {
 	int		i;
 	t_stack	*curr;
-	
+
 	curr = *st;
-	i = 1;
+	i = 0;
 	while (curr)
 	{
 		curr->position = i;
@@ -58,7 +58,7 @@ void	whereami(t_stack **st)
 int	ps_lstsize(t_stack *st)
 {
 	int	i;
-	
+
 	i = 0;
 	if (st == NULL)
 		return (i);

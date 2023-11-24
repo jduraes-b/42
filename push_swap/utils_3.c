@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoll.c                                         :+:      :+:    :+:   */
+/*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 18:42:47 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/09 18:45:23 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/24 19:03:22 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/24 19:11:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-long	ft_atol(const char *str)
+int	cheapest(t_stack *s)
 {
-	int		i;
-	long	nr;
-	long	sign;
+	int	i;
+	int	temp;
 
+	temp = INT_MAX;
 	i = 0;
-	nr = 0;
-	sign = 1;
-	while (str[i] && str[i] == 32)
-		i++;
-	if (!str[i])
-		return (0);
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	while (s)
 	{
-		sign = -sign;
-		i++;
+		if (s->cost < temp)
+		{
+			temp = s->cost;
+			i = s->position;
+		}
+		s = s->next;
 	}
-	while (str[i] && ft_isdigit(str[i]))
-	{
-		nr = nr * 10 + str[i] - '0';
-		i++;
-	}
-	return (nr * sign);
+	return (i);
 }
