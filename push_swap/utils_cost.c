@@ -12,32 +12,58 @@
 
 #include "push_swap.h"
 
-int	bottomhcost(int sprice, int tprice, int ssize, int tsize)
+int	bottomhcost(t_stack *curr, t_stack **s, t_stack **t)
 {
-	if (tprice > tsize / 2)
+	int	total;
+
+	total = 0;
+	if (curr->tprice > ps_lstsize(*t) / 2)
 	{
-		if ((tsize - tprice) < (ssize - sprice))
-			return (1 + (tsize - tprice));
+		if ((ps_lstsize(*t) - curr->tprice) < (ps_lstsize(*s) - curr->sprice))
+		{
+			total = (1 + (ps_lstsize(*t) - curr->tprice));
+			curr->half = 22;
+		}
 		else
-			return (1 + (ssize - sprice));
+		{
+			total = (1 + (ps_lstsize(*s) - curr->sprice));
+			curr->half = 22;
+		}
 	}
 	else
-		return (1 + (ssize - sprice) + (tprice));
+	{
+		total = (1 + (ps_lstsize(*s) - curr->sprice) + (curr->tprice));
+		curr->half = 21;
+	}
+	return (total);
 }
 
-int	tophcost(int sprice, int tprice, int tsize)
+int	tophcost(t_stack *curr, t_stack **s, t_stack **t)
 {
-	if (tprice <= tsize / 2)
+	int	total;
+	
+	(void) s;
+	total = 0;
+	if (curr->tprice <= ps_lstsize(*t) / 2)
 	{
-		if (sprice < tprice)
-			return (1 + tprice);
+		if (curr->sprice < curr->tprice)
+		{
+			curr->half = 11;
+			total = (1 + curr->tprice);
+		}
 		else
-			return (1 + sprice);
+		{
+			curr->half = 11;
+			total = (1 + curr->sprice);
+		}
 	}
 	else
-		return (1 + sprice + tprice);
+	{
+		curr->half = 12;
+		total = (1 + curr->sprice + (ps_lstsize(*t) - curr->tprice));
+	}
+	return (total);
 }
-
 int	howmanyrotate(t_stack *s, t_stack **t)
 {
 	t_stack	*ts;
@@ -94,13 +120,12 @@ void	setcosts(t_stack **s, t_stack **t)
 		if (curr->sprice < (ps_lstsize(*s) / 2))
 		{
 			curr->half = 0;
-			curr->cost = tophcost(curr->sprice, curr->tprice, ps_lstsize(*t));
+			curr->cost = tophcost(curr, s, t);
 		}
 		else
 		{
 			curr->half = 1;
-			curr->cost = bottomhcost(curr->sprice, curr->tprice, ps_lstsize(*s),
-					ps_lstsize(*t));	
+			curr->cost = bottomhcost(curr, s, t);	
 		}			
 		curr = curr->next;
 	}

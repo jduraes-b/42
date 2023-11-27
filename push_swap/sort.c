@@ -36,11 +36,26 @@ void	sort_three(t_stack **s)
 
 void	sort_to_three(t_stack **s, t_stack **t)
 {
+	t_stack	*curr;
+	
+	curr = *s;
 	while (ps_lstsize(*s) > 3)
 	{
+		refresh(s, t);
 		setcosts(s, t);
-		apply(s, t);
+		curr = cheapest(curr);
+		apply(curr, s, t);
 	}
 }
 
-void	apply(t_stack **s, t_stack **t);
+void	apply(t_stack *curr, t_stack **s, t_stack **t)
+{
+	if (curr->half == 11)
+		case_11(curr, s, t);
+	else if (curr->half == 12)
+		case_12(curr, s, t);
+	else if (curr->half == 21)
+		case_21(curr, s, t);
+	else (curr->half == 22)
+		case_22(curr, s, t);	
+}

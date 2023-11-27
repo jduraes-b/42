@@ -26,5 +26,49 @@ int	cheapest(t_stack *s)
 		}
 		s = s->next;
 	}
-	return (i);
+	return (s);
+}
+
+void	case_11(t_stack *curr, t_stack **s, t_stack **t)
+{
+	while (curr->sprice && curr->tprice)
+	{
+		rr(s, t);
+		curr->sprice--;
+		curr->tprice--;
+	}
+	while (curr->sprice)
+	{
+		ra(s);
+		curr->sprice--;
+	}
+	while (curr->tprice)
+	{
+		rb(t);
+		curr->tprice--;
+	}
+	pb(s, t);
+}
+
+void	case_22(t_stack *curr, t_stack **s, t_stack **t)
+{
+	curr->sprice = ps_lstsize(s) - curr->sprice;
+	curr->tprice = ps_lstsize(t) - curr->tprice;
+	while (curr->sprice && curr->tprice)
+	{
+		rrr(s, t);
+		curr->sprice--;
+		curr->tprice--;
+	}
+	while (curr->sprice)
+	{
+		rra(s);
+		curr->sprice--;
+	}
+	while (curr->tprice)
+	{
+		rrb(t);
+		curr->tprice--;
+	}
+	pb(s, t);
 }
