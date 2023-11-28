@@ -6,27 +6,31 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:03:22 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/24 19:11:38 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:56:36 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	cheapest(t_stack *s)
-{
-	int	i;
-	int	temp;
+#include "push_swap.h"
 
-	temp = INT_MAX;
-	i = 0;
-	while (s)
+t_stack	*cheapest(t_stack **s)
+{
+	t_stack	*curr;
+	t_stack	*cheapest;
+	int	temp;
+		
+	curr = *s;
+	temp = curr->cost;
+	cheapest = curr;
+	while (curr)
 	{
-		if (s->cost < temp)
+		if (curr->cost < temp)
 		{
-			temp = s->cost;
-			i = s->position;
+			cheapest = curr;
+			temp = curr->cost;
 		}
-		s = s->next;
+		curr = curr->next;
 	}
-	return (s);
+	return (cheapest);
 }
 
 void	case_11(t_stack *curr, t_stack **s, t_stack **t)
@@ -52,8 +56,8 @@ void	case_11(t_stack *curr, t_stack **s, t_stack **t)
 
 void	case_22(t_stack *curr, t_stack **s, t_stack **t)
 {
-	curr->sprice = ps_lstsize(s) - curr->sprice;
-	curr->tprice = ps_lstsize(t) - curr->tprice;
+	curr->sprice = ps_lstsize(*s) - curr->sprice;
+	curr->tprice = ps_lstsize(*t) - curr->tprice;
 	while (curr->sprice && curr->tprice)
 	{
 		rrr(s, t);
@@ -68,6 +72,38 @@ void	case_22(t_stack *curr, t_stack **s, t_stack **t)
 	while (curr->tprice)
 	{
 		rrb(t);
+		curr->tprice--;
+	}
+	pb(s, t);
+}
+
+void	case_12(t_stack *curr, t_stack **s, t_stack **t)
+{
+	curr->tprice = ps_lstsize(*t) - curr->tprice;
+	while (curr->sprice)
+	{
+		ra(s);
+		curr->sprice--;
+	}
+	while (curr->tprice)
+	{
+		rrb(t);
+		curr->tprice--;
+	}
+	pb(s, t);
+}
+
+void	case_21(t_stack *curr, t_stack **s, t_stack **t)
+{
+	curr->sprice = ps_lstsize(*s) - curr->sprice;
+	while (curr->sprice)
+	{
+		rra(s);
+		curr->sprice--;
+	}
+	while (curr->tprice)
+	{
+		rb(s);
 		curr->tprice--;
 	}
 	pb(s, t);
