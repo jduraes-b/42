@@ -66,5 +66,12 @@ int					howmanyrotate(t_stack *s, t_stack **t);
 int					targetfindex(int sfindex, t_stack *t);
 int					issorted(t_stack *s);
 void				sort_three(t_stack **s);
+void	apply(t_stack *curr, t_stack **s, t_stack **t);
+void	sort_to_three(t_stack **s, t_stack **t);
+t_stack	*cheapest(t_stack **s);
+void	case_11(t_stack *curr, t_stack **s, t_stack **t);
+void	case_22(t_stack *curr, t_stack **s, t_stack **t);
+void	case_12(t_stack *curr, t_stack **s, t_stack **t);
+void	case_21(t_stack *curr, t_stack **s, t_stack **t);
 
 #endif

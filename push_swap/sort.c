@@ -16,8 +16,10 @@ void	sort_three(t_stack **s)
 {
 	if (minnr(*s) == (*s)->number)
 	{
-		ra(s);
+		rra(s);
 		sa(s);
+		if (!issorted(*s))
+			sort_three(s);
 	}
 	else if (maxnr(*s) == (*s)->number)
 	{
@@ -43,7 +45,7 @@ void	sort_to_three(t_stack **s, t_stack **t)
 	{
 		refresh(s, t);
 		setcosts(s, t);
-		curr = cheapest(curr);
+		curr = cheapest(s);
 		apply(curr, s, t);
 	}
 }
@@ -56,6 +58,6 @@ void	apply(t_stack *curr, t_stack **s, t_stack **t)
 		case_12(curr, s, t);
 	else if (curr->half == 21)
 		case_21(curr, s, t);
-	else (curr->half == 22)
+	else if (curr->half == 22)
 		case_22(curr, s, t);	
 }

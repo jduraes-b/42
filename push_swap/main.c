@@ -23,7 +23,10 @@ void	push_swap(int argc, char **argv)
 	aroot = create_stack(argc, argv);
 	if (ps_lstsize(aroot) == 3)
 		sort_three(&aroot);
-	stuff (&aroot, &broot);
+	if (ps_lstsize(aroot) > 3)
+	{
+		stuff (&aroot, &broot);
+	}
 	curr = aroot;
 	while (curr != NULL)
 	{
