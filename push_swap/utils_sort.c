@@ -42,11 +42,9 @@ void	goorno(t_stack *st)
 
 void	sendsmall(t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
 	int		times;
 
 	times = ps_lstsize(*a) / 2;
-	temp = *a;
 	while (*a && times)
 	{
 		if ((*a)->go == 1)
