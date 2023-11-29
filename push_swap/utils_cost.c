@@ -77,7 +77,7 @@ int	howmanyrotate(t_stack *s, t_stack **t)
 	tsize = ps_lstsize(tt);
 	while (tt)
 	{
-		if (targetfindex(ts->f_index, tt) == tt->f_index)
+		if (targetfindex(ts->f_index, tt, 'b') == tt->f_index)
 			return (price);
 		else
 		{
@@ -88,16 +88,22 @@ int	howmanyrotate(t_stack *s, t_stack **t)
 	return (price);
 }
 
-int	targetfindex(int sfindex, t_stack *t)
+int	targetfindex(int sfindex, t_stack *t, char list)
 {
 	t_stack	*curr;
 	int		temp;
 
 	curr = t;
 	temp = curr->f_index;
-	while (curr)
+	while (curr && list == 'b')
 	{
 		if (curr->f_index < sfindex && curr->f_index > temp)
+			temp = curr->f_index;
+		curr = curr->next;
+	}
+	while (curr && list == 'a')
+	{
+		if (curr->f_index > sfindex && curr->f_index < temp)
 			temp = curr->f_index;
 		curr = curr->next;
 	}
