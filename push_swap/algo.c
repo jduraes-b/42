@@ -23,5 +23,6 @@ void	stuff(t_stack **a, t_stack **b)
 	sort_three(a);
 	refresh(a, b);
 	cost_back(a, b);
+	sort_back(b, a);
 }
 

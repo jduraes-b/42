@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 18:13:58 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/29 18:55:01 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/29 22:10:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ int	howmanyrotateback(t_stack *s, t_stack **t)
 {
 	t_stack	*ts;
 	t_stack	*tt;
-	int		tsize;
 	int		price;
 
 	ts = s;
 	tt = *t;
 	price = 0;
-	tsize = ps_lstsize(tt);
 	while (tt)
 	{
 		if (targetfindex(ts->f_index, tt, 'a') == tt->f_index)
@@ -59,4 +57,19 @@ int	howmanyrotateback(t_stack *s, t_stack **t)
 		}
 	}
 	return (price);
+}
+
+void	sort_back(t_stack **s, t_stack **t)
+{
+	t_stack	*curr;
+
+	curr = *s;
+	while (curr)
+	{
+		refresh(s, t);
+		cost_back(t, s);
+		curr = cheapest(s);
+		applyb(curr, s, t);
+		curr = curr->next;
+	}
 }

@@ -66,14 +66,21 @@ int					howmanyrotate(t_stack *s, t_stack **t);
 int					targetfindex(int sfindex, t_stack *t, char list);
 int					issorted(t_stack *s);
 void				sort_three(t_stack **s);
-void	apply(t_stack *curr, t_stack **s, t_stack **t);
+void	applya(t_stack *curr, t_stack **s, t_stack **t);
+void	applyb(t_stack *curr, t_stack **s, t_stack **t);
 void	sort_to_three(t_stack **s, t_stack **t);
 t_stack	*cheapest(t_stack **s);
 void	cost_back(t_stack **a, t_stack **b);
+void	sort_back(t_stack **s, t_stack **t);
 int	howmanyrotateback(t_stack *s, t_stack **t);
-void	case_11(t_stack *curr, t_stack **s, t_stack **t);
-void	case_22(t_stack *curr, t_stack **s, t_stack **t);
-void	case_12(t_stack *curr, t_stack **s, t_stack **t);
-void	case_21(t_stack *curr, t_stack **s, t_stack **t);
+void	case_11a(t_stack *curr, t_stack **s, t_stack **t);
+void	case_22a(t_stack *curr, t_stack **s, t_stack **t);
+void	case_12a(t_stack *curr, t_stack **s, t_stack **t);
+void	case_21a(t_stack *curr, t_stack **s, t_stack **t);
+void	case_11b(t_stack *curr, t_stack **s, t_stack **t);
+void	case_22b(t_stack *curr, t_stack **s, t_stack **t);
+void	case_12b(t_stack *curr, t_stack **s, t_stack **t);
+void	case_21b(t_stack *curr, t_stack **s, t_stack **t);
+
 
 #endif

@@ -22,12 +22,6 @@ void	push_swap(int argc, char **argv)
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
 	setfinalindex(aroot);
-	curr = aroot;
-	while (curr != NULL)
-	{
-		ft_printf("%d %d %d\n", curr->number, curr->f_index, curr->cost);
-		curr = curr->next;
-	}
 	if (ps_lstsize(aroot) == 3)
 		sort_three(&aroot);
 	if (ps_lstsize(aroot) > 3)
@@ -44,8 +38,8 @@ void	push_swap(int argc, char **argv)
 	curr = broot;
 	while(curr != NULL)
 	{
-		ft_printf("%d %d %d, sprice: %d, tprice = %d\n", curr->number,
-		curr->cost, curr->f_index, curr->sprice, curr->tprice);
+		ft_printf("%d %d %d, sprice: %d, tprice = %d\n", curr->number, curr->f_index,
+		curr->cost, curr->sprice, curr->tprice);
 		curr= curr->next;
 	}
 }

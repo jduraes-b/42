@@ -46,18 +46,30 @@ void	sort_to_three(t_stack **s, t_stack **t)
 		refresh(s, t);
 		setcosts(s, t);
 		curr = cheapest(s);
-		apply(curr, s, t);
+		applya(curr, s, t);
 	}
 }
 
-void	apply(t_stack *curr, t_stack **s, t_stack **t)
+void	applya(t_stack *curr, t_stack **s, t_stack **t)
 {
 	if (curr->half == 11)
-		case_11(curr, s, t);
+		case_11a(curr, s, t);
 	else if (curr->half == 12)
-		case_12(curr, s, t);
+		case_12a(curr, s, t);
 	else if (curr->half == 21)
-		case_21(curr, s, t);
+		case_21a(curr, s, t);
 	else if (curr->half == 22)
-		case_22(curr, s, t);	
+		case_22a(curr, s, t);	
+}
+
+void	applyb(t_stack *curr, t_stack **s, t_stack **t)
+{
+	if (curr->half == 11)
+		case_11b(curr, s, t);
+	else if (curr->half == 12)
+		case_12b(curr, s, t);
+	else if (curr->half == 21)
+		case_21b(curr, s, t);
+	else if (curr->half == 22)
+		case_22b(curr, s, t);	
 }
