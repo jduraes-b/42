@@ -40,6 +40,20 @@ int	maxnr(t_stack *node)
 	return (i);
 }
 
+t_stack	*maxnrlist(t_stack **s, int bignr)
+{
+	t_stack	*curr;
+	
+	curr = *s;
+	while (curr)
+	{
+		if (curr->number == bignr)
+			return (curr);
+		curr = curr->next;
+	}
+	return (NULL);
+}
+
 void	whereami(t_stack **st)
 {
 	int		i;

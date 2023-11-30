@@ -21,7 +21,7 @@ void	push_swap(int argc, char **argv)
 	broot = NULL;
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
-	setfinalindex(aroot);
+	setfinalindex(&aroot);
 	if (ps_lstsize(aroot) == 3)
 		sort_three(&aroot);
 	if (ps_lstsize(aroot) > 3)

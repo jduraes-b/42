@@ -57,7 +57,36 @@ void	sendsmall(t_stack **a, t_stack **b)
 	}
 }
 
-void	setfinalindex(t_stack *a)
+void	setfinalindex(t_stack **a)
+{
+	int	i;
+	int	j;
+	t_stack	*temp;
+	t_stack	*curr;
+	
+	i = 0;
+	j = maxnr(*a);
+	curr = maxnrlist(a, maxnr(*a));
+	curr->f_index = ps_lstsize(*a);
+	while (i < ps_lstsize(*a))
+	{
+		curr = *a;
+		while (curr)
+		{
+			j = maxnr(*a);
+			curr = *a;
+			if (curr->f_index == 0 && curr->number < j)
+			{
+				j = curr->number;
+				temp = curr;
+			}
+			curr = curr->next;
+		}
+		temp->f_index = ++i;
+	}
+}
+
+/*void	setfinalindex(t_stack *a)
 {
 	int		small;
 	int		i;
@@ -81,7 +110,7 @@ void	setfinalindex(t_stack *a)
 		}
 		temp->f_index = i++;
 	}
-}
+}*/
 
 void	refresh(t_stack **a, t_stack **b)
 {

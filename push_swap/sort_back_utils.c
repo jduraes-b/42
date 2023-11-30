@@ -30,7 +30,7 @@ void	case_11b(t_stack *curr, t_stack **s, t_stack **t)
 		ra(t);
 		curr->tprice--;
 	}
-	pa(s, t);
+	pa(t, s);
 }
 
 void	case_22b(t_stack *curr, t_stack **s, t_stack **t)
@@ -39,7 +39,7 @@ void	case_22b(t_stack *curr, t_stack **s, t_stack **t)
 	curr->tprice = ps_lstsize(*t) - curr->tprice;
 	while (curr->sprice && curr->tprice)
 	{
-		rrr(s, t);
+		rrr(t, s);
 		curr->sprice--;
 		curr->tprice--;
 	}
@@ -69,7 +69,7 @@ void	case_12b(t_stack *curr, t_stack **s, t_stack **t)
 		rra(t);
 		curr->tprice--;
 	}
-	pa(s, t);
+	pa(t, s);
 }
 
 void	case_21b(t_stack *curr, t_stack **s, t_stack **t)
@@ -85,5 +85,5 @@ void	case_21b(t_stack *curr, t_stack **s, t_stack **t)
 		ra(s);
 		curr->tprice--;
 	}
-	pa(s, t);
+	pa(t, s);
 }
