@@ -14,8 +14,9 @@
 
 void	stuff(t_stack **a, t_stack **b)
 {
+	(void) b;
 	goorno(*a);
-	//setfinalindex(*a);
+	/*setfinalindex(a);
 	sendsmall(a, b);
 	refresh(a, b);
 	setcosts(a, b);
@@ -23,6 +24,6 @@ void	stuff(t_stack **a, t_stack **b)
 	sort_three(a);
 	refresh(a, b);
 	cost_back(a, b);
-	sort_back(b, a);
+	sort_back(b, a);*/
 }
 
