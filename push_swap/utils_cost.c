@@ -121,15 +121,9 @@ void	setcosts(t_stack **s, t_stack **t)
 		curr->sprice = curr->position;
 		curr->tprice = howmanyrotate(curr, t);
 		if (curr->sprice < (ps_lstsize(*s) / 2))
-		{
-			curr->half = 0;
 			curr->cost = tophcost(curr, s, t);
-		}
 		else
-		{
-			curr->half = 1;
-			curr->cost = bottomhcost(curr, s, t);	
-		}			
+			curr->cost = bottomhcost(curr, s, t);			
 		curr = curr->next;
 	}
 }

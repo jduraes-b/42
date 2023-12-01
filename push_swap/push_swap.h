@@ -57,7 +57,7 @@ void				stuff(t_stack **a, t_stack **b);
 int					ps_lstsize(t_stack *st);
 void				sendsmall(t_stack **a, t_stack **b);
 void				setfinalindex(t_stack **a);
-t_stack	*maxnrlist(t_stack **s, int	bignr);
+void				findfindex(t_stack *object, t_stack **s);
 void				whereami(t_stack **st);
 void				refresh(t_stack **a, t_stack **b);
 void				setcosts(t_stack **s, t_stack **t);
