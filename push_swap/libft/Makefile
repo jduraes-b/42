@@ -24,14 +24,15 @@ CC =	cc -g
 RM =	rm -f
 CFLAGS =	-Wall -Wextra -Werror
 .o:.c
-		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
+		@${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 ${NAME}:	${OBJS}
-	ar rcs ${NAME} ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
 bonus:	$(BONUSOBJS) $(OBJS)
-	ar rcs ${NAME} ${BONUSOBJS} ${OBJS}
+	@ar rcs ${NAME} ${BONUSOBJS} ${OBJS}
 all:	${NAME}
 clean:
-	${RM} ${OBJS} ${BONUSOBJS}
+	@${RM} ${OBJS} ${BONUSOBJS}
 fclean:	clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 re:	fclean all
+.SILENT:

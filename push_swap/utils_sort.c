@@ -59,58 +59,15 @@ void	sendsmall(t_stack **a, t_stack **b)
 
 void	setfinalindex(t_stack **a)
 {
-	int	i;
-	int	j;
-	t_stack	*temp;
 	t_stack	*curr;
-	
-	i = 0;
-	j = maxnr(*a);
-	curr = maxnrlist(a, maxnr(*a));
-	curr->f_index = ps_lstsize(*a);
-	while (i < ps_lstsize(*a))
+
+	curr = *a;
+	while (curr)
 	{
-		curr = *a;
-		while (curr)
-		{
-			j = maxnr(*a);
-			curr = *a;
-			if (curr->f_index == 0 && curr->number < j)
-			{
-				j = curr->number;
-				temp = curr;
-			}
-			curr = curr->next;
-		}
-		temp->f_index = ++i;
+		findfindex(curr, a);
+		curr = curr->next;
 	}
 }
-
-/*void	setfinalindex(t_stack *a)
-{
-	int		small;
-	int		i;
-	t_stack	*temp;
-	t_stack	*curr;
-
-	temp = a;
-	i = 0;
-	while (i <= ps_lstsize(a))
-	{
-		curr = a;
-		small = INT_MAX;
-		while (curr)
-		{
-			if (curr->number < small && curr->f_index == 0)
-			{
-				small = curr->number;
-				temp = curr;
-			}
-			curr = curr->next;
-		}
-		temp->f_index = i++;
-	}
-}*/
 
 void	refresh(t_stack **a, t_stack **b)
 {

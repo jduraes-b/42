@@ -24,18 +24,18 @@ CC =	cc -g
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 	
 $(NAME):	$(OBJS)
-	make bonus -C $(LIBFT) all
+	@make bonus -C $(LIBFT) all
 	$(CC) $(OBJS) -L $(LIBFT) -lft -o $(NAME)
 	
 all:	$(NAME)
 
 clean:
 	$(RM) $(OBJS)
-	make clean -C $(LIBFT)
+	@make clean -C $(LIBFT)
 	
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C $(LIBFT)
+	@make fclean -C $(LIBFT)
 	
 re:	fclean all
-	make re -C $(LIBFT)
+	@make re -C $(LIBFT)

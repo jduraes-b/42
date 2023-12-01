@@ -40,18 +40,20 @@ int	maxnr(t_stack *node)
 	return (i);
 }
 
-t_stack	*maxnrlist(t_stack **s, int bignr)
+void	findfindex(t_stack *object, t_stack **s)
 {
 	t_stack	*curr;
-	
+	int	i;
+
 	curr = *s;
+	i = 0;
 	while (curr)
 	{
-		if (curr->number == bignr)
-			return (curr);
+		if (curr->number > object->number)
+			i++;
 		curr = curr->next;
 	}
-	return (NULL);
+	object->f_index = ps_lstsize(*s) - i;
 }
 
 void	whereami(t_stack **st)

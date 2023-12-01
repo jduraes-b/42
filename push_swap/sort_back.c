@@ -24,15 +24,10 @@ void	cost_back(t_stack **a, t_stack **b)
 		curr->sprice = curr->position;
 		curr->tprice = howmanyrotateback(curr, a);
 		if (curr->sprice < (ps_lstsize(*b) / 2))
-		{
-			curr->half = 0;
 			curr->cost = tophcost(curr, b, a);
-		}
 		else
-		{
-			curr->half = 1;
+
 			curr->cost = bottomhcost(curr, b, a);
-		}
 		curr = curr->next;
 	}
 }
