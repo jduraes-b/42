@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap
-SRC =	main.c utils_1.c rotate.c swap.c push.c utils_2.c utils_sort.c algo.c utils_cost.c sort.c utils_3.c sort_back.c sort_back_utils.c
+SRC =	main.c utils_1.c rotate.c swap.c push.c utils_2.c utils_sort.c algo.c utils_cost.c sort.c utils_3.c sort_back.c sort_back_utils.c utils_extra.c
 OBJS =	${SRC:.c=.o}
 HEADER =	push_swap.h
 INCLUDE =	-I .

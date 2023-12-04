@@ -1,28 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   utils_extra.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 18:16:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/15 19:51:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/12/04 19:44:55 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/12/04 19:49:13 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stuff(t_stack **a, t_stack **b)
+void	ps_lstclear(t_stack **lst)
 {
-	goorno(*a);
-	sendsmall(a, b);
-	refresh(a, b);
-	setcosts(a, b);
-	sort_to_three(a, b);
-	sort_three(a);
-	refresh(a, b);
-	cost_back(a, b);
-	sort_back(b, a);
-	while (!issorted(*a))
-		ra(a);
+	t_stack	*temp;
+
+	if (lst)
+	{
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			free(*lst);
+			(*lst) = temp;
+		}
+	}
+}
+
+int	checkrepeat(char **argv)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (argv[i])
+	{
+		j = i + 1;
+		while (argv[j])
+		{
+			if (ft_atol(argv[i]) == ft_atol(argv[j]))
+				return (1);
+			j++;
+		}
+		i++;	
+	}
+	return (0);
 }

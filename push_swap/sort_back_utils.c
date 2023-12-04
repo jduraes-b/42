@@ -14,18 +14,20 @@
 
 void	case_11b(t_stack *curr, t_stack **s, t_stack **t)
 {
-	while (curr->sprice && curr->tprice)
+	if (ps_lstsize(*s) == 1)
+		curr->sprice = 0;
+	while (curr->sprice > 0 && curr->tprice > 0)
 	{
 		rr(s, t);
 		curr->sprice--;
 		curr->tprice--;
 	}
-	while (curr->sprice)
+	while (curr->sprice > 0)
 	{
 		rb(s);
 		curr->sprice--;
 	}
-	while (curr->tprice)
+	while (curr->tprice > 0)
 	{
 		ra(t);
 		curr->tprice--;
@@ -37,34 +39,38 @@ void	case_22b(t_stack *curr, t_stack **s, t_stack **t)
 {
 	curr->sprice = ps_lstsize(*s) - curr->sprice;
 	curr->tprice = ps_lstsize(*t) - curr->tprice;
-	while (curr->sprice && curr->tprice)
+	if (ps_lstsize(*s) == 1)
+		curr->sprice = 0;
+	while (curr->sprice > 0 && curr->tprice > 0)
 	{
 		rrr(t, s);
 		curr->sprice--;
 		curr->tprice--;
 	}
-	while (curr->sprice)
+	while (curr->sprice > 0)
 	{
 		rrb(s);
 		curr->sprice--;
 	}
-	while (curr->tprice)
+	while (curr->tprice > 0)
 	{
 		rra(t);
 		curr->tprice--;
 	}
-	pa(s, t);
+	pa(t, s);
 }
 
 void	case_12b(t_stack *curr, t_stack **s, t_stack **t)
 {
 	curr->tprice = ps_lstsize(*t) - curr->tprice;
-	while (curr->sprice)
+	if (ps_lstsize(*s) == 1)
+		curr->sprice = 0;
+	while (curr->sprice > 0)
 	{
 		rb(s);
 		curr->sprice--;
 	}
-	while (curr->tprice)
+	while (curr->tprice > 0)
 	{
 		rra(t);
 		curr->tprice--;
@@ -75,14 +81,16 @@ void	case_12b(t_stack *curr, t_stack **s, t_stack **t)
 void	case_21b(t_stack *curr, t_stack **s, t_stack **t)
 {
 	curr->sprice = ps_lstsize(*s) - curr->sprice;
-	while (curr->sprice)
+	if (ps_lstsize(*s) == 1)
+		curr->sprice = 0;
+	while (curr->sprice > 0)
 	{
 		rrb(s);
 		curr->sprice--;
 	}
-	while (curr->tprice)
+	while (curr->tprice > 0)
 	{
-		ra(s);
+		ra(t);
 		curr->tprice--;
 	}
 	pa(t, s);
