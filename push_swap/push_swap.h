@@ -29,7 +29,6 @@ typedef struct s_stack
 	int				sprice;
 	int				tprice;
 	int				half;
-	//	struct	s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -82,6 +81,7 @@ void	case_11b(t_stack *curr, t_stack **s, t_stack **t);
 void	case_22b(t_stack *curr, t_stack **s, t_stack **t);
 void	case_12b(t_stack *curr, t_stack **s, t_stack **t);
 void	case_21b(t_stack *curr, t_stack **s, t_stack **t);
-
+void	ps_lstclear(t_stack **lst);
+int	checkrepeat(char **argv);
 
 #endif

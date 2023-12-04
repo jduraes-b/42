@@ -27,14 +27,17 @@ int	wrongargs(char **argv)
 		nr = ft_atol(argv[i]);
 		if (nr < INT_MIN || nr > INT_MAX)
 			return (1);
+		if (argv[i][j] == '-')
+			j++;
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]))
+			if (!ft_isdigit(argv[i][j++]))
 				return (1);
-			j++;
 		}
 		i++;
 	}
+	if (checkrepeat(argv))
+		return (1);
 	return (0);
 }
 

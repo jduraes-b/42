@@ -57,14 +57,17 @@ int	howmanyrotateback(t_stack *s, t_stack **t)
 void	sort_back(t_stack **s, t_stack **t)
 {
 	t_stack	*curr;
+	int	i;
 
 	curr = *s;
-	while (curr)
+	i = ps_lstsize(*s);
+	while (i)
 	{
 		refresh(s, t);
 		cost_back(t, s);
 		curr = cheapest(s);
 		applyb(curr, s, t);
 		curr = curr->next;
+		i--;
 	}
 }
