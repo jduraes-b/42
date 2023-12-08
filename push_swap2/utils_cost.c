@@ -17,7 +17,8 @@ int	bottomhcost(t_stack *curr, t_stack **s, t_stack **t)
 	int	total;
 
 	total = 0;
-	if (curr->tprice > ps_lstsize(*t) / 2)
+	if ((curr->tprice >= ps_lstsize(*t) / 2 && ps_lstsize(*t) % 2 == 0) ||
+		(curr->tprice >= (ps_lstsize(*t) / 2 + 1) && ps_lstsize(*t) % 2 == 1))
 	{
 		if ((ps_lstsize(*t) - curr->tprice) < (ps_lstsize(*s) - curr->sprice))
 		{
@@ -44,7 +45,8 @@ int	tophcost(t_stack *curr, t_stack **s, t_stack **t)
 	
 	(void) s;
 	total = 0;
-	if (curr->tprice <= ps_lstsize(*t) / 2)
+	if ((curr->tprice < ps_lstsize(*t) / 2 && ps_lstsize(*t) % 2 == 0) ||
+		(curr->tprice < (ps_lstsize(*t) / 2 + 1) && ps_lstsize(*t) % 2 == 1))
 	{
 		if (curr->sprice < curr->tprice)
 		{
@@ -64,6 +66,7 @@ int	tophcost(t_stack *curr, t_stack **s, t_stack **t)
 	}
 	return (total);
 }
+
 int	howmanyrotate(t_stack *s, t_stack **t)
 {
 	t_stack	*ts;
@@ -95,13 +98,13 @@ int	targetfindex(int sfindex, t_stack *t, char list)
 	int		temp;
 
 	curr = t;
-	temp = -1;
+	/*temp = -1;
 	while (curr && list == 'b')
 	{
 		if (curr->f_index < sfindex && (temp == -1 || curr->f_index > temp))
 			temp = curr->f_index;
 		curr = curr->next;
-	}
+	}*/
 	temp = -1;
 	while (curr && list == 'a')
 	{

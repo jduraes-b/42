@@ -16,12 +16,16 @@ void	stuff(t_stack **a, t_stack **b)
 {
 	goorno(*a);
 	setbiggest(a);
-	//sendsmall(a, b);
-	pb(a, b);
-	pb(a, b);
+	sendsmall(a, b);
+	while (ps_lstsize(*a) > 3)
+	{
+		if ((*a)->biggest)
+			ra(a);
+		pb(a, b);
+	}
 	refresh(a, b);
-	setcosts(a, b);
-	sort_to_three(a, b);
+	//setcosts(a, b);
+	//sort_to_three(a, b);
 	sort_three(a);
 	refresh(a, b);
 	cost_back(a, b);

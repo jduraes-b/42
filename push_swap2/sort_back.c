@@ -23,7 +23,8 @@ void	cost_back(t_stack **a, t_stack **b)
 		refresh(a, b);
 		curr->sprice = curr->position;
 		curr->tprice = howmanyrotateback(curr, a);
-		if (curr->sprice < (ps_lstsize(*b) / 2))
+		if ((curr->tprice < ps_lstsize(*a) / 2 && ps_lstsize(*a) % 2 == 0) ||
+		(curr->tprice < (ps_lstsize(*a) / 2 + 1) && ps_lstsize(*a) % 2 == 1))
 			curr->cost = tophcost(curr, b, a);
 		else
 
