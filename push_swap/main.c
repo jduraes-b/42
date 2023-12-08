@@ -28,8 +28,8 @@ void	push_swap(int argc, char **argv)
 		sort_three(&aroot);
 	if (ps_lstsize(aroot) > 3)
 		stuff (&aroot, &broot);
-	curr = aroot;
-	/*while (curr != NULL)
+	/*curr = broot;
+	while (curr != NULL)
 	{
 		ft_printf("%d %d %d\n", curr->number, curr->f_index, curr->cost);
 		curr = curr->next;
