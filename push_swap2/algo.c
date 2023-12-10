@@ -29,7 +29,7 @@ void	stuff(t_stack **a, t_stack **b)
 	sort_three(a);
 	refresh(a, b);
 	cost_back(a, b);
-	/*sort_back(b, a);
+	sort_back(b, a);
 	if (up(a))
 	{
 		while (!issorted(*a))
@@ -37,7 +37,7 @@ void	stuff(t_stack **a, t_stack **b)
 	}
 	while (!issorted(*a))
 		ra(a);
-*/}
+}
 
 int	up(t_stack **a)
 {
