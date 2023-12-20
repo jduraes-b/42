@@ -19,7 +19,7 @@ void	goorno(t_stack *st)
 	t_stack	*temp;
 	t_stack	*curr;
 
-	ammount = ps_lstsize(st) / 2;
+	ammount = ps_lstsize(st) / 2 + 1;
 	small = (st)->number;
 	temp = st;
 	while (ammount)
@@ -44,7 +44,7 @@ void	sendsmall(t_stack **a, t_stack **b)
 {
 	int		times;
 
-	times = ps_lstsize(*a) / 2;
+	times = ps_lstsize(*a) / 2 + 1;
 	while (*a && times)
 	{
 		if ((*a)->go == 1)

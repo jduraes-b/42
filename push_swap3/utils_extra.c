@@ -84,4 +84,32 @@ int	casebiggest(t_stack **t)
 	return (-1);
 }
 
+void	gotogether(t_stack *curr, t_stack **s, t_stack **t)
+{
+	if (curr->half == 12)
+	{
+		if ((ps_lstsize(*s) - curr->sprice) < curr->sprice + (ps_lstsize(*t) - curr->tprice))
+		{
+			curr->together = 2;
+			curr->cost = (ps_lstsize(*s) - curr->sprice) + 1;
+		}
+		if (curr->tprice < curr->sprice + (ps_lstsize(*t) - curr->tprice))
+		{
+			curr->together = 1;
+			curr->cost = curr->tprice + 1;
+		}
+		return ;	
+	}
+	if (curr->sprice < curr->tprice + (ps_lstsize(*s) - curr->sprice))
+	{
+		curr->together = 1;
+		curr->cost = curr->sprice + 1;
+	}
+	if (ps_lstsize(*t) - curr->tprice < curr->tprice + (ps_lstsize(*s) - curr->sprice))
+	{
+		curr->together = 2;
+		curr->cost = ps_lstsize(*t) - curr->tprice + 1;
+	}
+}
+
 

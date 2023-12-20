@@ -1,58 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   sort_five.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 18:16:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/15 19:51:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/12/19 19:13:21 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/12/19 19:37:02 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stuff(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b)
 {
-	goorno(*a);
-	setbiggest(a);
-	sendsmall(a, b);
 	while (ps_lstsize(*a) > 3)
-	{
-		//if ((*a)->biggest)
-		//	ra(a);
 		pb(a, b);
-	}
 	refresh(a, b);
-	//setcosts(a, b);
-	//sort_to_three(a, b);
-	sort_three(a);
-	refresh(a, b);
-	cost_back(a, b);
-	sort_back(b, a);
-	if (up(a))
+	if (!issorted(*a))
+		sort_three(a);
+	while (*b)
 	{
-		while (!issorted(*a))
-			rra(a);
+		refresh(a, b);
+		cost_back(a, b);
+		applyb(cheapest(b), b, a);
 	}
-	while (!issorted(*a))
-		ra(a);
-*/}
+	refresh(a, b);
+	if (!issorted(*a))
+		sort_five_2(a);
+}
 
-int	up(t_stack **a)
+void	sort_five_2(t_stack **a)
 {
 	t_stack	*curr;
-	int	i;
-	
 	curr = *a;
-	i = 0;
-	while (!curr->biggest)
-	{
+	while (curr->biggest != -1)
 		curr = curr->next;
-		i++;
+	if ((curr->position < ps_lstsize(*a) / 2 && ps_lstsize(*a) % 2 == 0) ||
+		(curr->position < (ps_lstsize(*a) / 2 + 1) && ps_lstsize(*a) % 2 == 1))
+	{
+		while (!issorted(*a))
+			ra(a);
 	}
-	if (i > ps_lstsize(*a) / 2)
-		return (1);
-	return (0);
+	else
+		while (!issorted(*a))
+			rra(a);
 }
-//405 247 243 -25 -199 77 -290 45 -172 -301

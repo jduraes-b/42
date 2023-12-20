@@ -133,7 +133,8 @@ void	setcosts(t_stack **s, t_stack **t)
 		refresh(s, t);
 		curr->sprice = curr->position;
 		curr->tprice = howmanyrotate(curr, t);
-		if (curr->sprice < (ps_lstsize(*s) / 2))
+		if ((curr->tprice < ps_lstsize(*t) / 2 && ps_lstsize(*t) % 2 == 0) ||
+		(curr->tprice < (ps_lstsize(*t) / 2 + 1) && ps_lstsize(*t) % 2 == 1))
 			curr->cost = tophcost(curr, s, t);
 		else
 			curr->cost = bottomhcost(curr, s, t);			
