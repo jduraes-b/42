@@ -30,6 +30,7 @@ typedef struct s_stack
 	int				tprice;
 	int				half;
 	int				biggest;
+	int				together;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -87,5 +88,10 @@ int	checkrepeat(char **argv);
 void	setbiggest(t_stack **a);
 int	casebiggest(t_stack **t);
 int	up(t_stack **a);
+void	sort_five(t_stack **a, t_stack **b);
+void	sort_five_2(t_stack **a);
+void	gotogether(t_stack *curr, t_stack **s, t_stack **t);
+void	case_21together(t_stack *curr, t_stack **s, t_stack **t);
+void	case_12together(t_stack *curr, t_stack **s, t_stack **t);
 
 #endif

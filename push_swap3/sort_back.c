@@ -27,8 +27,9 @@ void	cost_back(t_stack **a, t_stack **b)
 		(curr->sprice < (ps_lstsize(*b) / 2 + 1) && ps_lstsize(*b) % 2 == 1))
 			curr->cost = tophcost(curr, b, a);
 		else
-
 			curr->cost = bottomhcost(curr, b, a);
+		if (curr->half == 12 || curr->half == 21)
+			gotogether(curr, b, a);
 		curr = curr->next;
 	}
 }
