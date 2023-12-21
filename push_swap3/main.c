@@ -36,19 +36,19 @@ void	push_swap(int argc, char **argv)
 		sort_five(&aroot, &broot);
 	if (ps_lstsize(aroot) > 3 && !issorted(aroot))
 		stuff (&aroot, &broot);
-	/*curr = aroot;
+	curr = aroot;
 	while (curr != NULL)
 	{
-		ft_printf("%d, %d, sprice: %d, tprice: %d\n", curr->number, curr->f_index, curr->sprice, curr->tprice);
+		ft_printf("A \n%d, %d, sprice: %d, tprice: %d\n", curr->number, curr->f_index, curr->sprice, curr->tprice);
 		curr = curr->next;
 	}
 	write(1, "\n", 1);
 	curr = broot;
 	while (curr != NULL)
 	{
-		ft_printf("%d, %d, half: %d, sprice: %d, tprice: %d\n", curr->number, curr->cost, curr->half, curr->sprice, curr->tprice);
+		ft_printf(" B \n%d, %d, half: %d, sprice: %d, tprice: %d\n", curr->number, curr->cost, curr->half, curr->sprice, curr->tprice);
 		curr = curr->next;
-	}*/
+	}
 	ps_lstclear(&aroot);
 	ps_lstclear(&broot);
 }

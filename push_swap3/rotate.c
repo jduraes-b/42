@@ -30,12 +30,17 @@ void	rrotate(t_stack **root)
 {
 	t_stack	*temp;
 	t_stack	*curr;
+	int	i;
 
 	curr = *root;
 	temp = *root;
-	while (curr->next->next != NULL)
+	i = 0;
+	while (i < ps_lstsize(*root) - 1)
+	{
 		curr = curr->next;
-	*root = curr->next;
+		i++;
+	}
+	*root = curr;
 	(*root)->next = temp;
 	curr->next = NULL;
 }
