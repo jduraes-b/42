@@ -37,7 +37,7 @@ void	stuff(t_stack **a, t_stack **b)
 	}
 	while (!issorted(*a))
 		ra(a);
-*/}
+}
 
 int	up(t_stack **a)
 {
@@ -46,7 +46,7 @@ int	up(t_stack **a)
 	
 	curr = *a;
 	i = 0;
-	while (!curr->biggest)
+	while (curr && !curr->biggest)
 	{
 		curr = curr->next;
 		i++;

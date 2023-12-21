@@ -69,7 +69,6 @@ void	sort_back(t_stack **s, t_stack **t)
 		cost_back(t, s);
 		curr = cheapest(s);
 		applyb(curr, s, t);
-		curr = curr->next;
 		i--;
 	}
 }
