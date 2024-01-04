@@ -1,53 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   movements_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:02:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/13 18:01:19 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/03 20:22:27 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/03 20:25:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **root)
+void	ra(t_stack **a)
 {
-	t_stack	*temp;
-
-	temp = (*root);
-	*root = (*root)->next;
-	temp->next = (*root)->next;
-	(*root)->next = temp;
+	rotate(a);
+	write (1, "ra\n", 3);
 }
 
-void	sa(t_stack **a)
+void	rb(t_stack **b)
 {
-	write(1, "sa\n", 3);
-	swap(a);
-}
-
-void	sb(t_stack **b)
-{
-	write(1, "sb\n", 3);
-	swap(b);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	write(1, "ss\n", 3);
-	swap(a);
-	swap(b);
+	rotate(b);
+	write (1, "rb\n", 3);
 }
 
 void	rra(t_stack **a)
 {
-	if (ps_lstsize(*a) < 3)
-		sa(a);
-	else
-	{
-		write(1, "rra\n", 4);
-		rrotate(a);
-	}
+	rrotate(a);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **b)
+{
+	rrotate(b);
+	write(1, "rrb\n", 4);
 }
