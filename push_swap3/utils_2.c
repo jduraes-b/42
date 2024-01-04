@@ -70,6 +70,7 @@ void	whereami(t_stack **st)
 	while (curr)
 	{
 		curr->position = i;
+		curr->together = 0;
 		i++;
 		curr = curr->next;
 	}

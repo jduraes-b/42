@@ -1,53 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   movements_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:02:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/13 18:01:19 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/03 20:13:23 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/03 20:22:19 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **root)
-{
-	t_stack	*temp;
-
-	temp = (*root);
-	*root = (*root)->next;
-	temp->next = (*root)->next;
-	(*root)->next = temp;
-}
-
 void	sa(t_stack **a)
 {
+	swap(a);
 	write(1, "sa\n", 3);
-	swap(a);
 }
 
-void	sb(t_stack **b)
+void    sb(t_stack **b)
 {
-	write(1, "sb\n", 3);
-	swap(b);
+        swap(b);
+        write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
-	write(1, "ss\n", 3);
-	swap(a);
-	swap(b);
+	push(b, a);
+	write(1, "pa\n", 3);
 }
 
-void	rra(t_stack **a)
+void    pb(t_stack **a, t_stack **b)
 {
-	if (ps_lstsize(*a) < 3)
-		sa(a);
+        push(a, b);
+        write(1, "pb\n", 3);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	if (ps_lstsize(a) < 3)
+		swap(a);
 	else
-	{
-		write(1, "rra\n", 4);
 		rrotate(a);
-	}
+	if (ps_lstsize(b) < 3)
+		swap(b);
+	else
+		rrotate(b);
+	write(1, "rrr\n", 4);
 }

@@ -20,7 +20,6 @@ void	cost_back(t_stack **a, t_stack **b)
 	curr->sprice = 0;
 	while (curr)
 	{
-		refresh(a, b);
 		curr->sprice = curr->position;
 		curr->tprice = howmanyrotateback(curr, a);
 		if ((curr->sprice < ps_lstsize(*b) / 2 && ps_lstsize(*b) % 2 == 0) ||
@@ -28,7 +27,7 @@ void	cost_back(t_stack **a, t_stack **b)
 			curr->cost = tophcost(curr, b, a);
 		else
 			curr->cost = bottomhcost(curr, b, a);
-		if (curr->half == 12 || curr->half == 21)
+		if ((curr->half == 12 || curr->half == 21) && ps_lstsize(*b) > 2)
 			gotogether(curr, b, a);
 		curr = curr->next;
 	}

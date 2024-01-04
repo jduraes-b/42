@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   movements_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:19:15 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/13 18:26:42 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/03 19:28:30 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/03 20:13:16 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	push(t_stack **s, t_stack **t)
+{
+	t_stack	*temp;
+
+	temp = *s;
+	*s = (*s)->next;
+	temp->next = *t;
+	*t = temp;
+}
+
+void	swap(t_stack **root)
+{
+	t_stack	*temp;
+
+	temp = *root;
+	*root = (*root)->next;
+	temp->next = (*root)->next;
+	(*root)->next = temp;
+}
 
 void	rotate(t_stack **root)
 {
@@ -20,16 +40,16 @@ void	rotate(t_stack **root)
 	temp = *root;
 	*root = (*root)->next;
 	curr = *root;
-	while (curr->next != NULL)
+	while (curr->next)
 		curr = curr->next;
 	curr->next = temp;
-	curr->next->next = NULL;
+	temp->next = NULL;
 }
 
 void	rrotate(t_stack **root)
 {
-	t_stack	*temp;
 	t_stack	*curr;
+	t_stack	*temp;
 
 	curr = *root;
 	temp = *root;
@@ -42,21 +62,15 @@ void	rrotate(t_stack **root)
 	temp->next = NULL;
 }
 
-void	ra(t_stack **a)
-{
-	write(1, "ra\n", 3);
-	rotate(a);
-}
-
-void	rb(t_stack **b)
-{
-	write(1, "rb\n", 3);
-	rotate(b);
-}
-
 void	rr(t_stack **a, t_stack **b)
 {
+	if (ps_lstsize(a) < 3)
+		swap(a);
+	else
+		rotate(a);
+	if (ps_lstsize(b) < 3)
+		swap(b);
+	else
+		rotate(b);
 	write(1, "rr\n", 3);
-	rotate(a);
-	rotate(b);
 }
