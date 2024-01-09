@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:12:16 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/08 22:02:48 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:34:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ void	cost(t_stack **a, t_stack **b)
 			(numbercompare(curr->position, targetindex(a, curr->f_index), \
 			'+'), numbercompare(curr->dte + 1, (ps_lstsize(a) - \
 			targetindex(a, curr->f_index)) + 1, '+'), '-') + 1, '-'), '-');*/
-		curr->cost = numbercompare('-', curr->position + (ps_lstsize(a) - targetindex(a, curr->f_index) - 1) + 2, numbercompare('-', curr->dte + targetindex(a, curr->f_index) + 2, numbercompare('-', numbercompare('+', curr->position, targetindex(a, curr->f_index) + 1), numbercompare('+', curr->dte, (ps_lstsize(a) + targetindex(a, curr->f_index) - 1) + 2)))); 
+		curr->cost = numbercompare('-', curr->position + targetdte(a, curr->f_index) + 2,
+				numbercompare('-', curr->dte + targetindex(a, curr->f_index) + 2,
+				numbercompare('-', numbercompare('+', curr->position,
+				targetindex(a, curr->f_index)) + 1, numbercompare('+', 
+				curr->dte + 1, targetdte(a, curr->f_index) + 1) + 1)));
 		curr = curr->next;
 	}
 }

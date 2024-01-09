@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 20:31:02 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/03 20:31:59 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/09 20:13:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,19 @@ void	sort_three(t_stack **s)
 			rra(s);
 		if (!issorted(*s))
 			sa(s);
+	}
+}
+
+void	sort_five(t_stack **a, t_stack **b)
+{
+	while (ps_lstsize(a) > 3)
+		pb(a, b);
+	refresh(a, b);
+	if (!issorted(a))
+		sort_three(a);
+	while (*b)
+	{
+		refresh(a, b);
+		cost(a, b)
 	}
 }
