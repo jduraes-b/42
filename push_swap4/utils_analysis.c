@@ -33,6 +33,10 @@ void	whatindex(t_stack **s)
 	{
 		curr->position = i;
 		curr->dte = size - i - 1;
+		if (curr->position > (size / 2))
+			curr->half = 2;
+		else
+			curr->half = 1;
 		curr = curr->next;
 		i++;
 	}

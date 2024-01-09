@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:36:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/04 21:02:12 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/09 20:19:57 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,34 @@ int	numbercompare(char def, int n1, int n2)
 			return (n2);
 		return (n1);
 	}
+}
+
+int	targetdte(t_stack **a, int sfi)
+{
+	int	tindex;
+	
+	tindex = targetindex(a, sfi);
+	tindex = ps_lstsize(a) - tindex - 1;
+	return (tindex);
+}
+
+t_stack	*cheapest(t_stack **s)
+{
+	t_stack	*curr;
+	t_stack	*cheapest;
+	int	temp;
+
+	curr = *s;
+	temp = curr->cost;
+	cheapest = curr;
+	while (curr)
+	{
+		if (curr->cost < temp)
+		{
+			cheapest = curr;
+			temp = curr->cost;
+		}
+		curr = curr->next;
+	}
+	return (cheapest);
 }

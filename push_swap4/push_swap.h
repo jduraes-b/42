@@ -52,7 +52,7 @@ void				rrb(t_stack **b);
 void				rrr(t_stack **a, t_stack **b);
 int					minnr(t_stack **s);
 int					maxnr(t_stack **s);
-void				goorno(t_stack *st);
+//void				goorno(t_stack *st);
 void				algo(t_stack **a, t_stack **b);
 int					ps_lstsize(t_stack **st);
 void				sendsmall(t_stack **a, t_stack **b);
@@ -70,5 +70,7 @@ int	targetindex(t_stack **a, int sfi);
 int	numbercompare(char def, int n1, int n2);
 int	wrongargs(char **argv);
 int	checkrepeat(char **argv);
+int	targetdte(t_stack **a, int sfi);
+t_stack *cheapest(t_stack **s);
 
 #endif
