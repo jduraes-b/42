@@ -42,7 +42,7 @@ int	issorted(t_stack *s)
 	return (1);
 }
 
-int	numbercompare(int n1, int n2, char def)
+int	numbercompare(char def, int n1, int n2)
 {
 	if (def == '+')
 	{
@@ -50,7 +50,7 @@ int	numbercompare(int n1, int n2, char def)
 			return (n1);
 		return (n2);
 	}
-	if (def == '-')
+	else
 	{
 		if (n1 > n2)
 			return (n2);

@@ -30,4 +30,3 @@ void	sort_three(t_stack **s)
 			sa(s);
 	}
 }
-

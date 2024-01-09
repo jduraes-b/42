@@ -32,7 +32,7 @@ void	whatindex(t_stack **s)
 	while (curr)
 	{
 		curr->position = i;
-		curr->dte = size - i;
+		curr->dte = size - i - 1;
 		curr = curr->next;
 		i++;
 	}
@@ -45,9 +45,10 @@ void	setfinalindex(t_stack **a)
 	t_stack	*temp;
 
 	curr = *a;
-	i = 0;
+	i = 1;
 	while (curr)
 	{	
+		i = 1;
 		temp = *a;
 		while (temp)
 		{

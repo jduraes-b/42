@@ -22,25 +22,26 @@ void	push_swap(int argc, char **argv)
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
 	setfinalindex(&aroot);
-	if (ps_lstsize(aroot) == 2 && !issorted(aroot))
+	refresh(&aroot, &broot);
+	if (ps_lstsize(&aroot) == 2 && !issorted(aroot))
 		sa(&aroot);
-	if (ps_lstsize(aroot) == 3)
+	if (ps_lstsize(&aroot) == 3)
 		sort_three(&aroot);
 	//if (ps_lstsize(aroot) == 5)
 	//	sort_five(&aroot, &broot);
-	if (ps_lstsize(aroot) > 3 && !issorted(aroot))
-		stuff (&aroot, &broot);
+	if (ps_lstsize(&aroot) > 3 && !issorted(aroot))
+		algo(&aroot, &broot);
 	curr = aroot;
 	while (curr != NULL)
 	{
-		ft_printf("%d, %d, sprice: %d, tprice: %d\n", curr->number, curr->f_index, curr->sprice, curr->tprice);
+		ft_printf("%d\n", curr->number);
 		curr = curr->next;
 	}
 	write(1, "\n", 1);
 	curr = broot;
 	while (curr != NULL)
 	{
-		ft_printf("%d, %d, half: %d, sprice: %d, tprice: %d\n", curr->number, curr->cost, curr->half, curr->sprice, curr->tprice);
+		ft_printf("%d, cost: %d, target: %d\n", curr->number, curr->cost, targetindex(&aroot, curr->f_index));
 		curr = curr->next;
 	}
 	ps_lstclear(&aroot);
