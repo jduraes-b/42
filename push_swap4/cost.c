@@ -19,12 +19,6 @@ void	cost(t_stack **a, t_stack **b)
 	curr = *b;
 	while (curr)
 	{
-		/*curr->cost = numbercompare(curr->position + (ps_lstsize(a) - \
-			targetindex(a, curr->f_index)) + 2, numbercompare(curr \
-			->dte + targetindex(a, curr->f_index) + 2, numbercompare \
-			(numbercompare(curr->position, targetindex(a, curr->f_index), \
-			'+'), numbercompare(curr->dte + 1, (ps_lstsize(a) - \
-			targetindex(a, curr->f_index)) + 1, '+'), '-') + 1, '-'), '-');*/
 		curr->cost = numbercompare('-', curr->position + targetdte(a, curr->f_index) + 2,
 				numbercompare('-', curr->dte + targetindex(a, curr->f_index) + 2,
 				numbercompare('-', numbercompare('+', curr->position,
@@ -45,7 +39,8 @@ int	targetindex(t_stack **a, int sfi)
 	curr = *a;
 	while (curr)
 	{
-		if ((curr->f_index > sfi && curr->f_index < tfindex) || (tindex == -1 && curr->f_index > sfi))
+		if ((curr->f_index > sfi && curr->f_index < tfindex) || 
+		(tindex == -1 && curr->f_index > sfi))
 		{
 			tfindex = curr->f_index;
 			tindex = curr->position;
