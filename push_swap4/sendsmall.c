@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	goorno(t_stack *st)
+/*void	goorno(t_stack *st)
 {
 	int		small;
 	int		ammount;
 	t_stack	*temp;
 	t_stack	*curr;
 
-	ammount = ps_lstsize(&st) / 2 + 1;
+	ammount = ps_lstsize(&st) / 2;
 	small = (st)->number;
 	temp = st;
 	while (ammount)
@@ -45,13 +45,41 @@ void	sendsmall(t_stack **a, t_stack **b)
 	int		times;
 
 	goorno(*a);
-	times = ps_lstsize(a) / 2 + 1;
+	times = ps_lstsize(a) / 2;
 	while (*a && times)
 	{
 		if ((*a)->go == 1)
 		{
 			pb(a, b);
 			times--;
+		}
+		else
+			ra(a);
+	}
+}*/
+
+void	sendsmall(t_stack **a, t_stack **b)
+{
+	t_stack *curr;	
+	t_stack	*temp;
+	int	i;
+	
+	curr = *a;
+	temp = *a;
+	i = ps_lstsize(a) / 2;
+	while (curr)
+	{
+		if (curr->f_index == i)
+			break;
+		curr = curr->next;
+	}
+	while (i >= 0)
+	{
+		temp = *a;
+		if (temp->f_index <= curr->f_index)
+		{
+			pb(a, b);
+			i--;
 		}
 		else
 			ra(a);

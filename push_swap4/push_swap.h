@@ -65,5 +65,10 @@ void	ps_lstclear(t_stack **lst);
 int	checkrepeat(char **argv);
 void	setbiggest(t_stack **a);
 void	whatindex(t_stack **s);
+void	cost(t_stack **a, t_stack **b);
+int	targetindex(t_stack **a, int sfi);
+int	numbercompare(char def, int n1, int n2);
+int	wrongargs(char **argv);
+int	checkrepeat(char **argv);
 
 #endif
