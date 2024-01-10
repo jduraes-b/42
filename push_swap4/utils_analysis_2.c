@@ -58,15 +58,6 @@ int	numbercompare(char def, int n1, int n2)
 	}
 }
 
-int	targetdte(t_stack **a, int sfi)
-{
-	int	tindex;
-	
-	tindex = targetindex(a, sfi);
-	tindex = ps_lstsize(a) - tindex - 1;
-	return (tindex);
-}
-
 t_stack	*cheapest(t_stack **s)
 {
 	t_stack	*curr;
