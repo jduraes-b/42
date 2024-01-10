@@ -62,6 +62,7 @@ void				whereami(t_stack **st);
 void				refresh(t_stack **a, t_stack **b);
 int					issorted(t_stack *s);
 void				sort_three(t_stack **s);
+void	sort_five(t_stack **a, t_stack **b);
 void	ps_lstclear(t_stack **lst);
 int	checkrepeat(char **argv);
 void	setbiggest(t_stack **a);
@@ -73,5 +74,14 @@ int	wrongargs(char **argv);
 int	checkrepeat(char **argv);
 int	targetdte(t_stack **a, int sfi);
 t_stack *cheapest(t_stack **s);
+void	sort(t_stack **a, t_stack **b);
+void	whatmove(t_stack **a, t_stack **b, t_stack *curr);
+int	case_1(t_stack **a, t_stack **b, t_stack *curr);
+int	case_2(t_stack **a, t_stack **b, t_stack *curr);
+int	case_3(t_stack **a, t_stack **b, t_stack *curr);
+int	case_4(t_stack **a, t_stack **b, t_stack *curr);
+int	case_5(t_stack **a, t_stack **b, t_stack *curr);
+int	case_6(t_stack **a, t_stack **b, t_stack *curr);
+int	case_7(t_stack **a, t_stack **b, t_stack *curr);
 
 #endif

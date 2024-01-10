@@ -27,12 +27,12 @@ void	push_swap(int argc, char **argv)
 		sa(&aroot);
 	if (ps_lstsize(&aroot) == 3)
 		sort_three(&aroot);
-	//if (ps_lstsize(aroot) == 5)
-	//	sort_five(&aroot, &broot);
+	if (ps_lstsize(&aroot) == 5)
+		sort_five(&aroot, &broot);
 	if (ps_lstsize(&aroot) > 3 && !issorted(aroot))
 		algo(&aroot, &broot);
 	curr = aroot;
-	while (curr != NULL)
+	/*while (curr != NULL)
 	{
 		ft_printf("%d\n", curr->number);
 		curr = curr->next;
@@ -43,7 +43,7 @@ void	push_swap(int argc, char **argv)
 	{
 		ft_printf("%d, cost: %d, target: %d\n", curr->number, curr->cost, targetindex(&aroot, curr->f_index));
 		curr = curr->next;
-	}
+	}*/
 	ps_lstclear(&aroot);
 	ps_lstclear(&broot);
 }
