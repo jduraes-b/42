@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:12:16 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/09 19:34:20 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/10 20:03:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	cost(t_stack **a, t_stack **b)
 				numbercompare('-', numbercompare('+', curr->position,
 				targetindex(a, curr->f_index)) + 1, numbercompare('+', 
 				curr->dte + 1, targetdte(a, curr->f_index) + 1) + 1)));
+		if (targetindex(a, curr->f_index) <= targetdte(a, curr->f_index))
+			curr->t_half = 1;
+		else
+			curr->t_half = 2;
 		curr = curr->next;
 	}
 }
@@ -54,5 +58,14 @@ int	targetindex(t_stack **a, int sfi)
 			curr = curr->next;
 		tindex = curr->position;
 	}
+	return (tindex);
+}
+
+int	targetdte(t_stack **a, int sfi)
+{
+	int	tindex;
+
+	tindex = targetindex(a, sfi);
+	tindex = ps_lstsize(a) - tindex - 1;
 	return (tindex);
 }

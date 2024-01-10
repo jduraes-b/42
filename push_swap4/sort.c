@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 20:31:02 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/09 20:13:39 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:53:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,36 @@ void	sort_five(t_stack **a, t_stack **b)
 		refresh(a, b);
 		cost(a, b)
 	}
+}
+
+void	sort(t_stack **a, t_stack **b)
+{
+	t_stack	*curr;
+
+	curr = *b;
+	while(*b)
+	{
+		refresh(a, b);
+		cost(a, b);
+		curr = cheapest(b);
+		whatmove(a, b, curr);
+	}
+}
+
+void	whatmove(t_stack **a, t_stack **b, t_stack *curr)
+{
+	if (case_1(a, b, curr))
+		;
+	else if (case_2(a, b, curr))
+		;
+	else if (case_3(a, b, curr))
+		;
+	else if (case_4(a, b, curr))
+		;
+	else if (case_5(a, b, curr))
+		;
+	else if (case_6(a, b, curr))
+		;
+	else if (case_7(a, b, curr))
+		;
 }

@@ -28,6 +28,7 @@ typedef struct s_stack
 	int				go;
 	int				dte;
 	int				half;
+	int				t_half;
 	int				biggest;
 	int				together;
 	struct s_stack	*next;
