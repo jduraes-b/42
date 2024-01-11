@@ -5,24 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 18:16:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/15 19:51:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/02 18:23:00 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/02 19:15:04 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stuff(t_stack **a, t_stack **b)
+void	algo(t_stack **a, t_stack **b)
 {
-	goorno(*a);
+	t_stack	*temp;
+
+	setbiggest(a);
 	sendsmall(a, b);
+	while (ps_lstsize(a) > 3)
+		pb(a, b);
 	refresh(a, b);
-	setcosts(a, b);
-	sort_to_three(a, b);
 	sort_three(a);
 	refresh(a, b);
-	cost_back(a, b);
-	sort_back(b, a);
+	sort(a, b);
+	refresh(a, b);
+	temp = *a;
+	while (temp->biggest != -1)
+		temp = temp->next;
+	if (temp->position <= temp->dte)
+	{
+		while (!issorted(*a))
+			ra(a);
+	}
 	while (!issorted(*a))
-		ra(a);
+		rra(a);
 }

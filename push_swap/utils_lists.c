@@ -48,9 +48,9 @@ t_stack	*create_stack(int size, char **content)
 
 int	ps_lstsize(t_stack **st)
 {
-	int	i;
+	int		i;
 	t_stack	*curr;
-	
+
 	curr = *st;
 	i = 0;
 	if (curr == NULL)

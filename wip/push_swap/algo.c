@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements_3.c                                      :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 20:22:27 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/03 20:25:24 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/14 18:16:57 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/15 19:51:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack **a)
+void	stuff(t_stack **a, t_stack **b)
 {
-	rotate(a);
-	write (1, "ra\n", 3);
-}
-
-void	rb(t_stack **b)
-{
-	rotate(b);
-	write (1, "rb\n", 3);
-}
-
-void	rra(t_stack **a)
-{
-	rrotate(a);
-	write(1, "rra\n", 4);
-}
-
-void	rrb(t_stack **b)
-{
-	rrotate(b);
-	write(1, "rrb\n", 4);
+	goorno(*a);
+	sendsmall(a, b);
+	refresh(a, b);
+	setcosts(a, b);
+	sort_to_three(a, b);
+	sort_three(a);
+	refresh(a, b);
+	cost_back(a, b);
+	sort_back(b, a);
+	while (!issorted(*a))
+		ra(a);
 }

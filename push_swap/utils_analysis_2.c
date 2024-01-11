@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:36:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/09 20:19:57 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:12:55 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	setbiggest(t_stack **a)
 {
 	t_stack	*curr;
-	int	bignr;
-	int	smallnr;
+	int		bignr;
+	int		smallnr;
 
 	curr = *a;
 	bignr = maxnr(a);
@@ -60,21 +60,17 @@ int	numbercompare(char def, int n1, int n2)
 
 t_stack	*cheapest(t_stack **s)
 {
-	t_stack	*curr;
 	t_stack	*cheapest;
-	int	temp;
+	t_stack	*tmp;
 
-	curr = *s;
-	temp = curr->cost;
-	cheapest = curr;
-	while (curr)
+	tmp = *s;
+	cheapest = tmp;
+	while (tmp)
 	{
-		if (curr->cost < temp)
-		{
-			cheapest = curr;
-			temp = curr->cost;
-		}
-		curr = curr->next;
+		if (tmp->cost < cheapest->cost || (tmp->cost == cheapest->cost
+				&& tmp->f_index < cheapest->f_index))
+			cheapest = tmp;
+		tmp = tmp->next;
 	}
 	return (cheapest);
 }

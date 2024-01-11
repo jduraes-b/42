@@ -18,10 +18,10 @@ void	sa(t_stack **a)
 	write(1, "sa\n", 3);
 }
 
-void    sb(t_stack **b)
+void	sb(t_stack **b)
 {
-        swap(b);
-        write(1, "sb\n", 3);
+	swap(b);
+	write(1, "sb\n", 3);
 }
 
 void	pa(t_stack **a, t_stack **b)
@@ -30,10 +30,10 @@ void	pa(t_stack **a, t_stack **b)
 	write(1, "pa\n", 3);
 }
 
-void    pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-        push(a, b);
-        write(1, "pb\n", 3);
+	push(a, b);
+	write(1, "pb\n", 3);
 }
 
 void	rrr(t_stack **a, t_stack **b)

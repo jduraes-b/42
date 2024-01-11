@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   movements_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 18:23:00 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/02 19:15:04 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/03 20:22:27 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/03 20:25:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo(t_stack **a, t_stack **b)
+void	ra(t_stack **a)
 {
-	t_stack	*temp;
-	
-	setbiggest(a);
-	sendsmall(a, b);
-	while (ps_lstsize(a) > 3)
-		pb(a, b);
-	refresh(a, b);
-	sort_three(a);
-	refresh(a, b);
-	sort(a, b);
-	refresh(a, b);
-	temp = *a;
-	while (!issorted(*a))
-	{
-		while (temp->biggest != -1)
-			temp = temp->next;
-		if (temp->position <= temp->dte)
-			ra(a);
-		else
-			rra(a);
-	}
+	rotate(a);
+	write(1, "ra\n", 3);
+}
+
+void	rb(t_stack **b)
+{
+	rotate(b);
+	write(1, "rb\n", 3);
+}
+
+void	rra(t_stack **a)
+{
+	rrotate(a);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **b)
+{
+	rrotate(b);
+	write(1, "rrb\n", 4);
 }
