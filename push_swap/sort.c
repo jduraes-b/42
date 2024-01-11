@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 18:06:07 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/24 18:57:07 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/03 20:31:02 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/10 19:53:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 void	sort_three(t_stack **s)
 {
-	if (minnr(*s) == (*s)->number)
-	{
-		rra(s);
+	if (maxnr(s) == (*s)->next->next->number && !issorted(*s))
 		sa(s);
-		if (!issorted(*s))
-			sort_three(s);
-	}
-	else if (maxnr(*s) == (*s)->number)
+	else if (maxnr(s) == (*s)->number)
 	{
 		ra(s);
 		if (!issorted(*s))
@@ -29,47 +24,51 @@ void	sort_three(t_stack **s)
 	}
 	else
 	{
-		if (maxnr(*s) == (*s)->next->number)
+		if (maxnr(s) == (*s)->next->number)
 			rra(s);
-		else
+		if (!issorted(*s))
 			sa(s);
 	}
 }
 
-void	sort_to_three(t_stack **s, t_stack **t)
+void	sort_five(t_stack **a, t_stack **b)
+{
+	while (ps_lstsize(a) > 3)
+		pb(a, b);
+	refresh(a, b);
+	if (!issorted(*a))
+		sort_three(a);
+	sort(a, b);
+}
+
+void	sort(t_stack **a, t_stack **b)
 {
 	t_stack	*curr;
-	
-	curr = *s;
-	while (ps_lstsize(*s) > 3)
+
+	curr = *b;
+	while (*b)
 	{
-		refresh(s, t);
-		setcosts(s, t);
-		curr = cheapest(s);
-		applya(curr, s, t);
+		refresh(a, b);
+		cost(a, b);
+		curr = cheapest(b);
+		whatmove(a, b, curr);
 	}
 }
 
-void	applya(t_stack *curr, t_stack **s, t_stack **t)
+void	whatmove(t_stack **a, t_stack **b, t_stack *curr)
 {
-	if (curr->half == 11)
-		case_11a(curr, s, t);
-	else if (curr->half == 12)
-		case_12a(curr, s, t);
-	else if (curr->half == 21)
-		case_21a(curr, s, t);
-	else if (curr->half == 22)
-		case_22a(curr, s, t);	
-}
-
-void	applyb(t_stack *curr, t_stack **s, t_stack **t)
-{
-	if (curr->half == 11)
-		case_11b(curr, s, t);
-	else if (curr->half == 12)
-		case_12b(curr, s, t);
-	else if (curr->half == 21)
-		case_21b(curr, s, t);
-	else if (curr->half == 22)
-		case_22b(curr, s, t);	
+	if (case_1(a, b, curr))
+		;
+	else if (case_2(a, b, curr))
+		;
+	else if (case_3(a, b, curr))
+		;
+	else if (case_4(a, b, curr))
+		;
+	else if (case_5(a, b, curr))
+		;
+	else if (case_6(a, b, curr))
+		;
+	else if (case_7(a, b, curr))
+		;
 }

@@ -14,8 +14,8 @@
 
 int	case_6(t_stack **a, t_stack **b, t_stack *curr)
 {
-	if (curr->half != 1 && curr->t_half == 1 &&
-			targetindex(a, curr->f_index) == 0)
+	if (curr->half != 1 && curr->t_half == 1 && \
+		targetindex(a, curr->f_index) == 0)
 	{
 		rrb(b);
 		return (1);

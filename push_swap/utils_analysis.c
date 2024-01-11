@@ -17,13 +17,13 @@ void	refresh(t_stack **a, t_stack **b)
 	if (*a)
 		whatindex(a);
 	if (*b)
-		whatindex(b);	
+		whatindex(b);
 }
 
 void	whatindex(t_stack **s)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
 	t_stack	*curr;
 
 	curr = *s;
@@ -44,14 +44,14 @@ void	whatindex(t_stack **s)
 
 void	setfinalindex(t_stack **a)
 {
-	int	i;
+	int		i;
 	t_stack	*curr;
 	t_stack	*temp;
 
 	curr = *a;
 	i = 1;
 	while (curr)
-	{	
+	{
 		i = 1;
 		temp = *a;
 		while (temp)
@@ -67,7 +67,7 @@ void	setfinalindex(t_stack **a)
 
 int	minnr(t_stack **s)
 {
-	int	i;
+	int		i;
 	t_stack	*node;
 
 	node = *s;
@@ -83,7 +83,7 @@ int	minnr(t_stack **s)
 
 int	maxnr(t_stack **s)
 {
-	int	i;
+	int		i;
 	t_stack	*node;
 
 	node = *s;

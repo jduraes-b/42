@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 19:07:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/12/04 19:50:35 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/01/02 17:54:32 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/01/02 18:22:50 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,16 @@ void	push_swap(int argc, char **argv)
 	aroot = NULL;
 	aroot = create_stack(argc, argv);
 	setfinalindex(&aroot);
-	if (ps_lstsize(aroot) == 2 && !issorted(aroot))
+	refresh(&aroot, &broot);
+	if (ps_lstsize(&aroot) == 2 && !issorted(aroot))
 		sa(&aroot);
-	if (ps_lstsize(aroot) == 3)
+	if (ps_lstsize(&aroot) == 3)
 		sort_three(&aroot);
-	if (ps_lstsize(aroot) > 3)
-		stuff (&aroot, &broot);
-	/*curr = broot;
-	while (curr != NULL)
-	{
-		ft_printf("%d %d %d\n", curr->number, curr->f_index, curr->cost);
-		curr = curr->next;
-	}*/
+	if (ps_lstsize(&aroot) == 5)
+		sort_five(&aroot, &broot);
+	if (ps_lstsize(&aroot) > 3 && !issorted(aroot))
+		algo(&aroot, &broot);
+	curr = aroot;
 	ps_lstclear(&aroot);
 	ps_lstclear(&broot);
 }

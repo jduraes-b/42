@@ -16,7 +16,7 @@ int	checkrepeat(char **argv)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	while (argv[i])
@@ -28,7 +28,7 @@ int	checkrepeat(char **argv)
 				return (1);
 			j++;
 		}
-		i++;	
+		i++;
 	}
 	return (0);
 }
