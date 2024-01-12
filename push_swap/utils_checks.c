@@ -39,16 +39,16 @@ int	wrongargs(char **argv)
 	int		j;
 	long	nr;
 
-	i = 1;
+	i = 0;
 	j = 0;
 	nr = 0;
 	while (argv[i])
 	{
 		j = 0;
 		nr = ft_atol(argv[i]);
-		if (nr < INT_MIN || nr > INT_MAX)
+		if (nr < INT_MIN || nr > INT_MAX || argv[i][j] == '\0')
 			return (1);
-		if (argv[i][j] == '-')
+		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]))
 			j++;
 		while (argv[i][j])
 		{
