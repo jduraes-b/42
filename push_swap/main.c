@@ -15,7 +15,6 @@
 void	push_swap(int argc, char **argv)
 {
 	t_stack	*aroot;
-	t_stack	*curr;
 	t_stack	*broot;
 
 	broot = NULL;
@@ -30,7 +29,6 @@ void	push_swap(int argc, char **argv)
 		sort_three(&aroot);
 	if (ps_lstsize(&aroot) > 3 && !issorted(aroot))
 		algo(&aroot, &broot);
-	curr = aroot;
 	ps_lstclear(&aroot);
 	ps_lstclear(&broot);
 }
@@ -47,7 +45,5 @@ int	main(int argc, char **argv)
 		}
 		push_swap(argc, argv);
 	}
-	else
-		ft_printf("Wrong number of arguments\n");
 	return (0);
 }
