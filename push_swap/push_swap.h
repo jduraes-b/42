@@ -61,7 +61,6 @@ void				whereami(t_stack **st);
 void				refresh(t_stack **a, t_stack **b);
 int					issorted(t_stack *s);
 void				sort_three(t_stack **s);
-void				sort_five(t_stack **a, t_stack **b);
 void				ps_lstclear(t_stack **lst);
 int					checkrepeat(char **argv);
 void				setbiggest(t_stack **a);
