@@ -31,16 +31,6 @@ void	sort_three(t_stack **s)
 	}
 }
 
-void	sort_five(t_stack **a, t_stack **b)
-{
-	while (ps_lstsize(a) > 3)
-		pb(a, b);
-	refresh(a, b);
-	if (!issorted(*a))
-		sort_three(a);
-	sort(a, b);
-}
-
 void	sort(t_stack **a, t_stack **b)
 {
 	t_stack	*curr;
