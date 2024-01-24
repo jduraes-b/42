@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:01:38 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/22 21:17:41 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:27:01 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,23 +23,19 @@
 # include <stddef.h>
 # include <limits.h>
 
-typedef struct s_list
+typedef struct s_player
 {
-	void	*content;
-	struct s_list *next;
-}	t_list;
+	int	x;
+	int	y;
+}	t_player;
 
-struct	gamestate
+typedef struct	s_data
 {
 	char**	map;
 	int	xlen;
 	int	ylen;
-	struct	player
-	{
-		int	x;
-		int	y;
-	}
-}
+	t_player	*player;
+}	t_data;
 
 # ifndef BUFFER_SIZE
 #  define MAX_LINE_LENGTH 4096
@@ -57,5 +54,9 @@ struct	gamestate
 # define DOWN 65364
 # define RIGHT 65363
 # define ESC 65307
+
+int	wrongargs(int argc, char** argv);
+int	mapread(char *file, t_data *gamestate);
+int	mapwrite(int fd, t_data *gamestate);
 
 #endif
