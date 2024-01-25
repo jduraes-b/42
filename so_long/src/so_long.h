@@ -34,6 +34,7 @@ typedef struct	s_data
 	char**	map;
 	int	xlen;
 	int	ylen;
+	int	c;
 	t_player	*player;
 }	t_data;
 
