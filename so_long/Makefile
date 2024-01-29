@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = so_long
-SRC = src/main.c src/mapread.c
+SRC = src/main.c src/mapread.c src/mapread_utils.c
 OBJS = $(SRC:.c=.o)
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror

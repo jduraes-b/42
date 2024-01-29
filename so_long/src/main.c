@@ -30,13 +30,18 @@ int	wrongargs(int argc, char** argv)
 int	main(int argc, char** argv)
 {
 	t_data	*gamestate;
+	t_position	*player;
 
 	if (wrongargs(argc, argv))
 		return (1);
-	gamestate = ft_calloc(1, sizeof(t_data));
-	if(!mapread(argv[1], *gamestate))
+	gamestate = (t_data *)malloc(sizeof(t_data));
+	player = (t_position *)malloc(sizeof(t_position));
+	gamestate->player = player;
+	if(!mapread(argv[1], gamestate))
 	{
 		write(1, "map read error", 14);
 		return (1);
 	}
+	if(!mapcheck(gamestate))
+		return (0);
 }
