@@ -23,11 +23,11 @@
 # include <stddef.h>
 # include <limits.h>
 
-typedef struct s_player
+typedef struct s_position
 {
 	int	x;
 	int	y;
-}	t_player;
+}	t_position;
 
 typedef struct	s_data
 {
@@ -35,7 +35,7 @@ typedef struct	s_data
 	int	xlen;
 	int	ylen;
 	int	c;
-	t_player	*player;
+	t_position	*player;
 }	t_data;
 
 # ifndef BUFFER_SIZE
@@ -59,5 +59,10 @@ typedef struct	s_data
 int	wrongargs(int argc, char** argv);
 int	mapread(char *file, t_data *gamestate);
 int	mapwrite(int fd, t_data *gamestate);
+int	mapcheck(t_data *gamestate);
+int	playercheck(t_data *gamestate);
+int	wallcheck(t_data *gamestate);
+int	pathcheck(t_data *gamestate);
+int	flood_fill(t_data *gamestate, int x, int y, char** map);
 
 #endif
