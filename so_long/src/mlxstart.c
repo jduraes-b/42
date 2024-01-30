@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	maprender(t_data gamestate)
+int	maprender(t_data *gamestate)
 {
 	int	i;
 	int 	j;
@@ -36,7 +36,8 @@ void	maprender(t_data gamestate)
 		}
 	}
 	mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win, gamestate->img->player, 
-		gamestate->player->x * 100, gamestate->player->y * 100) 
+		gamestate->player->x * 100, gamestate->player->y * 100);
+	return (0);
 }
 
 void	setimgs(t_data *gamestate, int size)
@@ -57,8 +58,8 @@ void	mlxstart(t_data *gamestate)
 
 	size = 100;
 	gamestate->mlx = mlx_init();
-	gamestate->mlx_win = mlx_new_window(gamestate->mlx, gamestate->ylen * size, 
-			gamestate->xlen * size, "so_long");
+	gamestate->mlx_win = mlx_new_window(gamestate->mlx, gamestate->xlen * size, 
+			gamestate->ylen * size, "so_long");
 	setimgs(gamestate, size);
 	mlx_loop_hook(gamestate->mlx, maprender, gamestate);
 	mlx_loop(gamestate->mlx);
