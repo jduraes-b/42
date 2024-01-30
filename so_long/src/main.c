@@ -50,4 +50,5 @@ int	main(int argc, char** argv)
 		write(1, "unacceptable map", 16);
 		return (0);
 	}
+	mlxstart(gamestate);
 }

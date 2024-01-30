@@ -77,6 +77,6 @@ int	pathcheck(t_data *gamestate);
 int	flood_fill(t_data *gamestate, int x, int y, char** map);
 void	mlxstart(t_data *gamestate);
 void	setimgs(t_data *gamestate, int size);
-void	maprender(t_data gamestate);
+int	maprender(t_data *gamestate);
 
 #endif
