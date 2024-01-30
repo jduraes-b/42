@@ -27,10 +27,15 @@ int	pathcheck(t_data *gamestate)
 	int	i;
 
 	i = -1;
-	tmap = ft_calloc(gamestate->ylen + 1, sizeof(char*));
+	tmap = malloc(sizeof(char**) * gamestate->ylen + 1);
+	tmap[gamestate->ylen] = NULL;
 	while (++i < gamestate->ylen)
 		tmap[i] = ft_strdup(gamestate->map[i]);
-	if (!flood_fill(gamestate, gamestate->player->x, gamestate->player->y, tmap))
-			return (0);
+	if (!flood_fill(gamestate, gamestate->player->y, gamestate->player->x, tmap))
+	{
+		doublefree(tmap);
+		return (0);
+	}
+	doublefree(tmap);
 	return (1);
 }

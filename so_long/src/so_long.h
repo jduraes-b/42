@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:01:38 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/24 20:27:01 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/30 19:19:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,24 @@ typedef struct s_position
 	int	y;
 }	t_position;
 
+typedef struct s_imgs
+{
+	void	*player;
+	void	*wall;
+	void	*col;
+	void	*exit;
+}	t_imgs;
+
 typedef struct	s_data
 {
+	void	*mlx;
+	void	*mlx_win;
 	char**	map;
 	int	xlen;
 	int	ylen;
 	int	c;
 	t_position	*player;
+	t_imgs	*img;
 }	t_data;
 
 # ifndef BUFFER_SIZE
@@ -64,5 +75,8 @@ int	playercheck(t_data *gamestate);
 int	wallcheck(t_data *gamestate);
 int	pathcheck(t_data *gamestate);
 int	flood_fill(t_data *gamestate, int x, int y, char** map);
+void	mlxstart(t_data *gamestate);
+void	setimgs(t_data *gamestate, int size);
+void	maprender(t_data gamestate);
 
 #endif
