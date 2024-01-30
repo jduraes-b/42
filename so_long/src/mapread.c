@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:50:26 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/29 19:55:39 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:52:22 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int	wallcheck(t_data *gamestate)
 	int	i;
 
 	i = 0;
-	while (gamestate->map[0][i] == '1')
+	while (gamestate->map[0][i] == '1' &&
+			gamestate->map[gamestate->ylen - 1][i] == '1')
 		i++;
-	if (gamestate->map[0][i] != '\0')
+	if (gamestate->map[0][i] != '\0' &&
+			gamestate->map[gamestate->ylen - 1][i] != '\0')
 		return (0);
 	i = 0;
 	while (gamestate->map[i])
@@ -70,8 +72,6 @@ int	mapcheck(t_data *gamestate)
 	i = 0;
 	j = 0;
 	exit = 0;
-	if (!playercheck(gamestate))
-		return (0);
 	while (gamestate->map[i])
 	{
 		j = 0;
@@ -86,6 +86,8 @@ int	mapcheck(t_data *gamestate)
 		i++;
 	}
 	if (gamestate->c < 1 || exit != 1)
+		return (0);
+	if (!playercheck(gamestate))
 		return (0);
 	return (1);
 }
