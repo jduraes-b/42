@@ -36,6 +36,7 @@ int	pathcheck(t_data *gamestate)
 		doublefree(tmap);
 		return (0);
 	}
-	doublefree(tmap);
+	else
+		doublefree(tmap);
 	return (1);
 }
