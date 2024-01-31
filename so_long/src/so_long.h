@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:01:38 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/30 19:19:26 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:51:46 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,17 @@ typedef struct s_imgs
 	void	*wall;
 	void	*col;
 	void	*exit;
+	void	*bg;
 }	t_imgs;
+
+typedef enum	e_key
+{
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+	ESC = 65307,
+}	t_key;
 
 typedef struct	s_data
 {
@@ -45,7 +55,9 @@ typedef struct	s_data
 	int	xlen;
 	int	ylen;
 	int	c;
+	int	moves;
 	t_position	*player;
+	t_position	*exit;
 	t_imgs	*img;
 }	t_data;
 
@@ -78,5 +90,15 @@ int	flood_fill(t_data *gamestate, int x, int y, char** map);
 void	mlxstart(t_data *gamestate);
 void	setimgs(t_data *gamestate, int size);
 int	maprender(t_data *gamestate);
+void	mlxstart(t_data *gamestate);
+void	setimgs(t_data *gamestate, int size);
+int	maprender(t_data *gamestate);
+int	readkey(int key, t_data *gamestate);
+void	checkmove(int x, int y, t_data *gamestate);
+void	moveplayer(int x, int y, t_data *gamestate);
+void	freegamestate(t_data *gamestate);
+int	gg(t_data *gamestate);
+int	deinitialize(t_data *gamestate);
+int	quitgame(t_data *gamestate);
 
 #endif

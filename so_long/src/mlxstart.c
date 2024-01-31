@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:21:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/30 21:14:06 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:59 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	maprender(t_data *gamestate)
 			else if (gamestate->map[i][j] == 'E')
 				mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
 					gamestate->img->exit, j * 100, i * 100);
+			else
+				mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+					gamestate->img->bg, j * 100, i * 100);
 		}
 	}
 	mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win, gamestate->img->player, 
@@ -50,6 +53,8 @@ void	setimgs(t_data *gamestate, int size)
 			"assets/imgs/col.xpm", &size, &size);
 	gamestate->img->exit = mlx_xpm_file_to_image(gamestate->mlx, 
 			"assets/imgs/exit.xpm", &size, &size);
+	gamestate->img->bg = mlx_xpm_file_to_image(gamestate->mlx, 
+			"assets/imgs/bg.xpm", &size, &size);
 }
 
 void	mlxstart(t_data *gamestate)
@@ -61,6 +66,8 @@ void	mlxstart(t_data *gamestate)
 	gamestate->mlx_win = mlx_new_window(gamestate->mlx, gamestate->xlen * size, 
 			gamestate->ylen * size, "so_long");
 	setimgs(gamestate, size);
-	mlx_loop_hook(gamestate->mlx, maprender, gamestate);
+	maprender(gamestate);
+	mlx_hook(gamestate->mlx_win, 2, 1L << 0, readkey, gamestate);
+	mlx_hook(gamestate->mlx_win, 17, 0, gg, gamestate);
 	mlx_loop(gamestate->mlx);
 }

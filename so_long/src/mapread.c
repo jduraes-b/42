@@ -6,11 +6,19 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:50:26 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/30 18:52:22 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:57:27 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	tag_exit(int y, int x, int exit, t_data *gamestate)
+{
+	gamestate->exit->y = y;
+	gamestate->exit->x = x;
+	exit++;
+	return (exit);
+}
 
 int	wallcheck(t_data *gamestate)
 {
@@ -80,7 +88,7 @@ int	mapcheck(t_data *gamestate)
 			if (gamestate->map[i][j] == 'C')
 				gamestate->c++;
 			if (gamestate->map[i][j] == 'E')
-				exit++;
+				exit = tag_exit(i, j, exit, gamestate);
 			j++;
 		}
 		i++;
