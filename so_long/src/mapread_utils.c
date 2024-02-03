@@ -27,7 +27,7 @@ int	pathcheck(t_data *gamestate)
 	int	i;
 
 	i = -1;
-	tmap = malloc(sizeof(char**) * gamestate->ylen + 1);
+	tmap = calloc(gamestate->ylen + 1, sizeof(char**));
 	tmap[gamestate->ylen] = NULL;
 	while (++i < gamestate->ylen)
 		tmap[i] = ft_strdup(gamestate->map[i]);
