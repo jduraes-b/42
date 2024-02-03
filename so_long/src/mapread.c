@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:50:26 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/31 17:57:27 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:25:42 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,18 @@ int	mapcheck(t_data *gamestate)
 
 int	mapwrite(int fd, t_data *gamestate)
 {
-	char *line;
+	/*char *line;
 	int	x;
 	int	y;
 
 	line = get_next_line(fd);
 	x = 0;
 	y = 0;
-	gamestate->map = malloc(sizeof(char*) * gamestate->ylen + 1);
+	gamestate->map = calloc(gamestate->ylen + 1, (sizeof(char*)));
 	gamestate->map[gamestate->ylen] = NULL;
 	while(y < gamestate->ylen)
 	{
-		gamestate->map[y] = malloc(sizeof(char) * gamestate->xlen + 1);
+		gamestate->map[y] = calloc(gamestate->xlen + 1, (sizeof(char*)));
 		gamestate->map[y][gamestate->xlen] = '\0';
 		y++;
 	}
@@ -125,7 +125,17 @@ int	mapwrite(int fd, t_data *gamestate)
 			gamestate->map[y][x] = line[x];
 		free(line);
 		line = get_next_line(fd);
-	}
+	}*/
+	char	*mapstr;
+	int	maplen;
+	int	i;
+
+
+	mapstr = malloc(sizeof(char*) * gamestate->ylen * (gamestate->xlen + 1) + 1);
+	maplen = read(fd, mapstr, gamestate->ylen * (gamestate->xlen + 1));
+	mapstr[maplen] = '\0';
+	gamestate->map = ft_split(mapstr, '\n');
+	free(mapstr);
 	return (1);
 }
 
@@ -142,7 +152,7 @@ int	mapread(char *file, t_data *gamestate)
 		write(1, "map read error", 14);
 		return (0);
 	}
-	line = get_next_line(fd);
+	/*line = get_next_line(fd);
 	gamestate->xlen = ft_strlen(line) - 1;
 	gamestate->ylen = 0;
 	while (line)
@@ -154,6 +164,6 @@ int	mapread(char *file, t_data *gamestate)
 		gamestate->ylen++;
 	}
 	free(line);
-	fd = open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);*/
 	return (mapwrite(fd, gamestate));
 }

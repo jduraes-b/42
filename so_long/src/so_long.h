@@ -98,6 +98,7 @@ void	checkmove(int x, int y, t_data *gamestate);
 void	moveplayer(int x, int y, t_data *gamestate);
 void	freegamestate(t_data *gamestate);
 int	gg(t_data *gamestate);
+t_data*	initialize();
 int	deinitialize(t_data *gamestate);
 int	quitgame(t_data *gamestate);
 
