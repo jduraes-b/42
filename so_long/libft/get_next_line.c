@@ -75,7 +75,7 @@ static char	*get_stash(int fd, char *stash, int *eof)
 			return (NULL);
 		}
 		temp[bytes] = 0;
-		stash = ft_strjoin(stash, temp);
+		stash = ft_gnlstrjoin(stash, temp);
 	}
 	free(temp);
 	if (bytes == 0)

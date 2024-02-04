@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:31:18 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/01/31 18:36:17 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:15:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	moveplayer(int x, int y, t_data *gamestate)
 {
-	if (gamestate->exit->x == gamestate->player->x 
-			&& gamestate->exit->y == gamestate->player->y)
+	if (gamestate->exit->x == gamestate->player->x
+		&& gamestate->exit->y == gamestate->player->y)
 	{
 		gamestate->map[y][x] = 'P';
 		gamestate->map[gamestate->player->y][gamestate->player->x] = 'E';
@@ -28,7 +28,7 @@ void	moveplayer(int x, int y, t_data *gamestate)
 	gamestate->player->x = x;
 	gamestate->player->y = y;
 	ft_printf("Moves: %d\n", ++gamestate->moves);
-	maprender(gamestate);
+	maprender(gamestate, -1, -1);
 }
 
 void	checkmove(int x, int y, t_data *gamestate)
@@ -37,7 +37,7 @@ void	checkmove(int x, int y, t_data *gamestate)
 		return ;
 	else if (gamestate->map[y][x] == 'E' && gamestate->c == 0)
 	{
-		ft_printf("ez dub\nonly took you %d moves\n", gamestate->moves);
+		ft_printf("W\nonly took you %d moves\n", gamestate->moves);
 		gg(gamestate);
 	}
 	else if (gamestate->map[y][x] == 'C')
@@ -57,16 +57,12 @@ int	readkey(int key, t_data *gamestate)
 		gg(gamestate);
 	}
 	if (key == W)
-		checkmove(gamestate->player->x, 
-				gamestate->player->y - 1, gamestate);
+		checkmove(gamestate->player->x, gamestate->player->y - 1, gamestate);
 	else if (key == A)
-		checkmove(gamestate->player->x - 1, 
-				gamestate->player->y, gamestate);
+		checkmove(gamestate->player->x - 1, gamestate->player->y, gamestate);
 	else if (key == S)
-		checkmove(gamestate->player->x, 
-				gamestate->player->y + 1, gamestate);
+		checkmove(gamestate->player->x, gamestate->player->y + 1, gamestate);
 	else if (key == D)
-		checkmove(gamestate->player->x + 1, 
-				gamestate->player->y, gamestate);
+		checkmove(gamestate->player->x + 1, gamestate->player->y, gamestate);
 	return (0);
 }

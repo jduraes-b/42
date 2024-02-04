@@ -6,48 +6,45 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:48:36 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/02/03 17:57:04 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:25:43 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	freegamestate(t_data *gamestate)
+int	gg(t_data *gamestate)
 {
-	doublefree(gamestate->map);
-	free(gamestate->player);
-	free(gamestate->exit);
-	free(gamestate->img);
-	free(gamestate);
-}
-
-int	deinitialize(t_data *gamestate)
-{
-	mlx_destroy_image(gamestate->mlx, gamestate->img->player);
-	mlx_destroy_image(gamestate->mlx, gamestate->img->wall);
-	mlx_destroy_image(gamestate->mlx, gamestate->img->col);
-	mlx_destroy_image(gamestate->mlx, gamestate->img->exit);
-	mlx_destroy_image(gamestate->mlx, gamestate->img->bg);
-	mlx_destroy_window(gamestate->mlx, gamestate->mlx_win);
-	mlx_destroy_display(gamestate->mlx);
-	free(gamestate->mlx);
-	freegamestate(gamestate);
+	deinitialize(gamestate);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-t_data*	initialize()
+int	wrongargs(int argc, char **argv)
 {
-	t_data	*gamestate;
-	t_position	*player;
-	t_position	*exit;
-	t_imgs	*img;
+	char	*substr;
 
-	gamestate = (t_data*)ft_calloc(1, sizeof(t_data));
-	player = (t_position*)ft_calloc(1, sizeof(t_position));
-	gamestate->player = player;
-	img = (t_imgs*)ft_calloc(1, sizeof(t_imgs));
-	gamestate->img = img;
-	exit = (t_position*)ft_calloc(1, sizeof(t_position));
-	gamestate->exit = exit;
-	return (gamestate);
+	substr = NULL;
+	if (argc == 2)
+	{
+		substr = ft_substr(argv[1], (ft_strlen(argv[1]) - 4), 4);
+		if (!ft_strstr(substr, ".ber"))
+		{
+			free(substr);
+			write(1, "wrong arguments", 14);
+			return (1);
+		}
+		free(substr);
+		return (0);
+	}
+	free(substr);
+	write(1, "wrong arguments", 14);
+	return (1);
+}
+
+int	tag_exit(int y, int x, int exit, t_data *gamestate)
+{
+	gamestate->exit->y = y;
+	gamestate->exit->x = x;
+	exit++;
+	return (exit);
 }

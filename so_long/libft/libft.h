@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:08:44 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/29 20:03:57 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:26:49 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				doublefree(char **str);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strstr(char *str, char *to_find);
+char				*ft_strstr(char *str, char *to_find);
 char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				*ft_strchr(const char *s, int c);
