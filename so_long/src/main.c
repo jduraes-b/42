@@ -48,7 +48,8 @@ int	deinitialize(t_data *gamestate)
 
 void	freegamestate(t_data *gamestate)
 {
-	doublefree(gamestate->map);
+	if (gamestate->map)
+		doublefree(gamestate->map);
 	free(gamestate->player);
 	free(gamestate->exit);
 	free(gamestate->img);

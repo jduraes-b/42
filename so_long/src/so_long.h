@@ -101,5 +101,6 @@ t_data			*initialize(void);
 int				deinitialize(t_data *gamestate);
 int				quitgame(t_data *gamestate);
 int				tag_exit(int y, int x, int exit, t_data *gamestate);
+int				runitdown(char *line, int fd);
 
 #endif
