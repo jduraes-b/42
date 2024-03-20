@@ -20,6 +20,7 @@ LIBMLX = minilibx-linux/libmlx.a
 
 $(NAME): $(OBJS)
 	@make bonus -C libft all
+	@make -C minilibx-linux
 	$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) -L libft -lft $(LIBMLX) -o $(NAME)
 
 all: $(NAME)

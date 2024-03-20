@@ -48,3 +48,14 @@ int	tag_exit(int y, int x, int exit, t_data *gamestate)
 	exit++;
 	return (exit);
 }
+
+int	runitdown(char *line, int fd)
+{
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	return (0);
+}

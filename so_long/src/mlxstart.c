@@ -42,15 +42,15 @@ int	maprender(t_data *gamestate, int i, int j)
 
 void	setimgs(t_data *gamestate, int size)
 {
-	gamestate->img->player = mlx_xpm_file_to_image(gamestate->mlx, 
+	gamestate->img->player = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/player.xpm", &size, &size);
-	gamestate->img->wall = mlx_xpm_file_to_image(gamestate->mlx, 
+	gamestate->img->wall = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/wall.xpm", &size, &size);
-	gamestate->img->col = mlx_xpm_file_to_image(gamestate->mlx, 
+	gamestate->img->col = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/col.xpm", &size, &size);
-	gamestate->img->exit = mlx_xpm_file_to_image(gamestate->mlx, 
+	gamestate->img->exit = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/exit.xpm", &size, &size);
-	gamestate->img->bg = mlx_xpm_file_to_image(gamestate->mlx, 
+	gamestate->img->bg = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/bg.xpm", &size, &size);
 }
 

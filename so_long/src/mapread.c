@@ -17,11 +17,11 @@ int	wallcheck(t_data *gamestate)
 	int	i;
 
 	i = 0;
-	while (gamestate->map[0][i] == '1' &&
-			gamestate->map[gamestate->ylen - 1][i] == '1')
+	while (gamestate->map[0][i] == '1' && gamestate->map[gamestate->ylen
+		- 1][i] == '1')
 		i++;
-	if (gamestate->map[0][i] != '\0' &&
-		gamestate->map[gamestate->ylen - 1][i] != '\0')
+	if (gamestate->map[0][i] != '\0' && gamestate->map[gamestate->ylen
+		- 1][i] != '\0')
 		return (0);
 	i = 0;
 	while (gamestate->map[i])
@@ -122,11 +122,11 @@ int	mapread(char *file, t_data *gamestate)
 	gamestate->ylen = 0;
 	while (line)
 	{
-		if ((int)ft_strlen(line) - 1 != gamestate->xlen)
-		{
-			free(line);
-			return (0);
-		}
+		if ((((int)ft_strlen(line) - 1 != gamestate->xlen)
+				&& line[ft_strlen(line) - 1] == '\n')
+			|| (((int)ft_strlen(line) != gamestate->xlen)
+				&& line[ft_strlen(line) - 1] != '\n'))
+			return (runitdown(line, fd));
 		free(line);
 		line = get_next_line(fd);
 		gamestate->ylen++;
