@@ -11,6 +11,11 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+/*
+void	enemymove(t_data *gamestate)
+{
+	
+}*/
 
 int	enemycheck(t_data *gamestate)
 {
@@ -52,7 +57,7 @@ void	newenemy(int i, int j, t_data *gamestate)
 	
 	}
 	gamestate->enemy->nr = gamestate->enemycount;
-	gamestate->enemy->opposition->x = i;
-	gamestate->enemy->opposition->y = j;
+	gamestate->enemy->x = i;
+	gamestate->enemy->y = j;
 	gamestate->enemy->next = NULL;
 }

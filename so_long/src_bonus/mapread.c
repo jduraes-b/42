@@ -31,7 +31,7 @@ int	wallcheck(t_data *gamestate)
 			return (0);
 		i++;
 	}
-	return (1);
+	return (enemycheck(gamestate));
 }
 
 int	playercheck(t_data *gamestate)

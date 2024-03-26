@@ -36,6 +36,9 @@ typedef struct s_imgs
 	void		*col;
 	void		*exit;
 	void		*bg;
+	void		*enemy;
+	void		*enemy1;
+	void		*enemy2;
 }				t_imgs;
 
 typedef enum e_key
@@ -50,7 +53,8 @@ typedef enum e_key
 typedef struct s_enemy
 {
 	int	nr;
-	t_position *opposition;
+	int	x;
+	int	y;
 	struct s_enemy	*root;
 	struct s_enemy	*next;
 }	t_enemy;
@@ -102,6 +106,8 @@ void			setimgs(t_data *gamestate, int size);
 void			mlxstart(t_data *gamestate);
 void			setimgs(t_data *gamestate, int size);
 int				maprender(t_data *gamestate, int i, int j);
+void	maprender2(t_data *gamestate, int i, int j);
+void	enemyanimation(t_data *gamestate, int i, int j);
 int				readkey(int key, t_data *gamestate);
 void			checkmove(int x, int y, t_data *gamestate);
 void			moveplayer(int x, int y, t_data *gamestate);
@@ -114,5 +120,6 @@ int				tag_exit(int y, int x, int exit, t_data *gamestate);
 int				runitdown(char *line, int fd);
 int	enemycheck(t_data *gamestate);
 void	newenemy(int i, int j, t_data *gamestate);
+void	enemyfree(t_enemy *enemy);
 
 #endif

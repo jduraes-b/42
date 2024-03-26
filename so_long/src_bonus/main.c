@@ -38,6 +38,9 @@ int	deinitialize(t_data *gamestate)
 		mlx_destroy_image(gamestate->mlx, gamestate->img->col);
 		mlx_destroy_image(gamestate->mlx, gamestate->img->exit);
 		mlx_destroy_image(gamestate->mlx, gamestate->img->bg);
+		mlx_destroy_image(gamestate->mlx, gamestate->img->enemy);
+		mlx_destroy_image(gamestate->mlx, gamestate->img->enemy1);
+		mlx_destroy_image(gamestate->mlx, gamestate->img->enemy2);
 		mlx_destroy_window(gamestate->mlx, gamestate->mlx_win);
 		mlx_destroy_display(gamestate->mlx);
 	}
@@ -50,10 +53,18 @@ void	freegamestate(t_data *gamestate)
 {
 	if (gamestate->map)
 		doublefree(gamestate->map);
+	if (gamestate->enemy)
+		enemyfree(gamestate->enemy);
 	free(gamestate->player);
 	free(gamestate->exit);
 	free(gamestate->img);
 	free(gamestate);
+}
+
+void	enemyfree(t_enemy *enemy)
+{
+
+	}
 }
 
 int	main(int argc, char **argv)

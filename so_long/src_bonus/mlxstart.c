@@ -12,6 +12,40 @@
 
 #include "so_long.h"
 
+void	enemyanimation(t_data *gamestate, int i, int j)
+{
+	static int	c;
+	
+	if (c == 0)
+	{
+		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+		gamestate->img->enemy, j * 100, i * 100);	
+		c = rand() % 3;
+	}
+	else
+	{
+		if (c == 1)
+			mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+			gamestate->img->enemy1, j * 100, i * 100);
+		else if (c == 2)
+			mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+			gamestate->img->enemy2, j * 100, i * 100);
+		c = rand() % 3;
+	}
+}
+
+void	maprender2(t_data *gamestate, int i, int j)
+{
+	if (gamestate->map[i][j] == 'E')
+		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+		gamestate->img->exit, j * 100, i * 100);
+	else if (gamestate->map[i][j] == 'D')
+		enemyanimation(gamestate, i, j);
+	else
+		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
+		gamestate->img->bg, j * 100, i * 100);
+}
+
 int	maprender(t_data *gamestate, int i, int j)
 {
 	mlx_clear_window(gamestate->mlx, gamestate->mlx_win);
@@ -26,12 +60,8 @@ int	maprender(t_data *gamestate, int i, int j)
 			else if (gamestate->map[i][j] == 'C')
 				mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
 					gamestate->img->col, j * 100, i * 100);
-			else if (gamestate->map[i][j] == 'E')
-				mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-					gamestate->img->exit, j * 100, i * 100);
 			else
-				mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-					gamestate->img->bg, j * 100, i * 100);
+				maprender2(gamestate, i, j);
 		}
 	}
 	mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
@@ -52,6 +82,12 @@ void	setimgs(t_data *gamestate, int size)
 			"assets/imgs/exit.xpm", &size, &size);
 	gamestate->img->bg = mlx_xpm_file_to_image(gamestate->mlx,
 			"assets/imgs/bg.xpm", &size, &size);
+	gamestate->img->enemy = mlx_xpm_file_to_image(gamestate->mlx,
+			"assets/imgs/enemy.xpm", &size, &size);
+	gamestate->img->enemy1 = mlx_xpm_file_to_image(gamestate->mlx,
+			"assets/imgs/enemy1.xpm", &size, &size);
+	gamestate->img->enemy2 = mlx_xpm_file_to_image(gamestate->mlx,
+			"assets/imgs/enemy2.xpm", &size, &size);
 }
 
 void	mlxstart(t_data *gamestate)

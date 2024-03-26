@@ -35,6 +35,11 @@ void	checkmove(int x, int y, t_data *gamestate)
 {
 	if (gamestate->map[y][x] == '1')
 		return ;
+	else if (gamestate->map[y][x] == 'D')
+	{
+		ft_printf("L\ntry again, you wasted %d moves\n", gamestate->moves);
+		gg(gamestate);
+	}
 	else if (gamestate->map[y][x] == 'E' && gamestate->c == 0)
 	{
 		ft_printf("W\nonly took you %d moves\n", gamestate->moves);
