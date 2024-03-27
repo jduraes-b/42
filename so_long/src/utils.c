@@ -12,6 +12,16 @@
 
 #include "so_long.h"
 
+int	hack(int i, int j, t_data *gamestate)
+{
+	char	c;
+
+	c = gamestate->map[i][j];
+	if (c != '1' && c != '0' && c != 'E' && c != 'C')
+		gamestate->xlen = -1;
+	return (0);
+}
+
 int	gg(t_data *gamestate)
 {
 	deinitialize(gamestate);

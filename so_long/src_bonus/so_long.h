@@ -125,5 +125,6 @@ void			moveenemy(int y, int x, t_enemy *enemy, t_data *gamestate);
 void			movepicker(t_data *gamestate, t_enemy *curr);
 int				enemymove(t_data *gamestate);
 void			enemyfree(t_enemy *enemy);
+int				hack(int i, int j, t_data *gamestate);
 
 #endif
