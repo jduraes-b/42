@@ -112,9 +112,8 @@ int	mapread(char *file, t_data *gamestate)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	if (fd == 1)
+	if (fd == -1)
 	{
-		write(1, "map read error", 14);
 		return (0);
 	}
 	line = get_next_line(fd);

@@ -11,11 +11,43 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-/*
-void	enemymove(t_data *gamestate)
+
+void	movepicker(t_data *gamestate, t_enemy *curr)
 {
-	
-}*/
+	int	r;
+
+	r = rand() % 4;
+	if (r == 0 && (gamestate->map[(curr->y) - 1][curr->x] == '0'
+		|| gamestate->map[(curr->y - 1)][curr->x] == 'P'))
+		moveenemy((curr->y - 1), curr->x, curr, gamestate);
+	else if (r == 1 && (gamestate->map[curr->y][curr->x + 1] == '0'
+		|| gamestate->map[curr->y][curr->x + 1] == 'P'))
+		moveenemy(curr->y, curr->x + 1, curr, gamestate);
+	else if (r == 2 && (gamestate->map[curr->y + 1][curr->x] == '0'
+		|| gamestate->map[curr->y + 1][curr->x] == 'P'))
+		moveenemy(curr->y + 1, curr->x, curr, gamestate);
+	else if (r == 3 && (gamestate->map[curr->y][curr->x - 1] == '0'
+		|| gamestate->map[curr->y][curr->x - 1] == 'P'))
+		moveenemy(curr->y, curr->x - 1, curr, gamestate);
+}
+
+int	enemymove(t_data *gamestate)
+{
+	t_enemy	*curr;
+	int		r;
+
+	if (!gamestate->enemycount)
+		return(1);
+	curr = gamestate->enemy->root;
+	r = rand() % 20;
+	while (curr != NULL)
+	{
+		if (r < 1)
+			movepicker(gamestate, curr);
+		curr = curr->next;
+	}
+	return (1);
+}
 
 int	enemycheck(t_data *gamestate)
 {
@@ -41,9 +73,13 @@ int	enemycheck(t_data *gamestate)
 
 void	newenemy(int i, int j, t_data *gamestate)
 {
-	t_enemy		*enemy;
+	t_enemy	*enemy;
 
 	enemy = (t_enemy *)ft_calloc(1, sizeof(t_enemy));
+	enemy->nr = gamestate->enemycount;
+	enemy->x = j;
+	enemy->y = i;
+	enemy->next = NULL;
 	if (gamestate->enemycount == 1)
 	{
 		gamestate->enemy = enemy;
@@ -51,13 +87,8 @@ void	newenemy(int i, int j, t_data *gamestate)
 	}
 	else
 	{
-		while (gamestate->enemy->next != NULL)
-			gamestate->enemy = gamestate->enemy->next;
+		enemy->root = gamestate->enemy->root;
 		gamestate->enemy->next = enemy;
-	
+		gamestate->enemy = enemy;
 	}
-	gamestate->enemy->nr = gamestate->enemycount;
-	gamestate->enemy->x = i;
-	gamestate->enemy->y = j;
-	gamestate->enemy->next = NULL;
 }

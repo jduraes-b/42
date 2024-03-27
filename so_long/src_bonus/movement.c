@@ -12,6 +12,22 @@
 
 #include "so_long.h"
 
+void	moveenemy(int y, int x, t_enemy *enemy, t_data *gamestate)
+{
+	if (gamestate->player->x == x && gamestate->player->y == y)
+	{
+		ft_printf("L\nOnly took you %d moves", gamestate->moves);
+		gg(gamestate);
+	}
+	else
+	{
+		gamestate->map[y][x] = 'D';
+		gamestate->map[enemy->y][enemy->x] = '0';
+		enemy->y = y;
+		enemy->x = x;
+	}
+}
+
 void	moveplayer(int x, int y, t_data *gamestate)
 {
 	if (gamestate->exit->x == gamestate->player->x
