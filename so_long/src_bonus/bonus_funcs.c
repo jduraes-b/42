@@ -37,7 +37,7 @@ int	enemymove(t_data *gamestate)
 	int		r;
 
 	if (!gamestate->enemycount)
-		return(1);
+		return (1);
 	curr = gamestate->enemy->root;
 	r = rand() % 20;
 	while (curr != NULL)

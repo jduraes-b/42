@@ -77,7 +77,7 @@ int	mapcheck(t_data *gamestate)
 		j = 0;
 		while (gamestate->map[i][j])
 		{
-			if (gamestate->map[i][j] == 'C')
+			if (gamestate->map[i][j] == 'C' || hack(i, j, gamestate))
 				gamestate->c++;
 			if (gamestate->map[i][j] == 'E')
 				exit = tag_exit(i, j, exit, gamestate);
@@ -85,7 +85,7 @@ int	mapcheck(t_data *gamestate)
 		}
 		i++;
 	}
-	if (gamestate->c < 1 || exit != 1)
+	if (gamestate->c < 1 || exit != 1 || gamestate->xlen == -1)
 		return (0);
 	if (!playercheck(gamestate))
 		return (0);
