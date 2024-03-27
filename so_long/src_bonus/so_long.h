@@ -52,11 +52,11 @@ typedef enum e_key
 
 typedef struct s_enemy
 {
-	int	nr;
-	int	x;
-	int	y;
 	struct s_enemy	*root;
 	struct s_enemy	*next;
+	int				nr;
+	int				x;
+	int				y;
 }	t_enemy;
 
 typedef struct s_data
@@ -106,8 +106,8 @@ void			setimgs(t_data *gamestate, int size);
 void			mlxstart(t_data *gamestate);
 void			setimgs(t_data *gamestate, int size);
 int				maprender(t_data *gamestate, int i, int j);
-void	maprender2(t_data *gamestate, int i, int j);
-void	enemyanimation(t_data *gamestate, int i, int j);
+void			maprender2(t_data *gamestate, int i, int j);
+void			enemyanimation(t_data *gamestate, int i, int j);
 int				readkey(int key, t_data *gamestate);
 void			checkmove(int x, int y, t_data *gamestate);
 void			moveplayer(int x, int y, t_data *gamestate);
@@ -118,8 +118,12 @@ int				deinitialize(t_data *gamestate);
 int				quitgame(t_data *gamestate);
 int				tag_exit(int y, int x, int exit, t_data *gamestate);
 int				runitdown(char *line, int fd);
-int	enemycheck(t_data *gamestate);
-void	newenemy(int i, int j, t_data *gamestate);
-void	enemyfree(t_enemy *enemy);
+int				enemycheck(t_data *gamestate);
+void			newenemy(int i, int j, t_data *gamestate);
+void			enemyfree(t_enemy *enemy);
+void			moveenemy(int y, int x, t_enemy *enemy, t_data *gamestate);
+void			movepicker(t_data *gamestate, t_enemy *curr);
+int				enemymove(t_data *gamestate);
+void			enemyfree(t_enemy *enemy);
 
 #endif

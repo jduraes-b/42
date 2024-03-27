@@ -63,8 +63,17 @@ void	freegamestate(t_data *gamestate)
 
 void	enemyfree(t_enemy *enemy)
 {
+	t_enemy	*curr;
 
+	curr = enemy->root;
+	while (curr->next != NULL)
+	{
+		curr = curr->next;
+		free(enemy->root);
+		enemy->root = curr;
 	}
+	if (curr)
+		free(curr);
 }
 
 int	main(int argc, char **argv)

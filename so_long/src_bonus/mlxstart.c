@@ -15,40 +15,45 @@
 void	enemyanimation(t_data *gamestate, int i, int j)
 {
 	static int	c;
-	
-	if (c == 0)
+
+	c++;
+	if (c < 200 || (c >= 700 && c <= 1100))
 	{
 		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-		gamestate->img->enemy, j * 100, i * 100);	
-		c = rand() % 3;
+			gamestate->img->enemy, j * 100, i * 100);
 	}
 	else
 	{
-		if (c == 1)
+		if (c < 700)
 			mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-			gamestate->img->enemy1, j * 100, i * 100);
-		else if (c == 2)
+				gamestate->img->enemy1, j * 100, i * 100);
+		else if (c > 1100)
 			mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-			gamestate->img->enemy2, j * 100, i * 100);
-		c = rand() % 3;
+				gamestate->img->enemy2, j * 100, i * 100);
 	}
+	if (c > 1600)
+		c = 0;
 }
 
 void	maprender2(t_data *gamestate, int i, int j)
 {
 	if (gamestate->map[i][j] == 'E')
 		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-		gamestate->img->exit, j * 100, i * 100);
+			gamestate->img->exit, j * 100, i * 100);
 	else if (gamestate->map[i][j] == 'D')
 		enemyanimation(gamestate, i, j);
 	else
 		mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-		gamestate->img->bg, j * 100, i * 100);
+			gamestate->img->bg, j * 100, i * 100);
 }
 
 int	maprender(t_data *gamestate, int i, int j)
 {
+	i = rand() % 10;
 	mlx_clear_window(gamestate->mlx, gamestate->mlx_win);
+	if (i == 0)
+		enemymove(gamestate);
+	i = -1;
 	while (++i < gamestate->ylen)
 	{
 		j = -1;
@@ -65,8 +70,8 @@ int	maprender(t_data *gamestate, int i, int j)
 		}
 	}
 	mlx_put_image_to_window(gamestate->mlx, gamestate->mlx_win,
-		gamestate->img->player, gamestate->player->x * 100,
-		gamestate->player->y * 100);
+		gamestate->img->player, gamestate->player->x * 100, gamestate->player->y
+		* 100);
 	return (0);
 }
 
@@ -102,5 +107,6 @@ void	mlxstart(t_data *gamestate)
 	maprender(gamestate, -1, -1);
 	mlx_hook(gamestate->mlx_win, 2, 1L << 0, readkey, gamestate);
 	mlx_hook(gamestate->mlx_win, 17, 0, gg, gamestate);
+	mlx_loop_hook(gamestate->mlx, maprender, gamestate);
 	mlx_loop(gamestate->mlx);
 }
