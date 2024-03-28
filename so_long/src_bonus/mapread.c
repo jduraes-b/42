@@ -113,9 +113,7 @@ int	mapread(char *file, t_data *gamestate)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
 		return (0);
-	}
 	line = get_next_line(fd);
 	gamestate->xlen = ft_strlen(line) - 1;
 	gamestate->ylen = 0;
