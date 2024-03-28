@@ -33,11 +33,11 @@ bonus: $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) $(IFLAGS) -L libft -lft $(LIBMLX) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 	@make clean -C libft
 
 fclean:	clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS_OBJS)
 	@make fclean -C libft
 
 re:	fclean all
