@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-int	hack(int i, int j, t_data *gamestate)
+int	manobra(int i, int j, t_data *gamestate)
 {
 	char	c;
 
 	c = gamestate->map[i][j];
-	if (c != '1' && c != '0' && c != 'D' && c != 'E' && c != 'C')
+	if (c != '1' && c != '0' && c != 'D' && c != 'E' && c != 'C' && c != 'P')
 		gamestate->enemycount = -1;
 	return (0);
 }

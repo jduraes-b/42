@@ -12,6 +12,18 @@
 
 #include "so_long.h"
 
+void	moveannouncer(t_data *gamestate)
+{
+	char	*moves;
+
+	moves = ft_itoa(gamestate->moves);
+	mlx_string_put(gamestate->mlx, gamestate->mlx_win, 10,
+		(gamestate->ylen * 100) + 18, 0x00FFFFFF, "Moves: ");
+	mlx_string_put(gamestate->mlx, gamestate->mlx_win, 60,
+		(gamestate->ylen * 100) + 18, 0x00FFFFFF, moves);
+	free(moves);
+}
+
 void	movepicker(t_data *gamestate, t_enemy *curr)
 {
 	int	r;

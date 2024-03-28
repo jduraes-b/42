@@ -77,7 +77,7 @@ int	mapcheck(t_data *gamestate)
 		j = 0;
 		while (gamestate->map[i][j])
 		{
-			if (gamestate->map[i][j] == 'C' || hack(i, j, gamestate))
+			if (gamestate->map[i][j] == 'C' || manobra(i, j, gamestate))
 				gamestate->c++;
 			if (gamestate->map[i][j] == 'E')
 				exit = tag_exit(i, j, exit, gamestate);
