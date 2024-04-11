@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/04/10 20:20:24 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/04/11 19:58:08 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "minishell.h"
 
-typedef struct	s_table
+void	getenv(t_shell *shell, char **envp)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	int	i;
+	char	**env;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	i = 0;
+	while(envp[i++] != NULL)
+		;
+	env = malloc(sizeof(char*) * (i + 1));
+	i = 0;
+	while (envp[i] != NULL)
+		env[i] = ft_strdup(envp[i++]);
+	env[i] = NULL;
+}

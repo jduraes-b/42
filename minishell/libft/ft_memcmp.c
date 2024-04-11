@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/04/20 17:40:04 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/04/25 18:00:33 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "libft.h"
 
-typedef struct	s_table
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	const unsigned char	*as1;
+	const unsigned char	*as2;
+	size_t				i;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	as1 = (const unsigned char *)s1;
+	as2 = (const unsigned char *)s2;
+	i = 0;
+	if (n != 0)
+	{
+		while (i < n)
+		{
+			if (as1[i] != as2[i])
+				return (as1[i] - as2[i]);
+			i++;
+		}
+	}
+	return (0);
+}

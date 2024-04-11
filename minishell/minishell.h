@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/04/10 19:35:58 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/04/10 20:14:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
+#ifndef "MINISHELL_H"
+# define "MINISHELL_H"
+
+# include "../libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/time.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <signals.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
-typedef struct	s_table
+typedef struct s_shell
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
-
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
+	char**	env;
+	char*	line;
+}	t_shell;
 
 #endif

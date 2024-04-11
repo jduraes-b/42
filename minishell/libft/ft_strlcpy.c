@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/04/27 16:02:41 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/04/27 17:02:02 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "libft.h"
 
-typedef struct	s_table
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	char	*asrc;
+	size_t	i;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	i = 0;
+	asrc = (char *)src;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < (size - 1) && src[i] != '\0')
+	{
+		dst[i] = asrc[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}

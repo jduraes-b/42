@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/09 18:42:47 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/09 18:45:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "libft.h"
 
-typedef struct	s_table
+long	ft_atol(const char *str)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	int		i;
+	long	nr;
+	long	sign;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	i = 0;
+	nr = 0;
+	sign = 1;
+	while (str[i] && str[i] == 32)
+		i++;
+	if (!str[i])
+		return (0);
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign = -sign;
+		i++;
+	}
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		nr = nr * 10 + str[i] - '0';
+		i++;
+	}
+	return (nr * sign);
+}

@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/05/11 15:48:00 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/05/11 16:50:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "libft.h"
 
-typedef struct	s_table
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	t_list	*newlist;
+	t_list	*no;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	newlist = NULL;
+	if (lst && f && del)
+	{
+		while (lst)
+		{
+			no = ft_lstnew(f(lst->content));
+			lst = lst->next;
+			if (!no)
+			{
+				ft_lstclear(&newlist, del);
+				return (NULL);
+			}
+			ft_lstadd_back(&newlist, no);
+		}
+	}
+	return (newlist);
+}

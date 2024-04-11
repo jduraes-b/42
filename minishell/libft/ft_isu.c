@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_isu.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/05/18 19:37:51 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/05/18 19:51:06 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "ft_printf.h"
 
-typedef struct	s_table
+static int	algcount(unsigned int x)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	int	contador;
 
-typedef struct	s_philo
+	contador = 1;
+	while (x / 10 > 0)
+	{
+		contador++;
+		x = x / 10;
+	}
+	return (contador);
+}
+
+int	ft_isu(unsigned int n)
 {
-	int	nr;
-}	t_philo;
+	char			vec[11];
+	unsigned int	i;
+	unsigned int	alg;
 
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	alg = algcount(n);
+	i = alg;
+	vec[i] = '\0';
+	while (i > 0)
+	{
+		vec[i - 1] = ((char)(n % 10) + '0');
+		n = n / 10;
+		i--;
+	}
+	write(1, vec, alg);
+	return (alg);
+}
