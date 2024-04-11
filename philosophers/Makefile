@@ -16,26 +16,23 @@ OBJS =	${SRC:.c=.o}
 HEADER =	philo.h
 INCLUDE =	-I .
 CFLAGS =	-Wall -Wextra -Werror
-LIBFT =	libft
 RM =	rm -f
 CC =	cc -g
-
-.o:.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+.SILENT: $(CC) $(SRC) $(NAME) $(OBJS) 
 	
 $(NAME):	$(OBJS)
-	@make bonus -C $(LIBFT) all
-	$(CC) $(OBJS) -L $(LIBFT) -lft -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME)
+	@echo compiling
 	
 all:	$(NAME)
 
-clean:
-	$(RM) $(OBJS)
-	@make clean -C $(LIBFT)
+clean:	
+	@$(RM) $(OBJS)
+	@echo cleaning
+		
+fclean:	
+	@$(RM) $(OBJS) $(NAME)
+	@echo full clean
 	
-fclean:	clean
-	$(RM) $(NAME)
-	@make fclean -C $(LIBFT)
-	
+		
 re:	fclean all
-		@make re -C $(LIBFT)

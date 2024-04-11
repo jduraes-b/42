@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:39 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/04/27 17:38:23 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/04/28 18:08:30 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/time.h>
+#include "libft.h"
 
-typedef struct	s_table
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	philocount;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	gottaeat;
-}	t_table;
+	size_t	i;
+	size_t	j;
+	char	*abig;
 
-typedef struct	s_philo
-{
-	int	nr;
-}	t_philo;
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int	philo_atoi(char *s);
-
-#endif
+	i = 0;
+	j = 0;
+	abig = (char *)big;
+	if (*little == '\0')
+		return (abig);
+	while (big[i] != '\0' && i < len)
+	{
+		j = 0;
+		while (abig[i + j] == little[j] && i + j < len)
+		{
+			if (little[j + 1] == '\0')
+				return (&abig[i]);
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
+}
