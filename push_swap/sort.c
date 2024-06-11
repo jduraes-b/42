@@ -87,6 +87,6 @@ void	whatmove(t_stack **a, t_stack **b, t_stack *curr)
 		;
 	else if (case_6(a, b, curr))
 		;
-	else if (case_7(a, b, curr))
+	else (case_7(a, b, curr))
 		;
 }
