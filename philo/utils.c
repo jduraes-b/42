@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:13:13 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:22:06 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long long	get_time(void)
+{
+	struct timeval    tv;
+
+    gettimeofday(&tv, NULL);
+    return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -18,6 +26,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*str;
 	size_t	 i;
 
+	i = 0;
 	p = malloc(nmemb * size);
 	if (p == NULL)
 	 	return (NULL);

@@ -3,29 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/04/05 19:29:31 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:22:58 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	clean_table(t_table *table)
+{
+	int    i;
+
+    i = 0;
+    while (i < table->pc)
+	{
+        pthread_mutex_destroy(&table->forkmut[i++]);
+	}
+	if (table->forkmut)
+    	free(table->forkmut);
+    if (table->philos)
+		free(table->philos);
+    free(table);
+}
+
+int	philostart(t_table *table)
+{
+	t_philo	*philo;
+	int i;
+
+	i = 0;
+	table->forkmut = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->pc);
+	if (!table->forkmut)
+	    return (0);
+	while (i < table->pc)
+		pthread_mutex_init(&table->forkmut[i++], NULL);
+	i = 0;
+	philo = ft_calloc(sizeof(t_philo), table->pc);
+	if (!philo)
+	    return (0);
+	while (++i <= table->pc)
+	{
+		philo->nr = i;
+		philo->le = get_time();
+		philo->table = table;
+	}
+	return (1);
+}
+
 int	argcheck(int argc, char **argv, t_table *table)
 {
 	if (argc < 5 || argc > 6)
 		return (0);
-	table->philocount = philo_atoi(argv[1]);
+	table->pc = philo_atoi(argv[1]);
 	table->ttd = philo_atoi(argv[2]);
 	table->tte = philo_atoi(argv[3]);
 	table->tts = philo_atoi(argv[4]);
-	table->gottaeat = -1;
+	table->hunger = -1;
 	if (argc == 6)
-		table->gottaeat = philo_atoi(argv[5]);
-	if (table->philocount < 1 || table->ttd < 1
+		table->hunger = philo_atoi(argv[5]);
+	if (table->pc< 1 || table->ttd < 1
 		|| table->tte < 1 || table->tts < 1
-		|| (argc == 6 && table->gottaeat < 1))
+		|| (argc == 6 && table->hunger < 1))
 		return (0);
 	return (1);
 }
@@ -40,5 +80,7 @@ int	main(int argc, char** argv)
 		printf("wrong arguments\n");
 		exit(1);
 	}
+	philostart(table);
+	clean_table(table);
 	return (0);
 }

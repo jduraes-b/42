@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 17:28:43 by jduraes-          #+#    #+#              #
-#    Updated: 2024/04/04 17:29:59 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/06/14 18:16:11 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC =	main.c utils.c
 OBJS =	${SRC:.c=.o}
 HEADER =	philo.h
 INCLUDE =	-I .
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -pthread
 RM =	rm -f
 CC =	cc -g
 .SILENT: $(CC) $(SRC) $(NAME) $(OBJS) 
