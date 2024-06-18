@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/14 19:18:45 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:18:12 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_table
 	int	tte;
 	int	tts;
 	int hunger;
-	long long t;
+	long long stime;
 	pthread_mutex_t *forkmut;
 	pthread_mutex_t restum;
 	t_philo *philos;

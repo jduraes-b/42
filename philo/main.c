@@ -6,11 +6,28 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/14 19:22:58 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:18:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	monitoring(t_table *table)
+{
+	int	i;
+
+	while(1)
+	{
+		i = -1;
+		while (++i < table->pc)
+		{
+			if (!alive(&table->philos[i]))
+				break;
+		}
+		usleep(10);
+	}
+	finish();
+}
 
 void	clean_table(t_table *table)
 {
@@ -41,8 +58,9 @@ int	philostart(t_table *table)
 		pthread_mutex_init(&table->forkmut[i++], NULL);
 	i = 0;
 	philo = ft_calloc(sizeof(t_philo), table->pc);
+	table->stime = get_time();
 	if (!philo)
-	    return (0);
+	    error("malloc error");
 	while (++i <= table->pc)
 	{
 		philo->nr = i;
@@ -81,6 +99,6 @@ int	main(int argc, char** argv)
 		exit(1);
 	}
 	philostart(table);
-	clean_table(table);
+	monitoring(table);
 	return (0);
 }

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 SRC =	main.c utils.c
 OBJS =	${SRC:.c=.o}
 HEADER =	philo.h
