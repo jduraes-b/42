@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/18 19:18:11 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:02:50 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	monitoring(t_table *table)
 		}
 		usleep(10);
 	}
-	finish();
+	pthread_mutex_lock(&table->restum);
+	table->ff = 1;
+	pthread_mutex_unlock(&table->restum);
+	//finish();
 }
 
 void	clean_table(t_table *table)
@@ -45,7 +48,7 @@ void	clean_table(t_table *table)
     free(table);
 }
 
-int	philostart(t_table *table)
+int	mutexstart(t_table *table)
 {
 	t_philo	*philo;
 	int i;
@@ -60,7 +63,7 @@ int	philostart(t_table *table)
 	philo = ft_calloc(sizeof(t_philo), table->pc);
 	table->stime = get_time();
 	if (!philo)
-	    error("malloc error");
+	    error("malloc error", table);
 	while (++i <= table->pc)
 	{
 		philo->nr = i;
@@ -98,7 +101,7 @@ int	main(int argc, char** argv)
 		printf("wrong arguments\n");
 		exit(1);
 	}
-	philostart(table);
-	monitoring(table);
+	mutexstart(table);
+	start(table);
 	return (0);
 }
