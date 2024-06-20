@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/19 22:02:50 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:36:54 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	mutexstart(t_table *table)
 		philo->nr = i;
 		philo->le = get_time();
 		philo->table = table;
+		philo->hunger = philo->table->totaleats;
 	}
 	return (1);
 }
@@ -81,12 +82,12 @@ int	argcheck(int argc, char **argv, t_table *table)
 	table->ttd = philo_atoi(argv[2]);
 	table->tte = philo_atoi(argv[3]);
 	table->tts = philo_atoi(argv[4]);
-	table->hunger = -1;
+	table->totaleats = -1;
 	if (argc == 6)
-		table->hunger = philo_atoi(argv[5]);
+		table->totaleats = philo_atoi(argv[5]);
 	if (table->pc< 1 || table->ttd < 1
 		|| table->tte < 1 || table->tts < 1
-		|| (argc == 6 && table->hunger < 1))
+		|| (argc == 6 && table->totaleats < 1))
 		return (0);
 	return (1);
 }

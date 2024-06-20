@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/19 22:05:43 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:04:36 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct	s_philo
 {
 	int	nr;
+	int	hunger;
 	long long	le;
 	pthread_t	thread;
 	struct s_table    *table;
@@ -33,6 +34,7 @@ typedef struct	s_table
 	int	tte;
 	int	tts;
 	int	ff;
+	int	totaleats;
 	long long stime;
 	pthread_mutex_t *forkmut;
 	pthread_mutex_t restum;
