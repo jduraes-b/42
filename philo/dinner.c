@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:54:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/19 22:05:43 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:56:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void *dinner(void *phil)
     while (1)
 	{
 		if (!grabfork(philo))
+		    return (NULL);
+		if (!eat(philo))
+		    return (NULL);
+		if (!rest(philo))
 		    return (NULL);
     }
     return ;

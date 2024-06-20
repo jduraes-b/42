@@ -6,11 +6,50 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/19 22:05:44 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:44:18 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = -1;
+	if (!str)
+		return (0);
+	while(str[++i])
+		;
+	return (i);
+}
+
+int	rest(t_philo *philo)
+{
+	if (!action(philo, "is sleeping"))
+		return (0);
+	usleep(philo->table->tts * 1000);
+	return (1);
+}
+
+int	eat(t_philo *philo)
+{
+	if (!action(philo, "is eating"))
+	{
+		pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
+        pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
+		return (0);
+	}
+	pthread_mutex_lock(&philo->table->restum);
+	philo->le = get_time();
+	if (philo->hunger)
+		philo->hunger--;
+	usleep(philo->table->tte * 1000);
+	pthread_mutex_unlock(&philo->table->restum);
+	pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
+    pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
+	return (1);
+}
 
 int	single(t_philo *philo)
 {
