@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/20 19:44:18 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:46:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,7 @@ long long	get_time(void)
 {
 	struct timeval    tv;
 
-    if (gettimeofday(&tv, NULL) == NULL)
-		return (-1);
+gettimeofday(&tv, NULL);
     return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 

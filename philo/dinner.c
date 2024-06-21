@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:54:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/20 18:56:20 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:01:16 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	grabfork(t_philo *philo)
 	{
 		if (evenfork(philo))
 			return (0);
-		if (oddfork(philo))
-			return (0);
+	}
+	else if (oddfork(philo))
+	{
+		return (0);
 	}
 	return (1);
 }
@@ -77,10 +79,10 @@ void *dinner(void *phil)
 		if (!rest(philo))
 		    return (NULL);
     }
-    return ;
+    return (NULL);
 }
 
-int	start(t_table *table)
+void	start(t_table *table)
 {
 	int		i;
 	i = -1;

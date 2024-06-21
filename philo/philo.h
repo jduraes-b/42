@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:47:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/20 19:04:36 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:53:19 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct	s_table
 void	*ft_calloc(size_t nmemb, size_t size);
 int	philo_atoi(char *s);
 long long	get_time(void);
-int	philostart(t_table *table);
 void	clean_table(t_table *table);
 void	monitoring(t_table *table);
 int	oddfork(t_philo *philo);
@@ -54,12 +53,16 @@ int	oddfork(t_philo *philo);
 int	evenfork(t_philo *philo);
 int	grabfork(t_philo *philo);
 void *dinner(void *phil);
-int	start(t_table *table);
+void	start(t_table *table);
 int	single(t_philo *philo);
 int	alive(t_philo *philo);
 void	error(char *str, t_table *table);
 int	action(t_philo *philo, char *str);
 long long	get_time(void);
+int	ft_strlen(char *str);
+int	eat(t_philo *philo);
+int	rest(t_philo *philo);
+
 
 
 

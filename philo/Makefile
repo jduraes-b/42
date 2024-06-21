@@ -6,18 +6,18 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 17:28:43 by jduraes-          #+#    #+#              #
-#    Updated: 2024/06/14 18:16:11 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/06/21 19:45:34 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SRC =	main.c utils.c
+SRC =	main.c utils.c dinner.c
 OBJS =	${SRC:.c=.o}
 HEADER =	philo.h
 INCLUDE =	-I .
 CFLAGS =	-Wall -Wextra -Werror -pthread
 RM =	rm -f
-CC =	cc -g
+CC =	cc -g #-fsanitize=thread
 .SILENT: $(CC) $(SRC) $(NAME) $(OBJS) 
 	
 $(NAME):	$(OBJS)
