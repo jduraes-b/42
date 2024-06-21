@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/20 19:36:54 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:36:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	clean_table(t_table *table)
 
 int	mutexstart(t_table *table)
 {
-	t_philo	*philo;
 	int i;
 
 	i = 0;
@@ -59,17 +58,17 @@ int	mutexstart(t_table *table)
 	    return (0);
 	while (i < table->pc)
 		pthread_mutex_init(&table->forkmut[i++], NULL);
-	i = 0;
-	philo = ft_calloc(sizeof(t_philo), table->pc);
+	i = -1;
+	table->philos = ft_calloc(table->pc, sizeof(t_philo));
 	table->stime = get_time();
-	if (!philo)
+	if (!table->philos)
 	    error("malloc error", table);
-	while (++i <= table->pc)
+	while (++i <= table->pc - 1)
 	{
-		philo->nr = i;
-		philo->le = get_time();
-		philo->table = table;
-		philo->hunger = philo->table->totaleats;
+		table->philos[i].nr = i + 1;
+		table->philos[i].le = get_time();
+		table->philos[i].table = table;
+		table->philos[i].hunger = table->totaleats;
 	}
 	return (1);
 }
