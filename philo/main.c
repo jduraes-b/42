@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/26 17:55:55 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:49:53 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 void	monitoring(t_table *table)
 {
 	int	i;
+	int	f;
 
-	while (1 && !(table->ff))
+	f = 1;
+	while (1)
 	{
 		i = -1;
-		while (++i < table->pc && !(table->ff))
+		while (++i < table->pc)
 		{
 			if (!alive(&table->philos[i]))
 			{
-				pthread_mutex_lock(&table->restum);
-				table->ff = 1;
-				pthread_mutex_unlock(&table->restum);
+				f--;
+                break ;
 			}
 		}
-		usleep(10);
+		if (!f)
+		{
+			pthread_mutex_lock(&table->restum);
+			table->ff = 1;
+			pthread_mutex_unlock(&table->restum);
+			break ;
+		}
 	}
 }
 
@@ -97,10 +104,7 @@ int	main(int argc, char **argv)
 
 	table = (t_table *)calloc(1, sizeof(t_table));
 	if (!argcheck(argc, argv, table))
-	{
-		printf("wrong arguments\n");
-		exit(1);
-	}
+		error("invalid arguments", table);
 	mutexstart(table);
 	start(table);
 	return (0);

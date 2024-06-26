@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/26 17:52:20 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:14:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,21 @@ int	single(t_philo *philo)
 
 int	alive(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->table->restum);
 	if (get_time() - philo->le > philo->table->ttd)
 	{
+		pthread_mutex_unlock(&philo->table->restum);
 		action(philo, "died");
 		return (0);
 	}
 	else if (philo->hunger == 0)
 	{
+		pthread_mutex_unlock(&philo->table->restum);
 		action(philo, "finished");
 		return (0);
 	}
+	else
+        pthread_mutex_unlock(&philo->table->restum);
 	return (1);
 }
 
@@ -115,7 +120,7 @@ long long	get_time(void)
 {
 	struct timeval    tv;
 
-gettimeofday(&tv, NULL);
+	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
