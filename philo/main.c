@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/21 19:36:23 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:28:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	monitoring(t_table *table)
 {
 	int	i;
 
-	while(1)
+	while (1 && !(table->ff))
 	{
 		i = -1;
-		while (++i < table->pc)
+		while (++i < table->pc && !(table->ff))
 		{
 			if (!alive(&table->philos[i]))
-				break;
+			{
+				pthread_mutex_lock(&table->restum);
+				table->ff = 1;
+				pthread_mutex_unlock(&table->restum);
+			}
 		}
 		usleep(10);
 	}
-	pthread_mutex_lock(&table->restum);
-	table->ff = 1;
-	pthread_mutex_unlock(&table->restum);
-	//finish();
 }
 
 void	clean_table(t_table *table)
