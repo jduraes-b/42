@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/21 17:46:11 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:32:18 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,16 @@ int	single(t_philo *philo)
 
 int	alive(t_philo *philo)
 {
-	//pthread_mutex_lock(&philo->table->restum);
 	if (get_time() - philo->le > philo->table->ttd)
 	{
 		action(philo, "died");
-		//pthread_mutex_unlock(&philo->table->restum);
 		return (0);
 	}
 	else if (philo->hunger == 0)
 	{
 		action(philo, "finished");
-		//pthread_mutex_unlock(&philo->table->restum);
 		return (0);
 	}
-	//else
-	//	pthread_mutex_unlock(&philo->table->restum);
 	return (1);
 }
 
@@ -107,7 +102,6 @@ int	action(t_philo *philo, char *str)
         return (0);
 	}
 	time = get_time() - philo->table->stime;
-	pthread_mutex_lock(&philo->table->restum);
 	printf("%lld %d %s\n", time, philo->nr, str);
 	pthread_mutex_unlock(&philo->table->restum);
 	return (1);

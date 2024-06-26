@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:54:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/21 20:01:16 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:29:00 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void *dinner(void *phil)
 	t_philo    *philo;
 
     philo = (t_philo *)phil;
-    while (1)
+    while (1 && !(philo->table->ff))
 	{
 		if (!grabfork(philo))
 		    return (NULL);
@@ -82,7 +82,7 @@ void *dinner(void *phil)
     return (NULL);
 }
 
-void	start(t_table *table)
+int	start(t_table *table)
 {
 	int		i;
 	i = -1;
@@ -90,7 +90,6 @@ void	start(t_table *table)
 	{
 		if (pthread_create(&table->philos[i].thread, NULL, dinner, &table->philos[i]))
 		    error("thread creation error", table);
-
 	}
 	monitoring(table);
 	i = -1;
@@ -99,5 +98,6 @@ void	start(t_table *table)
 		if (pthread_join(table->philos[i].thread, NULL))
             error("thread join error", table);
 	}
-
+	clean_table(table);
+	return (0);
 }
