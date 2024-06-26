@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:54:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/26 17:37:43 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:35:01 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	*dinner(void *phil)
 	t_philo	*philo;
 
 	philo = (t_philo *)phil;
-	while (1 && !(philo->table->ff))
+	while (1)
 	{
 		if (!grabfork(philo))
 			return (NULL);
