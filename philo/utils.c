@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/25 18:32:18 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:52:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ int	ft_strlen(char *str)
 	i = -1;
 	if (!str)
 		return (0);
-	while(str[++i])
+	while (str[++i])
 		;
 	return (i);
 }
 
 int	rest(t_philo *philo)
 {
+	long long	now;
+
+	now = get_time();
 	if (!action(philo, "is sleeping"))
 		return (0);
-	usleep(philo->table->tts * 1000);
+	while (get_time() < now + philo->table->tts)
+		;
 	return (1);
 }
 
@@ -37,17 +41,17 @@ int	eat(t_philo *philo)
 	if (!action(philo, "is eating"))
 	{
 		pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
-        pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
+		pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
 		return (0);
 	}
 	pthread_mutex_lock(&philo->table->restum);
 	philo->le = get_time();
 	if (philo->hunger)
 		philo->hunger--;
-	usleep(philo->table->tte * 1000);
 	pthread_mutex_unlock(&philo->table->restum);
+	usleep(philo->table->tte * 1000);
 	pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
-    pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
+	pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
 	return (1);
 }
 
@@ -85,10 +89,10 @@ int	alive(t_philo *philo)
 
 void	error(char *str, t_table *table)
 {
-    write(2, str, ft_strlen(str));
-    write(2, "\n", 1);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 	clean_table(table);
-    exit(1);
+	exit(1);
 }
 
 int	action(t_philo *philo, char *str)
@@ -99,7 +103,7 @@ int	action(t_philo *philo, char *str)
 	if (philo->table->ff)
 	{
 		pthread_mutex_unlock(&philo->table->restum);
-        return (0);
+		return (0);
 	}
 	time = get_time() - philo->table->stime;
 	printf("%lld %d %s\n", time, philo->nr, str);
@@ -112,7 +116,7 @@ long long	get_time(void)
 	struct timeval    tv;
 
 gettimeofday(&tv, NULL);
-    return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
@@ -124,7 +128,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	i = 0;
 	p = malloc(nmemb * size);
 	if (p == NULL)
-	 	return (NULL);
+		return (NULL);
 	str = p;
 	while (i < nmemb * size)
 		str[i++] = '\0';
