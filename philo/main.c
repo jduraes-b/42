@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:25:44 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:32:44 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	monitoring(t_table *table)
 			if (!alive(&table->philos[i]))
 			{
 				f--;
-           		 	break ;
+				break ;
 			}
 		}
 		if (!f)
@@ -60,7 +60,8 @@ int	mutexstart(t_table *table)
 	int	i;
 
 	i = 0;
-	table->forkmut = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->pc);
+	table->forkmut = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* table->pc);
 	if (!table->forkmut)
 		return (0);
 	while (i < table->pc)
@@ -91,8 +92,7 @@ int	argcheck(int argc, char **argv, t_table *table)
 	table->totaleats = -1;
 	if (argc == 6)
 		table->totaleats = philo_atoi(argv[5]);
-	if (table->pc < 1 || table->ttd < 1
-		|| table->tte < 1 || table->tts < 1
+	if (table->pc < 1 || table->ttd < 1 || table->tte < 1 || table->tts < 1
 		|| (argc == 6 && table->totaleats < 1))
 		return (0);
 	return (1);

@@ -34,7 +34,7 @@ void	error(char *str, t_table *table)
 
 long long	get_time(void)
 {
-	struct timeval    tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
@@ -44,7 +44,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*p;
 	char	*str;
-	size_t	 i;
+	size_t	i;
 
 	i = 0;
 	p = malloc(nmemb * size);
@@ -65,7 +65,7 @@ int	philo_atoi(char *s)
 	r = 0;
 	if (s[i] == '+')
 		i++;
-	while (s[i]  >=  '0' && s[i] <= '9')
+	while (s[i] >= '0' && s[i] <= '9')
 		r = r * 10 + (s[i++] - '0');
 	if (s[i] != '\0')
 		return (-1);
