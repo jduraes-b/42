@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/26 19:49:53 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:25:44 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	monitoring(t_table *table)
 			if (!alive(&table->philos[i]))
 			{
 				f--;
-                break ;
+           		 	break ;
 			}
 		}
 		if (!f)
