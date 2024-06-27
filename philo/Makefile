@@ -6,12 +6,12 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 17:28:43 by jduraes-          #+#    #+#              #
-#    Updated: 2024/06/21 19:45:34 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/06/27 20:21:05 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SRC =	main.c utils.c dinner.c
+SRC =	main.c utils.c dinner.c dinner_utils.c
 OBJS =	${SRC:.c=.o}
 HEADER =	philo.h
 INCLUDE =	-I .
