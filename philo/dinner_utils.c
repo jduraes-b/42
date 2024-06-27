@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:19:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:22:29 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:32:33 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	eat(t_philo *philo)
 	if (!action(philo, "is eating"))
 	{
 		pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
-		pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
+		pthread_mutex_unlock(&philo->table->forkmut[philo->nr
+			% philo->table->pc]);
 		return (0);
 	}
 	usleep(philo->table->tte * 1000);
@@ -86,7 +87,7 @@ int	action(t_philo *philo, char *str)
 
 int	alive(t_philo *philo)
 {
-	static int fullc;
+	static int	fullc;
 
 	pthread_mutex_lock(&philo->table->restum);
 	if (get_time() - philo->le > philo->table->ttd)
@@ -99,18 +100,16 @@ int	alive(t_philo *philo)
 	{
 		fullc++;
 		philo->hunger--;
-		pthread_mutex_unlock(&philo->table->restum);
 		if (fullc == philo->table->totaleats)
-			{
-				pthread_mutex_lock(&philo->table->restum);
-				printf("%lld all philosophers are full\n", \
-					get_time() - philo->table->stime);
-				pthread_mutex_unlock(&philo->table->restum);
-				return (0);
-			}
+		{
+			printf("%lld all philosophers are full\n", get_time()
+				- philo->table->stime);
+			pthread_mutex_unlock(&philo->table->restum);
+			return (0);
+		}
+		pthread_mutex_unlock(&philo->table->restum);
 		return (1);
 	}
-	else
-        pthread_mutex_unlock(&philo->table->restum);
+	pthread_mutex_unlock(&philo->table->restum);
 	return (1);
 }
