@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:48:01 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:32:44 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:05:58 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	clean_table(t_table *table)
 	int	i;
 
 	i = 0;
-	while (i < table->pc)
+	if (table->forkmut)
 	{
-		pthread_mutex_destroy(&table->forkmut[i++]);
+		while (i < table->pc)
+			pthread_mutex_destroy(&table->forkmut[i++]);
 	}
 	if (table->forkmut)
 		free(table->forkmut);
@@ -105,7 +106,8 @@ int	main(int argc, char **argv)
 	table = (t_table *)calloc(1, sizeof(t_table));
 	if (!argcheck(argc, argv, table))
 		error("invalid arguments", table);
-	mutexstart(table);
+	if (!mutexstart(table))
+		error("init error", table);
 	start(table);
 	return (0);
 }

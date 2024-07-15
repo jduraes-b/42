@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:19:05 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:32:33 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:40:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	eat(t_philo *philo)
 			% philo->table->pc]);
 		return (0);
 	}
-	usleep(philo->table->tte * 1000);
 	pthread_mutex_lock(&philo->table->restum);
 	philo->le = get_time();
 	if (philo->hunger > 0)
 		philo->hunger--;
 	pthread_mutex_unlock(&philo->table->restum);
+	usleep(philo->table->tte * 1000);
 	pthread_mutex_unlock(&philo->table->forkmut[philo->nr - 1]);
 	pthread_mutex_unlock(&philo->table->forkmut[philo->nr % philo->table->pc]);
 	return (1);
@@ -99,8 +99,8 @@ int	alive(t_philo *philo)
 	else if (philo->hunger == 0)
 	{
 		fullc++;
-		philo->hunger--;
-		if (fullc == philo->table->totaleats)
+		philo->hunger = -1;
+		if (fullc >= philo->table->pc)
 		{
 			printf("%lld all philosophers are full\n", get_time()
 				- philo->table->stime);

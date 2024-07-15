@@ -5,34 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/04 17:28:43 by jduraes-          #+#    #+#              #
-#    Updated: 2024/06/28 18:25:33 by jduraes-         ###   ########.fr        #
+#    Created: 2024/07/15 20:48:16 by jduraes-          #+#    #+#              #
+#    Updated: 2024/07/15 21:01:10 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
-SRC =	main.c utils.c dinner.c dinner_utils.c
-OBJS =	${SRC:.c=.o}
-HEADER =	philo.h
-INCLUDE =	-I .
-CFLAGS =	-Wall -Wextra -Werror -pthread
-RM =	rm -f
-CC =	cc #-g #-fsanitize=thread
-.SILENT: $(CC) $(SRC) $(NAME) $(OBJS) 
-	
-$(NAME):	$(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)
-	@echo compiling
-	
-all:	$(NAME)
+NAME = cub3d
+SRC = src/main.c
+OBJS = $(SRC:.c=.o)
+CC = cc -g
+CFLAGS = -Wall -Wextra -Werror
+IFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm
+LIBMLX = minilibx-linux/libmlx.a
 
-clean:	
-	@$(RM) $(OBJS)
-	@echo cleaning
-		
-fclean:	
-	@$(RM) $(OBJS) $(NAME)
-	@echo full clean
+$(NAME): $(OBJS)
+	@make -C minilibx-linux
+	$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) -L libft -lft $(LIBMLX) -o $(NAME)
 	
-		
-re:	fclean all
+clean:
+	$(RM) $(OBJS) $(BONUS_OBJS)
+	@make clean -C libft
+
+fclean:	clean
+	$(RM) $(NAME) $(BONUS_OBJS)
+	@make fclean -C libft
+
+re: fclean all
+	make re -C libft
+
+.phony: clean fclean re

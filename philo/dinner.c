@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:54:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:32:49 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:00:05 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ int	grabfork(t_philo *philo)
 			return (0);
 	}
 	else if (oddfork(philo))
-	{
 		return (0);
-	}
 	return (1);
 }
 
