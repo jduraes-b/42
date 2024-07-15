@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:51:24 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/06/27 20:22:28 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:54:43 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 int	philo_atoi(char *s)
 {
-	int	i;
-	int	r;
+	int			i;
+	long long	r;
 
 	i = 0;
 	r = 0;
@@ -67,7 +67,7 @@ int	philo_atoi(char *s)
 		i++;
 	while (s[i] >= '0' && s[i] <= '9')
 		r = r * 10 + (s[i++] - '0');
-	if (s[i] != '\0')
+	if (s[i] != '\0' || r > 2147483647)
 		return (-1);
-	return (r);
+	return ((int)r);
 }
