@@ -1,0 +1,11 @@
+{
+	"[plaintext]": {
+		"editor.quickSuggestionsDelay": 2000
+	},
+	"files.associations": {
+		"libft.h": "c",
+		"stdarg.h": "c",
+		"stdlib.h": "c",
+		"unistd.h": "c"
+	}
+}

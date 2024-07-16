@@ -6,28 +6,35 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 20:48:16 by jduraes-          #+#    #+#              #
-#    Updated: 2024/07/15 21:01:10 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/07/16 20:52:28 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 SRC = src/main.c
 OBJS = $(SRC:.c=.o)
+HEADER = cub3d.h
 CC = cc -g
+RM = rm -f
+INCLUDE = -I .
 CFLAGS = -Wall -Wextra -Werror
-IFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm
-LIBMLX = minilibx-linux/libmlx.a
+#IFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lm
+#LIBMLX = minilibx-linux/libmlx.a
 
-$(NAME): $(OBJS)
-	@make -C minilibx-linux
-	$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) -L libft -lft $(LIBMLX) -o $(NAME)
-	
+.o:.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
+
+$(NAME):	$(OBJS)
+	make bonus -C libft all
+	$(CC) $(OBJS) -L libft -lft -o $(NAME)
+
+all: $(NAME)
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 	@make clean -C libft
 
 fclean:	clean
-	$(RM) $(NAME) $(BONUS_OBJS)
+	$(RM) $(NAME)
 	@make fclean -C libft
 
 re: fclean all
