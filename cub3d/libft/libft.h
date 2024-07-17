@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:08:44 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/16 20:28:00 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:58:13 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_gnlstrjoin(char *s1, char *s2);
 char				*get_next_line(int fd);
+char				*ft_strjoinfree(char *s1, char *s2, int type);
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
