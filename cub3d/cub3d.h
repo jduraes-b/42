@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:01:45 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/16 23:00:23 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/19 22:24:19 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,27 @@
 #include <sys/time.h>
 #include "libft/libft.h"
 
+typedef struct s_position
+{
+	int			x;
+	int			y;
+}				t_position;
+
 typedef struct	s_gs
 {
 	char	**raw;
 	char	**map;
 	int        xlen;
 	int        ylen;
+	int	floor[3];
+	int	ceiling[3];
 	char	*no_t;
 	char	*so_t;
 	char	*ea_t;
 	char	*we_t;
-	int	floor_c;
-	int	ceiling_c;
+	t_position	*player;
 }				t_gs;
+
+int	parser(char *f, t_gs *gs);
 
 #endif

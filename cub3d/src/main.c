@@ -6,11 +6,21 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:24:58 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/16 23:21:43 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:31:57 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static t_gs	*gs_init(void)
+{
+	t_gs    *gs;
+
+	gs = (t_gs *)ft_calloc(1, sizeof(t_gs));
+	if (!gs)
+		ft_perror("gamestate init error", 1);
+	return (gs);
+}
 
 static void	is_valid(char *f)
 {
@@ -37,6 +47,6 @@ int	main(int argc, char **argv)
 		ft_perror("wrong number of arguments", 1);
 	is_valid(argv[1]);
 	gs = gs_init();
-	parser(gs);
+	parser(argv[1], gs);
 	return (0);
 }
