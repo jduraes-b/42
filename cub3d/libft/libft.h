@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:08:44 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/17 18:58:13 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:58:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void    			ft_perror(char *str, int fd);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
+size_t				ft_matlen(char **s);
 char				*ft_strstr(char *str, char *to_find);
 char				*ft_strnstr(const char *big, const char *little,
 						size_t len);

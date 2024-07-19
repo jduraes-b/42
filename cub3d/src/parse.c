@@ -6,23 +6,13 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 22:41:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/17 19:46:44 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:33:52 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub3d.h"
+#include "../cub3d.h"
 
-t_gs	*gs_init(void)
-{
-	t_gs    *gs;
-
-	gs = (t_gs *)ft_calloc(1, sizeof(t_gs));
-	if (!gs)
-		ft_perror("gamestate init error", 1);
-	return (gs);
-}
-
-void	t_format(char *s, t_gs *gs)
+static void	t_format(char *s, t_gs *gs)
 {
 	static int	i;
     
@@ -39,12 +29,12 @@ void	t_format(char *s, t_gs *gs)
 		ft_perror("Error\ntexture format error\nshould be: \"NO ./texture\"\n", 1);
 }
 
-void	get_textures(char *full, t_gs *gs)
+static void	get_textures(char *full, t_gs *gs)
 {
 	char	**textures;
 	int    i;
 
-	textures = ft_split(full, "\n");
+	textures = ft_split(full, '\n');
 	if (!textures[0] ||!textures[1] ||!textures[2] ||!textures[3])
 		ft_perror("Error\nmissing texture info", 1);
 	i = -1;
@@ -52,6 +42,68 @@ void	get_textures(char *full, t_gs *gs)
 		t_format(textures[i], gs);
 	doublefree(textures);
 	free(full);
+}
+static void	copyconvert(char **s, int *a)
+{
+	int	i;
+
+	i = -1;
+	while(s[++i] != NULL)
+		a[i] = ft_atoi(s[i]);
+}
+static void	rgb_format(char *s, t_gs *gs)
+{
+	char    **temp;
+	int	i;
+
+	if (s[0] != 'F' && s[0] != 'C' && s[1] == ' ')
+		ft_perror("wrong color format\nshould be \"C/F RGB,RGB,RGB\"", 1);
+	temp = ft_split(s + 2, ',');
+	if (ft_matlen(temp) != 3)
+		ft_perror("wrong color format\nshould be \"C/F RGB,RGB,RGB\"", 1);
+	i = -1;
+	while (temp[++i] != NULL)
+	{
+		if (ft_atoi(temp[i]) < 0 || ft_atoi(temp[i]) > 255)
+			ft_perror("error rgb number", 1);
+	}
+	if (s[0] == 'F')
+		copyconvert(temp, gs->floor);
+	if (s[0] == 'C')
+		copyconvert(temp, gs->ceiling);
+}
+
+static void    get_rgb(char *full, t_gs *gs)
+{
+	char    **rgb;
+
+    rgb = ft_split(full, '\n');
+    if (!rgb[0] || !rgb[1])
+	{
+        ft_perror("missing color info", 1);
+	}
+	rgb_format(rgb[0], gs);
+	rgb_format(rgb[1], gs);
+}
+
+static int	map_write(int fd, t_gs *gs)
+{
+	char	*temp;
+	char	*line;
+	int	i;
+
+	i = -1;
+	line = get_next_line(fd);
+	temp = NULL;
+	while (line)
+	{
+		temp = ft_strjoinfree(temp, line, 3);
+		line = get_next_line(fd);
+	}
+	gs->map = ft_split(temp, '\n');
+	free(temp);
+	free(line);
+	return (1);
 }
 
 static int	info_write(char *f, t_gs *gs)
@@ -63,12 +115,24 @@ static int	info_write(char *f, t_gs *gs)
 
 	i = -1;
 	fd = open(f, O_RDONLY);
+	temp = NULL;
+	line = get_next_line(fd);
 	while (line && ++i < 4)
 	{
 		temp = ft_strjoinfree(temp, line, 3);
-		line = get_next_line(line);
+		line = get_next_line(fd);
 	}
+	free(line);
 	get_textures(temp, gs);
+	temp = NULL;
+	line = get_next_line(fd);
+	while (line && ++i < 7)
+	{
+		temp = ft_strjoinfree(temp, line, 3);
+		line = get_next_line(fd);
+	}
+	get_rgb(temp, gs);
+	return (map_write(fd, gs));
 }
 
 int	parser(char *f, t_gs *gs)
@@ -84,13 +148,13 @@ int	parser(char *f, t_gs *gs)
 	gs->xlen = 0;
 	while (line)
 	{
-		free(line);
 		ic++;
-		line = get_next_line(fd);
-		if (ic > 8 && ft_strlen(line) > gs->xlen)
+		if (ic > 8 && (int)ft_strlen(line) > gs->xlen)
 			gs->xlen = ft_strlen(line);
 			
 		gs->ylen = ic - 8;
+		free(line);
+		line = get_next_line(fd);
 	}
 	if (gs->ylen < 3 || gs->xlen < 3)
 		ft_perror("Error\nInvalid map", 1);

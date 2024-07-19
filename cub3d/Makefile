@@ -6,12 +6,12 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 20:48:16 by jduraes-          #+#    #+#              #
-#    Updated: 2024/07/16 20:52:28 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/07/18 17:29:54 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
-SRC = src/main.c
+SRC = src/main.c src/parse.c
 OBJS = $(SRC:.c=.o)
 HEADER = cub3d.h
 CC = cc -g
