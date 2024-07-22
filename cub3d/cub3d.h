@@ -42,5 +42,7 @@ typedef struct	s_gs
 }				t_gs;
 
 int	parser(char *f, t_gs *gs);
+int	checker(t_gs *gs);
+int	flood_fill(t_gs *gs, int x, int y, char **map);
 
 #endif

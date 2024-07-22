@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 22:41:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/19 19:33:52 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:10:07 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,29 @@ static int	info_write(char *f, t_gs *gs)
 	return (map_write(fd, gs));
 }
 
+static int	length_aux(char *s, t_gs *gs)
+{
+	int	i;
+	static int	pre;
+	
+	i = -1;
+	if (pre++ < 8)
+		return (1);
+	else
+	{
+		while (s[++i] != '\0' && s[++i] != '\n')
+		{
+			if (s[i] != '1' && s[i] != '0' && s[i] != 'N' && 
+				s[i] != 'S' && s[i] != 'E' && s[i] != 'O' && s[i] != ' ')
+				return (0);
+		}
+		gs->ylen++;
+		if (gs->xlen < (int)ft_strlen(s) - 1)
+			gs->xlen = ft_strlen(s) - 1;
+		return (1);
+	}
+}
+
 int	parser(char *f, t_gs *gs)
 {
 	int        fd;
@@ -148,11 +171,8 @@ int	parser(char *f, t_gs *gs)
 	gs->xlen = 0;
 	while (line)
 	{
-		ic++;
-		if (ic > 8 && (int)ft_strlen(line) > gs->xlen)
-			gs->xlen = ft_strlen(line);
-			
-		gs->ylen = ic - 8;
+		if (!length_aux(line, gs))
+			break;
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = cub3d
-SRC = src/main.c src/parse.c
+SRC = src/main.c src/parse.c src/checker.c
 OBJS = $(SRC:.c=.o)
 HEADER = cub3d.h
 CC = cc -g
