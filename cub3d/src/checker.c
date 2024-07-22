@@ -6,13 +6,13 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:58:45 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/19 22:39:28 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:15:05 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-static void	player_check(t_gs *gs, int i, int j)
+static int	player_check(t_gs *gs, int i, int j)
 {
 	int	c;
 
@@ -32,24 +32,28 @@ static void	player_check(t_gs *gs, int i, int j)
         }
 	}
 	if (c != 1)
-		ft_perror("map is only accpetable if it has 1 player", 1);
+		return (0);
+	return (1);
 }
 
 int	flood_fill(t_gs *gs, int x, int y, char **map)
 {
+	static int	c;
 	if (map[x][y] == '1')
-		return (0);
+		return (1);
 	else if (map[x][y] == ' ')
-		return (0);
+		c++;
 	map[x][y] = '1';
 	flood_fill(gs, x + 1, y, map);
 	flood_fill(gs, x - 1, y, map);
 	flood_fill(gs, x, y + 1, map);
 	flood_fill(gs, x, y - 1, map);
+	if (c > 0)
+		return (0);
 	return (1);
 }
 
-static void	wall_check(t_gs *gs)
+static int	wall_check(t_gs *gs)
 {
 	char	**tmap;
 	int	i;
@@ -62,14 +66,18 @@ static void	wall_check(t_gs *gs)
 	if (!flood_fill(gs, gs->player->y, gs->player->x, tmap))
 	{
 		doublefree(tmap);
-		ft_perror("map cant have holes in the wall");
+		return (0);
 	}
 	else
 		doublefree(tmap);
+	return (1);
 }
 
 int	checker(t_gs *gs)
 {
-	player_check(gs, -1, -1);
-	wall_check(gs);
+	if (!player_check(gs, -1, -1))
+		return (0);
+	if (!wall_check(gs))
+		return (0);
+	return (1);
 }

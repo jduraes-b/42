@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:24:58 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/18 17:31:57 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:58:22 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_gs	*gs_init(void)
 	gs = (t_gs *)ft_calloc(1, sizeof(t_gs));
 	if (!gs)
 		ft_perror("gamestate init error", 1);
+	gs->player = calloc(1, sizeof(t_position));
 	return (gs);
 }
 
@@ -48,5 +49,7 @@ int	main(int argc, char **argv)
 	is_valid(argv[1]);
 	gs = gs_init();
 	parser(argv[1], gs);
+	if (!checker(gs))
+		ft_perror("Invalid map format", 1);
 	return (0);
 }
