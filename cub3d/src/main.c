@@ -6,11 +6,19 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:24:58 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/22 19:58:22 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:26:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void    ft_perror(char *str, int fd)
+{
+    ft_putstr_fd("Error: ", fd);
+    ft_putstr_fd(str, fd);
+    ft_putstr_fd("\n", fd);
+    exit(EXIT_FAILURE);
+}
 
 static t_gs	*gs_init(void)
 {
@@ -22,7 +30,6 @@ static t_gs	*gs_init(void)
 	gs->player = calloc(1, sizeof(t_position));
 	return (gs);
 }
-
 static void	is_valid(char *f)
 {
 	int	fd;

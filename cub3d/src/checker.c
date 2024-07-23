@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:58:45 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/22 21:15:05 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:26:41 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	player_check(t_gs *gs, int i, int j)
 	while(gs->map[++i] != NULL)
 	{
 		j = -1;
-        while(gs->map[i][++j]!= '\0')
+        while(gs->map[i][++j] != '\0')
         {
             if (gs->map[i][j] == 'N' || gs->map[i][j] == 'S' ||
 				gs->map[i][j] == 'E' || gs->map[i][j] == 'W')

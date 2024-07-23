@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 22:41:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/22 21:10:07 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:23:05 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,50 @@ static void    get_rgb(char *full, t_gs *gs)
 	rgb_format(rgb[1], gs);
 }
 
+static void	strfill(char c, char *tofill, int len)
+{
+	int	i;
+
+	i = -1;
+	while(++i < len)
+		tofill[i] = c;
+}
+
+static void	map_init(t_gs *gs)
+{
+	int	i;
+
+	i = -1;
+	gs->map = malloc(sizeof(char *) * (gs->ylen + 1));
+	if (!gs->map)
+		return ;
+	gs->map[gs->ylen] = NULL;
+	while (++i < gs->ylen)
+	{
+		gs->map[i] = malloc(sizeof(char) * (gs->xlen + 1));
+		if (!gs->map[i])
+			return ;
+		gs->map[i][gs->xlen] = '\0';
+		strfill(' ', gs->map[i], gs->xlen);
+	}	
+}
+
 static int	map_write(int fd, t_gs *gs)
 {
 	char	*temp;
 	char	*line;
 	int	i;
 
-	i = -1;
+	map_init(gs);
 	line = get_next_line(fd);
 	temp = NULL;
-	while (line)
+	i = -1;
+	while (line && ++i < gs->ylen)
 	{
-		temp = ft_strjoinfree(temp, line, 3);
+		gs->map[i] = ft_memcpy(gs->map[i], line, ft_strlen(line) - 1);
+		free(line);
 		line = get_next_line(fd);
 	}
-	gs->map = ft_split(temp, '\n');
 	free(temp);
 	free(line);
 	return (1);
@@ -145,10 +174,10 @@ static int	length_aux(char *s, t_gs *gs)
 		return (1);
 	else
 	{
-		while (s[++i] != '\0' && s[++i] != '\n')
+		while (s[++i] != '\0' && s[i] != '\n')
 		{
 			if (s[i] != '1' && s[i] != '0' && s[i] != 'N' && 
-				s[i] != 'S' && s[i] != 'E' && s[i] != 'O' && s[i] != ' ')
+				s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
 				return (0);
 		}
 		gs->ylen++;
@@ -164,20 +193,18 @@ int	parser(char *f, t_gs *gs)
 	int	ic;
 	char	*line;
 
-	ic = 0;
+	ic = 1;
 	fd = open(f, O_RDONLY);
 	line = get_next_line(fd);
-	ic++;
 	gs->xlen = 0;
-	while (line)
+	while (line && ic != 0)
 	{
-		if (!length_aux(line, gs))
-			break;
+		ic = length_aux(line, gs);
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (gs->ylen < 3 || gs->xlen < 3)
-		ft_perror("Error\nInvalid map", 1);
+	if (gs->ylen < 3 || gs->xlen < 3 || ic == 0)
+		ft_perror("Invalid map", 1);
 	free(line);
 	return (info_write(f, gs));
 }
