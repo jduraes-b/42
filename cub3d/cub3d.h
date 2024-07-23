@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:01:45 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/07/19 22:24:19 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:24:53 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ typedef struct	s_gs
 int	parser(char *f, t_gs *gs);
 int	checker(t_gs *gs);
 int	flood_fill(t_gs *gs, int x, int y, char **map);
+void    ft_perror(char *str, int fd);
 
 #endif
