@@ -109,3 +109,20 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (line);
 }
+
+
+int	main(int argc, char **argv)
+{
+	char	*line;
+	int	fd;
+	
+	(void) argc;
+	fd = open(argv[1], O_RDONLY);
+	line = "first";
+	while (line)
+	{
+		write(1, line, ft_strlenplus(line, 0));
+		line = get_next_line(fd);
+	}
+	return (0);
+}
