@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:55:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/08/25 20:49:46 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:31:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Phonebook::Phonebook()
 {
 	std::cout << "Phonebook created!" << std::endl;
+	this->tindex = 0;
 }
 
 Phonebook::~Phonebook()
@@ -25,10 +26,9 @@ Phonebook::~Phonebook()
 void	Phonebook::update_index()
 {
 	int i = 0;
-	while (i < this->tindex)
+	while (i < 7)
 	{
 		this->contacts[i] = this->contacts[i+1];
-		//this->contacts[i].set_index(this->contacts[i].get_index() - 1);
 		i++;
 	}
 }
@@ -64,5 +64,42 @@ void	Phonebook::add_contact()
 		this->update_index();
 		this->tindex--;
 		Phonebook::add_contact();
+	}
+}
+
+void	Phonebook::search()
+{
+	int i = 0;
+	std::string input;
+	std::cout << "     index|first name| last name|  nickname" << std::endl;
+	while (i < this->tindex)
+	{
+		std::cout << std::setw(10) << this->contacts[i].get_index() << "|";
+		std::cout << std::setw(10) << this->contacts[i].get_fname() << "|";
+		std::cout << std::setw(10) << this->contacts[i].get_lname() << "|";
+		std::cout << std::setw(10) << this->contacts[i].get_nick() << std::endl;
+		i++;
+	}
+	std::cout << "Enter the index of the contact you wish to view: ";
+	std::getline(std::cin, input);
+	i = 0;
+	while (i < this->tindex)
+	{
+		std::stringstream ss;
+        ss << this->contacts[i].get_index();
+		if (input == ss.str())
+		{
+			std::cout << "First name: " << this->contacts[i].get_fname() << std::endl;
+			std::cout << "Last name: " << this->contacts[i].get_lname() << std::endl;
+			std::cout << "Nickname: " << this->contacts[i].get_nick() << std::endl;
+			std::cout << "Phone number: " << this->contacts[i].get_phonenr() << std::endl;
+			std::cout << "Darkest secret: " << this->contacts[i].get_secret() << std::endl;
+			break ;
+		}
+		i++;
+	}
+	if (i >= this->tindex)
+	{
+		std::cout << "Invalid index. Please try again." << std::endl;
 	}
 }
