@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:26:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/08/26 20:21:19 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:25:44 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main()
 		{
 			phonebook.search();
 		}
-		else if (str == "EXIT")
+		else if (str == "EXIT" || std::cin.eof())
 		{
 			std::cout << "Exiting program..." << std::endl;
 			break ;

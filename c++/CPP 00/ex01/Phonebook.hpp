@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/08/26 20:27:04 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:40:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Phonebook
 		void	add_contact();
 		void	search();
 		void 	update_index();
+		std::string	format(std::string src);
 };
 
 # endif
