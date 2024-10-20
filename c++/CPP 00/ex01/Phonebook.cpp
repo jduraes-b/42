@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:55:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/08/26 20:31:11 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:41:07 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	Phonebook::update_index()
 	while (i < 7)
 	{
 		this->contacts[i] = this->contacts[i+1];
+		this->contacts[i].set_index(i + 1);
 		i++;
 	}
 }
@@ -67,6 +68,16 @@ void	Phonebook::add_contact()
 	}
 }
 
+std::string	Phonebook::format(std::string src)
+{
+	if (src.length() >= 10)
+	{
+		src.erase(src.begin() + 9, src.end());
+		src.append(".");
+	}
+	return (src);
+}
+
 void	Phonebook::search()
 {
 	int i = 0;
@@ -75,9 +86,9 @@ void	Phonebook::search()
 	while (i < this->tindex)
 	{
 		std::cout << std::setw(10) << this->contacts[i].get_index() << "|";
-		std::cout << std::setw(10) << this->contacts[i].get_fname() << "|";
-		std::cout << std::setw(10) << this->contacts[i].get_lname() << "|";
-		std::cout << std::setw(10) << this->contacts[i].get_nick() << std::endl;
+		std::cout << std::setw(10) << format(this->contacts[i].get_fname()) << "|";
+		std::cout << std::setw(10) << format(this->contacts[i].get_lname()) << "|";
+		std::cout << std::setw(10) << format(this->contacts[i].get_nick()) << std::endl;
 		i++;
 	}
 	std::cout << "Enter the index of the contact you wish to view: ";
