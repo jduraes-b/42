@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Cure.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/01 18:40:29 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/09/26 20:20:56 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/09/26 20:29:40 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 #include <iostream>
-#include <iomanip>
 #include <string>
-#include <sstream>
-#include "Contacts.hpp"
 
-class Phonebook
+class Cure : public AMateria
 {
-	private:
-		int	tindex;
-		Contacts contacts[8];
-
 	public:
-		Phonebook();
-		~Phonebook();
-		void	add_contact();
-		void	search();
-		void 	update_index();
-		void	clear_curr();
-		std::string	format(std::string src);
+		Cure();
+		Cure(const Cure &other);
+		Cure &operator=(const Cure &other);
+		virtual ~Cure();
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
-# endif
+#endif 

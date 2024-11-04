@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/01 18:40:29 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/10/08 20:24:06 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/10/09 21:10:04 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <sstream>
-#include "Contacts.hpp"
+#include "IMateriaSource.hpp"
 
-class Phonebook
+class MateriaSource : public IMateriaSource
 {
-	private:
-		int	tindex;
-		Contacts contacts[8];
-
+	private:	
+		AMateria *inventory[4];
 	public:
-		Phonebook();
-		~Phonebook();
-		void	add_contact();
-		void	search();
-		void 	update_index();
-		void	clear_curr();
-		std::string	format(std::string src);
+		MateriaSource();
+		MateriaSource(const MateriaSource &other);
+		~MateriaSource();
+		MateriaSource &operator=(const MateriaSource &other);
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const & type);
 };
 
-# endif
+#endif

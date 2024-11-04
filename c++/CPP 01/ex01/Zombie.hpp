@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/01 18:40:29 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/08/27 19:51:51 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/08/27 20:23:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
-#include <iomanip>
 #include <string>
-#include <sstream>
-#include "Contacts.hpp"
 
-class Phonebook
+class Zombie
 {
 	private:
-		int	tindex;
-		Contacts contacts[8];
+		std::string	name;
 
 	public:
-		Phonebook();
-		~Phonebook();
-		void	add_contact();
-		void	search();
-		void 	update_index();
-		void	clear_curr();
-		std::string	format(std::string src);
+		Zombie();
+		~Zombie();
+		void	set_name(std::string name);
+		void	announce(void);
+		
 };
 
-# endif
+Zombie*	zombieHorde(int N, std::string name);
+
+#endif

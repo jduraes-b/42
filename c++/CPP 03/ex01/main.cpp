@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/01 18:40:29 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/09/17 19:13:43 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/09/17 20:18:27 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
-#include <iostream>
-#include <iomanip>
+#include "ScavTrap.hpp"
 #include <string>
-#include <sstream>
-#include "Contacts.hpp"
 
-class Phonebook
+int main()
 {
-	private:
-		int	tindex;
-		Contacts contacts[8];
-
-	public:
-		Phonebook();
-		~Phonebook();
-		void	add_contact();
-		void	search();
-		void 	update_index();
-		void	clear_curr();
-		std::string	format(std::string src);
-};
-
-# endif
+	ScavTrap Scav("ScavTrap");
+	std::string target = "target";
+	
+	Scav.attack(target);
+	Scav.guardGate();
+	Scav.guardGate();
+	Scav.takeDamage(10);
+	Scav.beRepaired(10);
+	for (int i = 0; i < 10; i++)
+		Scav.attack(target);
+	return (0);
+}
