@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 19:51:28 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/01 18:40:29 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/08/27 19:59:59 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/10/18 19:50:09 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
-#include <iostream>
-#include <iomanip>
-#include <string>
+#include "Zombie.hpp"
 #include <sstream>
-#include "Contacts.hpp"
 
-class Phonebook
+int	main(int argc, char **argv)
 {
-	private:
-		int	tindex;
-		Contacts contacts[8];
-
-	public:
-		Phonebook();
-		~Phonebook();
-		void	add_contact();
-		void	search();
-		void 	update_index();
-		void	clear_curr();
-		std::string	format(std::string src);
-};
-
-# endif
+	Zombie	*Horde;
+	int		n;
+	
+	if (argc == 3)
+	{
+		std::stringstream ss(argv[1]);
+		ss >> n;
+		Horde = zombieHorde(n, argv[2]);
+		for (int i = 0; i < n; i++)
+			Horde[i].announce();
+		delete[] Horde;
+		return (0);
+	}
+	std::cout << "Usage: ./moarBrainz <number_of_zombies> <zombie_name>" << std::endl;
+	return (1);
+}

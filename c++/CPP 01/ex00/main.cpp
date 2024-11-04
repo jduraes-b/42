@@ -5,41 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 19:26:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/04 19:18:30 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/08/27 19:21:48 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/10/18 19:22:01 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contacts.hpp"
-#include "Phonebook.hpp"
+#include "Zombie.hpp"
 
-int	main()
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
+
+int	main(int argc, char **argv)
 {
-	Phonebook	phonebook;
-	std::string	str;
+	Zombie	*zombie;
 
-	while (1)
+	if (argc != 2)
 	{
-		std::cout << "Please enter a command: ";
-		std::getline(std::cin, str);
-		if (str == "ADD")
-		{
-			phonebook.add_contact();
-			std::cin.clear();
-		}
-		else if (str == "SEARCH")
-		{
-			phonebook.search();
-			std::cin.clear();
-		}
-		else if (str == "EXIT" || std::cin.eof())
-		{
-			std::cout << "Exiting program..." << std::endl;
-			break ;
-		}
-		else
-		{
-			std::cout << "Invalid command. Please try again." << std::endl;
-		}
+		std::cout << "Usage: ./BraiiiiiiinnnzzzZ <zombie_name>" << std::endl;
+		return (1);
 	}
+	zombie = new Zombie(argv[1]);
+	zombie->announce();
+	delete zombie;
+	randomChump("randomChump");		//stack
+	zombie = newZombie("newZombie");  //heap
+	zombie->announce();
+	delete zombie;
+	return (0);
 }

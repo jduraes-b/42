@@ -6,11 +6,12 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:55:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/10/20 21:41:07 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:18:48 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
+#include <limits>
 
 Phonebook::Phonebook()
 {
@@ -34,28 +35,49 @@ void	Phonebook::update_index()
 	}
 }
 
-void	Phonebook::add_contact()
+void	Phonebook::clear_curr()
+{
+	if(!this->contacts[this->tindex].get_fname().empty())
+		this->contacts[this->tindex].set_fname("");
+	if(!this->contacts[this->tindex].get_lname().empty())
+		this->contacts[this->tindex].set_lname("");
+	if(!this->contacts[this->tindex].get_nick().empty())
+		this->contacts[this->tindex].set_nick("");
+	if(!this->contacts[this->tindex].get_phonenr().empty())
+		this->contacts[this->tindex].set_phonenr("");
+	if(!this->contacts[this->tindex].get_secret().empty())
+		this->contacts[this->tindex].set_secret("");
+}
+
+bool getInput(const std::string& prompt, std::string& input, void (Contacts::*setter)(const std::string), Contacts& contact, int& tindex, Phonebook& phonebook) {
+    std::cout << prompt;
+    std::getline(std::cin, input);
+    if (!input.empty() && !std::cin.eof()) {
+        (contact.*setter)(input);
+        return true;
+    } else {
+        tindex--;
+        phonebook.clear_curr();
+		std::cout << "Invalid input. Please try again." << std::endl;
+        return false;
+    }
+}
+
+void Phonebook::add_contact()
 {
 	std::string input;
 	if (this->tindex < 8)
 	{
 		this->tindex++;
-		std::cout << "Enter the contact's first name: ";
-		std::getline(std::cin, input);
-		this->contacts[this->tindex - 1].set_fname(input);
-		std::cout << "Enter the contact's last name: ";
-		std::getline(std::cin, input);
-		this->contacts[this->tindex - 1].set_lname(input);
-		std::cout << "Enter the contact's nickname: ";
-		std::getline(std::cin, input);
-		this->contacts[this->tindex - 1].set_nick(input);
-		std::cout << "Enter the contact's phone number: ";
-		std::getline(std::cin, input);
-		this->contacts[this->tindex - 1].set_phonenr(input);
-		std::cout << "Enter the contact's darkest secret: ";
-		std::getline(std::cin, input);
-		this->contacts[this->tindex - 1].set_secret(input);
-		this->contacts[this->tindex - 1].set_index(this->tindex);
+		const int currentIndex = this->tindex - 1;
+
+		if (!getInput("Enter the contact's first name: ", input, &Contacts::set_fname, this->contacts[currentIndex], this->tindex, *this)) return;
+		if (!getInput("Enter the contact's last name: ", input, &Contacts::set_lname, this->contacts[currentIndex], this->tindex, *this)) return;
+		if (!getInput("Enter the contact's nickname: ", input, &Contacts::set_nick, this->contacts[currentIndex], this->tindex, *this)) return;
+		if (!getInput("Enter the contact's phone number: ", input, &Contacts::set_phonenr, this->contacts[currentIndex], this->tindex, *this)) return;
+		if (!getInput("Enter the contact's darkest secret: ", input, &Contacts::set_secret, this->contacts[currentIndex], this->tindex, *this)) return;
+
+		this->contacts[currentIndex].set_index(this->tindex);
 	}
 	else
 	{

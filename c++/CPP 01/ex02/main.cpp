@@ -5,41 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 19:26:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/04 19:18:30 by jduraes-         ###   ########.fr       */
+/*   Created: 2024/08/27 20:28:56 by jduraes-          #+#    #+#             */
+/*   Updated: 2024/08/28 19:18:55 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contacts.hpp"
-#include "Phonebook.hpp"
+#include <iostream>
+#include <string>
 
-int	main()
+int	main(void)
 {
-	Phonebook	phonebook;
-	std::string	str;
+	std::string s = "HI THIS IS BRAIN";
+	std::string *stringPTR = &s;
+	std::string &stringREF = s;
 
-	while (1)
-	{
-		std::cout << "Please enter a command: ";
-		std::getline(std::cin, str);
-		if (str == "ADD")
-		{
-			phonebook.add_contact();
-			std::cin.clear();
-		}
-		else if (str == "SEARCH")
-		{
-			phonebook.search();
-			std::cin.clear();
-		}
-		else if (str == "EXIT" || std::cin.eof())
-		{
-			std::cout << "Exiting program..." << std::endl;
-			break ;
-		}
-		else
-		{
-			std::cout << "Invalid command. Please try again." << std::endl;
-		}
-	}
+	std::cout << "Address of the string: " << &s << std::endl;
+	std::cout << "Address of the stringPTR: " << stringPTR << std::endl;
+	std::cout << "Address of the stringREF: " << &stringREF << std::endl;
+	std::cout << "Value of the string: " << s << std::endl;
+	std::cout << "Value pointed to by stringPTR: " << *stringPTR << std::endl;
+	std::cout << "Value pointed to by stringREF: " << stringREF << std::endl;
+	return (0);
 }
