@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:55:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/04 19:18:48 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:36:46 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,15 @@ bool getInput(const std::string& prompt, std::string& input, void (Contacts::*se
     if (!input.empty() && !std::cin.eof()) {
         (contact.*setter)(input);
         return true;
-    } else {
+    } 
+	else if (std::cin.eof()) {
+		std::cout << "Exiting program..." << std::endl;
+		return false;
+	}
+	else {
         tindex--;
         phonebook.clear_curr();
-		std::cout << "Invalid input. Please try again." << std::endl;
+		std::cout << "Invalid input." << std::endl;
         return false;
     }
 }
@@ -102,6 +107,11 @@ std::string	Phonebook::format(std::string src)
 
 void	Phonebook::search()
 {
+	if (this->tindex == 0)
+	{
+		std::cout << "Phonebook is empty." << std::endl;
+		return ;
+	}
 	int i = 0;
 	std::string input;
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
@@ -115,6 +125,10 @@ void	Phonebook::search()
 	}
 	std::cout << "Enter the index of the contact you wish to view: ";
 	std::getline(std::cin, input);
+	if (std::cin.eof()) {
+		std::cout << "Exiting program..." << std::endl;
+		return ;
+	}
 	i = 0;
 	while (i < this->tindex)
 	{
