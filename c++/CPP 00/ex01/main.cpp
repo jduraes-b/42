@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:26:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/04 19:18:30 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:43:28 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ int	main()
 
 	while (1)
 	{
+		str.clear();
+		if (std::cin.eof())
+			break ;
 		std::cout << "Please enter a command: ";
 		std::getline(std::cin, str);
 		if (str == "ADD")
 		{
 			phonebook.add_contact();
-			std::cin.clear();
 		}
 		else if (str == "SEARCH")
 		{
 			phonebook.search();
-			std::cin.clear();
 		}
 		else if (str == "EXIT" || std::cin.eof())
 		{
