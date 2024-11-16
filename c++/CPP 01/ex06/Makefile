@@ -6,17 +6,17 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 19:16:02 by jduraes-          #+#    #+#              #
-#    Updated: 2024/11/12 17:44:56 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/11/16 19:22:51 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.cpp
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 -pedantic
 
-NAME = sedisforLosers
+NAME = harlFilter
 
 all: $(NAME)
 
