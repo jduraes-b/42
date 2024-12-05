@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:57:21 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/24 18:19:45 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:50:54 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 class Brain
 {	

@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:36:47 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/10/16 19:24:39 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/05 20:30:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 # define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include <string.h>
 
 class Character : public ICharacter
 {
 	private:
 		AMateria *inventory[4];
 		std::string name;
-		AMateria **bin;
+		AMateria *bin[256];
+		int	t;
 
 	public:
 		Character();
@@ -29,9 +32,9 @@ class Character : public ICharacter
 		virtual ~Character();
 		Character &operator=(const Character &other);
 		std::string const & getName() const;
-		void equip(AMateria* m);
-		void unequip(int idx);
-		void use(int idx, ICharacter& target);
+		virtual void equip(AMateria* m);
+		virtual void unequip(int idx);
+		virtual void use(int idx, ICharacter& target);
 };
 
 #endif

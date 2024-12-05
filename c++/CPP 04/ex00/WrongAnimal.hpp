@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:39:31 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/19 19:32:43 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:29:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ class WrongAnimal
 		WrongAnimal(std::string type);
 		WrongAnimal(const WrongAnimal &other);
 		WrongAnimal &operator=(const WrongAnimal &other);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 		std::string getType() const;
-		void makeSound() const {
-			std::cout << "WrongAnimal sound!" << std::endl;
-		}
+		void makeSound() const;
 };
 
 #endif
