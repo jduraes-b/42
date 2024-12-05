@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:24:06 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/10/09 21:10:04 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/03 19:27:59 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MATERIASOURCE_HPP
 
 #include "IMateriaSource.hpp"
+//#include "AMateria.hpp"
 
 class MateriaSource : public IMateriaSource
 {

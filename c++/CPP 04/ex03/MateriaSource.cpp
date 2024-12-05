@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:46:23 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/10/10 19:38:18 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:50:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void MateriaSource::learnMateria(AMateria* m)
             inventory[i] = m;
             break;
         }
+		if (i == 3)
+			std::cout<<"Materia Source full"<<std::endl;
     }
 }
 
@@ -67,5 +69,5 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 		if (inventory[i] && inventory[i]->getType() == type)
 			return (inventory[i]->clone());
 	}
-	return (NULL);
+	return (0);
 }

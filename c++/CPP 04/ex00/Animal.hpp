@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:39:31 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/19 19:20:33 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:57:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ class Animal
 		Animal &operator=(const Animal &other);
 		virtual ~Animal();
 		std::string getType() const;
-		virtual void makeSound() const {
-			std::cout << "Generic sound!" << std::endl;
-		}
+		virtual void makeSound() const;
 };
 
 #endif

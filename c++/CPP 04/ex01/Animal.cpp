@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:56:10 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/19 19:20:54 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:37:13 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ Animal::~Animal()
 std::string Animal::getType() const
 {
 	return (this->type);
+}
+
+void Animal::makeSound() const
+{
+	std::cout << "Generic sound!" << std::endl;
 }

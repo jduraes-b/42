@@ -12,9 +12,9 @@
 
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = g++
+CC = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-pedantic -g
 
 NAME = Fallout
 
@@ -22,6 +22,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ): $(SRC)
+	$(CC) $(CPPFLAGS) -c $(SRC)
 
 clean:
 	$(RM) $(OBJ)

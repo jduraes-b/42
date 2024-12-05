@@ -6,11 +6,11 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:08:27 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/24 19:47:47 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:52:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
@@ -18,10 +18,10 @@
 
 int main()
 {
-	//const Animal *a = new Animal();
-	//This should not compile because Animal is an abstract class
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
+	//const AAnimal *a = new AAnimal();
+	//This should not compile because AAnimal is an abstract class
+	const AAnimal *j = new Dog();
+	const AAnimal *i = new Cat();
 
 	j->makeSound(); // This should output: Woof!
 	i->makeSound(); // This should output: Miau!

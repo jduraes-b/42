@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:56:10 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/19 19:20:54 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:49:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal()
+AAnimal::AAnimal()
 {
-	this->type = "Animal";
+	this->type = "AAnimal";
 }
 
-Animal::Animal(std::string type)
+AAnimal::AAnimal(std::string type)
 {
 	this->type = type;
 }
 
-Animal::Animal(const Animal &other)
+AAnimal::AAnimal(const AAnimal &other)
 {
 	*this = other;
 }
 
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
 	if (this == &other)
 		return (*this);
@@ -35,11 +35,11 @@ Animal &Animal::operator=(const Animal &other)
 	return (*this);
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
 }
 
-std::string Animal::getType() const
+std::string AAnimal::getType() const
 {
 	return (this->type);
 }

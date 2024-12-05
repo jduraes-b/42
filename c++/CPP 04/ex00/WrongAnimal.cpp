@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 19:56:10 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/19 19:35:57 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:29:58 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ WrongAnimal::~WrongAnimal()
 std::string WrongAnimal::getType() const
 {
 	return (this->type);
+}
+
+void WrongAnimal::makeSound() const
+{
+	std::cout << "Wrong Animal sound!" << std::endl;
 }

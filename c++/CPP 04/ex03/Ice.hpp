@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 20:20:56 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/10/08 19:35:39 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/03 19:35:02 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ class Ice : public AMateria
 		void use(ICharacter& target);
 };
 
-#endif 
+#endif
