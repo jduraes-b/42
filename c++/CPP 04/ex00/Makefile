@@ -6,15 +6,15 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2024/09/19 19:35:58 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/11/30 19:10:22 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = g++
+CC = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-pedantic
 
 NAME = Polymorphism
 
@@ -22,6 +22,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ): $(SRC)
+	$(CC) $(CPPFLAGS) -c $(SRC)
 
 clean:
 	$(RM) $(OBJ)
