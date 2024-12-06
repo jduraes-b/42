@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 19:39:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/05 20:31:40 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:47:33 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,14 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx > -1 && idx < 5 && inventory[idx] != NULL)
+	if (inventory[idx] == NULL){
+		std::cout<<"Empty slot"<<std::endl;
+		return ;
+	}
+	else if (idx > -1 && idx < 4 && inventory[idx] != NULL){
 		inventory[idx]->use(target);
+		return ;
+	}
+	else
+		std::cout<<"Inventory slots are 0-3"<<std::endl;
 }
