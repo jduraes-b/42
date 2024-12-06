@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:53:52 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/05 20:58:06 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:49:59 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ int main()
 	Bill->equip(tmp);
 	tmp = src2->createMateria("ice");
 	Bill->equip(tmp);
-	Bill->unequip(2);
-	Bill->use(1, *Bill);
+	Bill->unequip(3);
+	Bill->use(3, *Bill);
+	Bill->use(4, *Bill);
 
 	delete src2;
 	delete Bill;
