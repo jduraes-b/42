@@ -6,13 +6,13 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 19:16:02 by jduraes-          #+#    #+#              #
-#    Updated: 2024/09/11 19:17:17 by jduraes-         ###   ########.fr        #
+#    Updated: 2024/11/17 18:57:25 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = g++
+CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
@@ -22,6 +22,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ): $(SRC)
+	$(CC) $(CPPFLAGS) -c $(SRC)
 
 clean:
 	$(RM) $(OBJ)
