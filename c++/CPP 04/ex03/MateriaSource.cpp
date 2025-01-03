@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:46:23 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/05 19:50:38 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:16:24 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 MateriaSource::MateriaSource()
 {
+	std::cout << "Materia Source default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		inventory[i] = NULL;
 }
 
 MateriaSource::~MateriaSource()
 {
+	std::cout << "Materia Source destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i])
@@ -29,6 +31,7 @@ MateriaSource::~MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
+	std::cout << "Materia Source copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i])

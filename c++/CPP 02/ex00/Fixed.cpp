@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:38:59 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/11 19:18:33 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:28:28 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed::Fixed(const Fixed &other)
 
 Fixed & Fixed:: operator = (const Fixed &other)
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Assignment operator called" << std::endl;
 	this->value = other.getRawBits();
 	return (*this);
 }

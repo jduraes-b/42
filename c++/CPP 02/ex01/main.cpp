@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 19:47:35 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/09/18 20:00:46 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:44:57 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void) {
 	Fixed const d(b);
 
 	a = Fixed(1234.4321f);
-	a = b;
+	//a = b;
 
 	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;
