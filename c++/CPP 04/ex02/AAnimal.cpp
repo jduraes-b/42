@@ -14,16 +14,19 @@
 
 AAnimal::AAnimal()
 {
+	std::cout << "AAnimal default constructor called" << std::endl;
 	this->type = "AAnimal";
 }
 
 AAnimal::AAnimal(std::string type)
 {
+	std::cout << "AAnimal type constructor called" << std::endl;
 	this->type = type;
 }
 
 AAnimal::AAnimal(const AAnimal &other)
 {
+	std::cout << "AAnimal copy constructor called" << std::endl;
 	*this = other;
 }
 
@@ -37,6 +40,7 @@ AAnimal &AAnimal::operator=(const AAnimal &other)
 
 AAnimal::~AAnimal()
 {
+	std::cout << "AAnimal destructor called" << std::endl;
 }
 
 std::string AAnimal::getType() const

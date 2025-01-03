@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:55:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/11/05 19:36:46 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:50:32 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	Phonebook::clear_curr()
 		this->contacts[this->tindex].set_secret("");
 }
 
-bool getInput(const std::string& prompt, std::string& input, void (Contacts::*setter)(const std::string), Contacts& contact, int& tindex, Phonebook& phonebook) {
+bool Phonebook::getInput(const std::string& prompt, std::string& input, void (Contacts::*setter)(const std::string), Contacts& contact, int& tindex, Phonebook& phonebook) {
     std::cout << prompt;
     std::getline(std::cin, input);
     if (!input.empty() && !std::cin.eof()) {

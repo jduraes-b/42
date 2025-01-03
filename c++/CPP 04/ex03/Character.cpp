@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 19:39:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/06 18:47:33 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:15:01 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 Character::Character() 
 {
+	std::cout << "Character default constructor called" << std::endl;
 }
 
 Character::~Character() 
 {
+	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; inventory[i] != NULL && i < 5; i++)
 		delete inventory[i];
 	for (int i = 0; this->bin[i] != NULL && i < 257; i++)
@@ -27,6 +29,7 @@ Character::~Character()
 
 Character::Character(std::string name) : name(name), t(0)
 {
+	std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		inventory[i] = NULL;
 	for (int i = 0; i < 256; i++)
@@ -35,6 +38,7 @@ Character::Character(std::string name) : name(name), t(0)
 
 Character::Character(const Character &other) 
 {
+	std::cout << "Character copy constructor called" << std::endl;
 	*this = other;
 }
 

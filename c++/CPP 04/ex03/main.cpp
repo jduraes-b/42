@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:53:52 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/06 18:49:59 by jduraes-         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:23:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main()
 	delete me;
 	delete src;
 
-	std::cout << "other tests: " <<std::endl;
+	std::cout << "\nother tests:\n" <<std::endl;
 
 	ICharacter*	Bill = new Character("Bill");
 	IMateriaSource *src2 = new MateriaSource();
