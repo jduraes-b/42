@@ -6,12 +6,11 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:42:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/27 19:38:21 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:32:50 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name (name)
 {
@@ -55,7 +54,7 @@ void	Bureaucrat::decrementGrade()
 		this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form &f)
+void	Bureaucrat::signForm(AForm &f)
 {
 	try {
 		f.beSigned(*this);
