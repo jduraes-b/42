@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:37:53 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/04 18:32:38 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:20:04 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class Bureaucrat
 		void	decrementGrade();
 		void	print(std::ostream &os) const;
 		void	signForm(AForm &f);
+		void	executeForm(AForm const & form);
 
 		class GradeTooHighException : public std::exception {
     		public:

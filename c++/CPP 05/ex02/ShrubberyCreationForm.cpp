@@ -6,13 +6,19 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:31:08 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/04 19:52:15 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:53:48 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
+#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target)
+{
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string name, std::string target) : AForm(name, 145, 137), target(target)
 {
 }
 
@@ -20,21 +26,25 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	if (Bureaucrat.getGrade() > this.getExecReq() && !this.getIsSigned())
+	if (executor.getGrade() > this->getExecReq())
 		throw GradeTooLowException();
-	else
+	else if (!this->_issigned)
+		throw UnsignedFormException();
+	else 
 	{
 		std::ofstream file;
-		file.open(this->target + "_shrubbery");
+		file.open((this->target + "_shrubbery").c_str());
+		file << "      +x      " << std::endl;
 		file << "      /\\      " << std::endl;
-		file << "     /\\*\\     " << std::endl;
-		file << "    /\\O\\*\\    " << std::endl;
-		file << "   /*/\\/\\/\\   " << std::endl;
-		file << "  /\\O\\/\\*\\/\\  " << std::endl;
+		file << "     /\\o\\     " << std::endl;
+		file << "    /\\/\\/\\    " << std::endl;
+		file << "   /o/\\/\\0\\   " << std::endl;
+		file << "  /\\O\\/\\o\\/\\  " << std::endl;
 		file << "      ||      " << std::endl;
 		file << "      ||      " << std::endl;
+		file << "      __      " << std::endl;
 		file << std::endl;
 		file.close();
 	}

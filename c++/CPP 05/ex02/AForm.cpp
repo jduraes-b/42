@@ -34,6 +34,11 @@ int AForm::getSignReq() const
 	return (_signreq);
 }
 
+int AForm::getExecReq() const
+{
+	return (_execreq);
+}
+
 std::string	AForm::getFormName() const
 {
 	return (_name);
@@ -55,6 +60,11 @@ const char* AForm::GradeTooLowException::what() const throw()
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high.\n";
+}
+
+const char* AForm::UnsignedFormException::what() const throw()
+{
+	return "Form is unsigned.\n";
 }
 
 void	AForm::print(std::ostream& os) const

@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:42:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/04 18:32:50 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:27:02 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ void	Bureaucrat::signForm(AForm &f)
 	catch (std::exception &e) {
 		std::cout << _name << " couldn't sign " << f.getFormName();
 		std::cout << " because they lack the required grade" << std::endl;	
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	try {
+		form.execute(*this);
+		std::cout << _name << " executes " << form.getFormName() << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what();
 	}
 }
 
