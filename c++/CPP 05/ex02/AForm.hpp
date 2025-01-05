@@ -31,6 +31,7 @@ class AForm
 		AForm(std::string name, int sign, int exec);
 		~AForm();
 		int		getSignReq() const;
+		int		getExecReq() const;
 		std::string	getFormName() const;
 		void	beSigned(Bureaucrat &b);
 		void	print(std::ostream &os) const;
@@ -44,6 +45,10 @@ class AForm
     		public:
     		    const char* what() const throw();
     	};
+		class UnsignedFormException : public std::exception {
+			public:
+			    const char* what() const throw();
+		};
 };
 
 std::ostream& operator<<(std::ostream &os, const AForm &f);
