@@ -6,11 +6,11 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2025/01/05 19:14:18 by jduraes-         ###   ########.fr        #
+#    Updated: 2025/01/07 19:01:23 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp #RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp #PresidentialPardonForm.cpp Intern.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
@@ -35,3 +35,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
