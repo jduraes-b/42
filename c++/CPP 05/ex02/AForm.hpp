@@ -29,7 +29,7 @@ class AForm
 	public:
 		AForm();
 		AForm(std::string name, int sign, int exec);
-		~AForm();
+		virtual ~AForm();
 		int		getSignReq() const;
 		int		getExecReq() const;
 		std::string	getFormName() const;

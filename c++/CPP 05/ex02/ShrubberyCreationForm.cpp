@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:31:08 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/05 19:53:48 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:50:29 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target)
-{
-}
-
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name, std::string target) : AForm(name, 145, 137), target(target)
 {
 }
 
