@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 18:39:19 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:37:56 by jduraes-         ###   ########.fr       */
+/*   Created: 2025/01/09 19:06:44 by jduraes-          #+#    #+#             */
+/*   Updated: 2025/01/09 19:13:41 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#include <string>
 
-#include "AForm.hpp"
+class AForm;
+class ShrubberyCreationForm;
+class RobotomyRequestForm;
+class PresidentialPardonForm;
 
-class Bureaucrat;
-
-class RobotomyRequestForm : virtual public AForm
+class Intern
 {
 	private:
-		std::string	target;
-	
+
 	public:
-		RobotomyRequestForm(std::string	target);
-		RobotomyRequestForm(const RobotomyRequestForm &other);
-		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-		~RobotomyRequestForm();
-		void	execute(Bureaucrat const & executor) const;
+		Intern::Intern();
+		Intern::Intern(const Intern &other);
+		Intern &operator=(const Intern &other);
+		Intern::~Intern();
+		void	Intern::makeForm(std::string name, std::string target);
 };
 
 # endif
-

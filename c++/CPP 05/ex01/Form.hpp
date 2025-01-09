@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:09:11 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/27 19:38:32 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:30:36 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class Form
 	public:
 		Form();
 		Form(std::string name, int sign, int exec);
+		Form(const Form &other);
+		Form &operator=(const Form &other);
 		~Form();
 		int		getSignReq() const;
 		std::string	getFormName() const;
