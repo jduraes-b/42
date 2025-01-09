@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:37:53 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/20 19:36:25 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:45:10 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Bureaucrat
 		int	_grade;
 	public:
 		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const Bureaucrat &other);
+		Bureaucrat &operator=(const Bureaucrat &other);
 		~Bureaucrat();
 		const std::string&	getName() const;
 		int	getGrade() const;

@@ -6,17 +6,17 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2025/01/08 19:13:36 by jduraes-         ###   ########.fr        #
+#    Updated: 2025/01/09 19:06:31 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g#-pedantic 
 
-NAME = WrongForm
+NAME = Intern
 
 all: $(NAME)
 

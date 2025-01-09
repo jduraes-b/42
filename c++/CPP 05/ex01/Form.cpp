@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:14:59 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/20 19:58:55 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:30:58 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ Form::Form(std::string name, int sign, int exec) : _name(name), _issigned(0), _s
 		throw GradeTooHighException();
 	if (sign > 150 || exec > 150)
 		throw GradeTooLowException();
+}
+
+Form::Form(const Form &other) : _name(other._name), _issigned(other._issigned), _signreq(other._signreq), _execreq(other._execreq)
+{
+}
+
+Form &Form::operator=(const Form &other)
+{
+	if (this != &other)
+		_issigned = other._issigned;	
+	return (*this);
 }
 
 Form::~Form()

@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:42:14 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/20 19:36:18 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:19:48 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name (name)
 		_grade = grade;
 	else
 		grade = 150;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &other)
+{
+	*this = other;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+{
+	if (this != &other)
+		_grade = other._grade;
+	return *this;
 }
 
 Bureaucrat::~Bureaucrat()
