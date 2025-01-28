@@ -47,10 +47,30 @@ class AForm
     		public:
     		    const char* what() const throw();
     	};
+		class SignedFormException : public std::exception {
+    		private:
+        		mutable std::string msg;
+    		public:
+    		    SignedFormException(Bureaucrat &b, const std::string &formName) throw();
+    		    virtual const char* what() const throw();
+    		    ~SignedFormException() throw() {}
+    	};
+		class LackGradeException : public std::exception {
+    		private:
+    			mutable std::string msg;
+    		public:
+    			LackGradeException(Bureaucrat &b, const std::string &formName) throw();
+    		    virtual const char* what() const throw();
+    		    ~LackGradeException() throw() {}
+    	};
 		class UnsignedFormException : public std::exception {
-			public:
-			    const char* what() const throw();
-		};
+    		private:
+        		mutable std::string msg;
+    		public:
+    		    UnsignedFormException(const Bureaucrat &b, const std::string &formName) throw();
+    		    virtual const char* what() const throw();
+    		    ~UnsignedFormException() throw() {}
+    		};
 };
 
 std::ostream& operator<<(std::ostream &os, const AForm &f);

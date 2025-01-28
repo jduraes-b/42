@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                           :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:09:11 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/03 19:50:48 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:16:30 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AFORM_HPP
-# define AFORM_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 #include <exception>
 #include <string>
 
 class Bureaucrat;
 
-class AForm
+class Form
 {
 	protected:
 		const std::string	_name;
@@ -27,11 +27,11 @@ class AForm
 		const int	_execreq;
 
 	public:
-		AForm();
-		AForm(std::string name, int sign, int exec);
-		AForm(const AForm &other);
-		AForm &operator=(const AForm &other);
-		virtual ~AForm();
+		Form();
+		Form(std::string name, int sign, int exec);
+		Form(const Form &other);
+		Form &operator=(const Form &other);
+		virtual ~Form();
 		int		getSignReq() const;
 		int		getExecReq() const;
 		std::string	getFormName() const;
@@ -53,6 +53,6 @@ class AForm
 		};
 };
 
-std::ostream& operator<<(std::ostream &os, const AForm &f);
+std::ostream& operator<<(std::ostream &os, const Form &f);
 
 #endif

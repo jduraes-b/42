@@ -6,17 +6,17 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:44:12 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:38:18 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:44:06 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
-#include "AForm.hpp"
+#include "Form.hpp"
 
 class Bureaucrat;
 
-class ShrubberyCreationForm : virtual public AForm
+class ShrubberyCreationForm : virtual public Form
 {
 	private:
 		std::string	target;

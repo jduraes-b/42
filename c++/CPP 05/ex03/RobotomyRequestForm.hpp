@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 18:39:19 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:37:56 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:42:58 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp"
+#include "Form.hpp"
 
 class Bureaucrat;
 
-class RobotomyRequestForm : virtual public AForm
+class RobotomyRequestForm : virtual public Form
 {
 	private:
 		std::string	target;
