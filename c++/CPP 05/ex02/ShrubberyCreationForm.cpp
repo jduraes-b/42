@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:31:08 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:38:50 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:39:37 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() > this->getExecReq())
 		throw GradeTooLowException();
 	else if (!this->_issigned)
-		throw UnsignedFormException();
+		throw AForm::UnsignedFormException(executor, this->getFormName());
 	else 
 	{
 		std::ofstream file;

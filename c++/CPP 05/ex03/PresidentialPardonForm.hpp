@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:52:36 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:36:28 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:42:49 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-#include "AForm.hpp"
+#include "Form.hpp"
 
-class	AForm;
+class	Form;
 
-class	PresidentialPardonForm : virtual public AForm
+class	PresidentialPardonForm : virtual public Form
 {
 	private:
 		std::string	target;

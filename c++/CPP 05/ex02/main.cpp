@@ -25,6 +25,7 @@ int	main()
 	RobotomyRequestForm	f2("Qarl");
 	PresidentialPardonForm f3("Harl");
 
+	b2.executeForm(f1);
 	b1.signForm(f1);
 	b2.signForm(f1);
 	b1.executeForm(f1);

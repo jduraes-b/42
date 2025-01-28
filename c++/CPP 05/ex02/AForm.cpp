@@ -58,7 +58,9 @@ std::string	AForm::getFormName() const
 void	AForm::beSigned(Bureaucrat &b)
 {
 	if (b.getGrade() > _signreq)
-		throw GradeTooLowException();
+		throw LackGradeException(b, this->getFormName());
+	else if (this->_issigned)
+		throw SignedFormException(b, this->getFormName());
 	else
 		this->_issigned = 1;
 }
@@ -73,9 +75,35 @@ const char* AForm::GradeTooHighException::what() const throw()
 	return "Grade is too high.\n";
 }
 
+AForm::LackGradeException::LackGradeException(Bureaucrat &b, const std::string &formName) throw()
+{
+	msg = b.getName() + " couldn't sign " + formName + " because they lack the required grade.\n";
+}
+
+const char* AForm::LackGradeException::what() const throw()
+{
+	return msg.c_str();
+}
+
+AForm::SignedFormException::SignedFormException(Bureaucrat &b, const std::string &formName) throw()
+{
+	msg = b.getName() + " couldn't sign " + formName + " because it is already signed.\n";
+}
+
+const char* AForm::SignedFormException::what() const throw()
+{
+	return msg.c_str();
+}
+
+AForm::UnsignedFormException::UnsignedFormException(const Bureaucrat &b, const std::string &formName) throw()
+{
+	(void) b;
+	msg = formName + " must be signed before it is executed.\n";
+}
+
 const char* AForm::UnsignedFormException::what() const throw()
 {
-	return "AForm is unsigned.\n";
+	return msg.c_str();
 }
 
 void	AForm::print(std::ostream& os) const

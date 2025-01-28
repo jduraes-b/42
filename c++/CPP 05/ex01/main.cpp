@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 19:25:16 by jduraes-          #+#    #+#             */
-/*   Updated: 2024/12/27 19:31:27 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:58:38 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main()
 
 	Form	f1("Expense Report", 1, 1);
 	Form	f2("Tax Declaration", 150, 150);
+	std::cout << f1 << "\n" << f2 << std::endl;
 	
 	try{
 		Form f3("Invalid Form", 0, 0);
@@ -44,10 +45,9 @@ int	main()
 		std::cout << e.what();
 	}
 
-	std::cout << f1 << "\n" << f2 << std::endl;
-
 	b1.signForm(f1);
 	b1.signForm(f2);
+	b2.signForm(f1);
 	b2.signForm(f1);
 
 	std::cout << f1 << "\n" << f2 << std::endl;

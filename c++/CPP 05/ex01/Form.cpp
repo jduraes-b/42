@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 20:14:59 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:30:58 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:35:30 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ std::string	Form::getFormName() const
 void	Form::beSigned(Bureaucrat &b)
 {
 	if (b.getGrade() > _signreq)
-		throw GradeTooLowException();
+		throw LackGradeException(b, this->getFormName());
+	else if (this->_issigned)
+		throw SignedFormException(b, this->getFormName());
 	else
 		this->_issigned = 1;
 }
@@ -66,6 +68,26 @@ const char* Form::GradeTooLowException::what() const throw()
 const char* Form::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high.\n";
+}
+
+Form::LackGradeException::LackGradeException(Bureaucrat &b, const std::string &formName) throw()
+{
+	msg = b.getName() + " couldn't sign " + formName + " because they lack the required grade.\n";
+}
+
+const char* Form::LackGradeException::what() const throw()
+{
+	return msg.c_str();
+}
+
+Form::SignedFormException::SignedFormException(Bureaucrat &b, const std::string &formName) throw()
+{
+	msg = b.getName() + " couldn't sign " + formName + " because it is already signed.\n";
+}
+
+const char* Form::SignedFormException::what() const throw()
+{
+	return msg.c_str();
 }
 
 void	Form::print(std::ostream& os) const

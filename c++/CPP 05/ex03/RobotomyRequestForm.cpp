@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 18:46:40 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:38:06 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:43:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include <ctime>
 #include <unistd.h>
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45), target(target)
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), target(other.target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : Form(other), target(other.target)
 {
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	if (this != &other){
-		AForm::operator=(other);
+		
+	Form::operator=(other);
 		this->target = other.target;
 	}
 	return (*this);
