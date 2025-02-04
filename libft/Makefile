@@ -6,7 +6,7 @@
 #    By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 17:31:07 by jduraes-          #+#    #+#              #
-#    Updated: 2023/05/11 16:22:51 by jduraes-         ###   ########.fr        #
+#    Updated: 2023/05/15 01:23:55 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,12 @@ INCLUDE =	-I .
 CC =	cc -g
 RM =	rm -f
 CFLAGS =	-Wall -Wextra -Werror
-%.o:%.c
-	${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
+.o:.c
+		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 ${NAME}:	${OBJS}
 	ar rcs ${NAME} ${OBJS}
-${BONUSFUNCTIONS}:	${BONUSOBJS}
-bonus:	${BONUSOBJS} ${OBJS}
-	ar rcs ${NAME} ${BONUSOBJS} ${OBJS} ${HEADER}
+bonus:	$(BONUSOBJS) $(OBJS)
+	ar rcs ${NAME} ${BONUSOBJS} ${OBJS}
 all:	${NAME}
 clean:
 	${RM} ${OBJS} ${BONUSOBJS}
