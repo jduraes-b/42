@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 20:22:30 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/29 20:53:53 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/02/13 03:00:30 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/02/13 03:01:04 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-char	*findepath(char	**envp)
+char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
-	char	**paths;
-	char	*actualpath;
+	int	ii;
 
 	i = 0;
-	while(!ft_strnstr(envp[i], "PATH=", 5))
-		i++;
-	paths = ft_split(envp[i] + 5, ":");
-	i = 0;
-	while (paths[i])
+	if (to_find[0] == '\0')
+		return (str);
+	while (str[i] != '\0')
 	{
-		actualpath = ft_strjoin(actualpath, paths[i]);
-		actualpath = ft_strjoin(actualpath, "/");
-		i++;
-	}
-	return (actualpath);
+		ii = 0;
+		while (str[i + ii] != '\0' && str[i + ii] == to_find[ii])
+		{
+			if (to_find[ii + 1] == '\0')
+				return (&str[i]);
+			++ii;
+		}	
+		++i;
+	}	
+	return (0);
 }
 /*
-void	execute(char *cmd, char **envp)
+#include <stdio.h>
+int	main(void)
 {
-	char	**command;
-	char	*pathline;
+	char *str = "Sera que t3m bandido?";
+	char *to_find = "3";
 
-	pathline = ft_substr(envp, );
-
+	printf("%s\n", ft_strstr(str, to_find));
 }*/
