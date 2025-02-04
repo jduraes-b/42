@@ -6,27 +6,27 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 19:30:00 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/06 19:31:49 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:10:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*int	**transformer(char** source)
-{
-	
-}
-*/
 int	wrongargs(char **argv)
 {
 	int	i;
 	int	j;
-
+	long	nr;
+	
 	i = 1;
 	j = 0;
+	nr = 0;
 	while (argv[i])
 	{
 		j = 0;
+		nr = ft_atol(argv[i]);
+		if (nr < INT_MIN || nr > INT_MAX)
+			return (1);
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))

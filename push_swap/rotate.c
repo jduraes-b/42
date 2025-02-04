@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:19:15 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/06 21:40:49 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/10 19:02:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ void	rotate(t_stack **root)
 	curr->next->next = NULL;
 }
 
-void	rrotate(t_stack *root)
+void	rrotate(t_stack **root)
 {
 	t_stack	*temp;
 	t_stack *curr;
 
-	curr = root;
+	curr = *root;
+	temp = *root;
 	while (curr->next->next != NULL)
 		curr = curr->next;
-	temp = curr->next;
+	*root = curr->next;
+	(*root)->next = temp;
 	curr->next = NULL;
-	temp->next = root;
 }
