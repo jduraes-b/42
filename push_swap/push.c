@@ -25,13 +25,13 @@ void	push(t_stack **source, t_stack **target)
 void	pa(t_stack **a, t_stack **b)
 {
 	ft_printf("pa\n");
-	push(a, b);
+	push(b, a);
 }
 
-void	pb(t_stack **b, t_stack **a)
+void	pb(t_stack **a, t_stack **b)
 {
 	ft_printf("pb\n");
-	push(b, a);
+	push(a, b);
 }
 
 void	rrb(t_stack **b)
