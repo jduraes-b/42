@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 int	ft_strlenplus(char *s, char c)
 {
@@ -21,7 +21,7 @@ int	ft_strlenplus(char *s, char c)
 	{
 		while (s && s[i] != '\0' && s[i] != '\n')
 			i++;
-		if (s[i] == '\n')
+		if (s[i] == c)
 			return (i);
 		return (-1);
 	}
@@ -30,7 +30,7 @@ int	ft_strlenplus(char *s, char c)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnlstrjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		i;
