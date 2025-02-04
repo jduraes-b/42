@@ -19,4 +19,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+char	*findpath(char *cmd, char **envp);
+
 #endif
