@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 OUT = pipex
-SRC =	pipex.c pipex_utils.c
+SRC =	pipex.c
 OBJS =	${SRC:.c=.o}
 HEADER =	pipex.h
 INCLUDE =	-I .

@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   doublefree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 17:11:50 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/04/28 17:43:38 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/09/21 19:45:29 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/09/21 19:45:46 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	doublefree(char **str)
 {
-	int		i;
-	char	*str;
+	int	i;
 
-	str = (char *)s;
-	i = ft_strlen(s);
-	while (i >= 0)
+	i = 0;
+	while (str[i])
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i--;
+		free(str[i]);
+		i++;
 	}
-	if (str[i] == (unsigned char)c)
-		return (&str[i]);
-	return (NULL);
+	free(str);
 }
-/*
-int	main(void)
-{
-	char	*src = "\0";
-	char	*d1 = strrchr(src, 'a');
-	char	*d2 = ft_strrchr(src, 'a');
-
-	printf("%s\n%s", d1, d2);
-}*/
