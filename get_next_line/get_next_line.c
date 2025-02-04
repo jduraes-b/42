@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:29:25 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/08 22:11:07 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/10 04:51:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,20 @@ static char	*get_buffer(int fd, char *stash)
 	return (stash);
 }
 
-static char	*get_line(int fd, char *stash)
+static char	*get_line(int fd, char *stash, char *line)
 {
-	char	*line;
 	int		i;
+	bool	linebreak;
 
 	i = 0;
+	linebreak = false;
 	line = NULL;
 	stash = get_buffer(fd, stash);
 	while (stash[i])
 	{
 		if (stash[i] == '\n')
 		{
+			linebreak = true;
 			line = cut_stash(stash, i);
 			if (!line)
 			{
@@ -55,7 +57,7 @@ static char	*get_line(int fd, char *stash)
 		}
 		i++;
 	}
-	if (ft_strlen(stash) == i)
+	if (!linebreak)
 		get_line(fd, stash);
 	return (line);
 }
@@ -69,6 +71,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!stash)
 		return (NULL);
-	line = get_line(fd, stash);
+	line = get_line(fd, stash, line);
 	return (line);
 }
