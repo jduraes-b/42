@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 18:59:31 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/06 18:34:47 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/11/06 21:02:05 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/11/06 21:19:06 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <string.h>
-# include <ctype.h>
-# include <stdarg.h>
-# include <stdbool.h>
-# include <limits.h>
+#include "push_swap.h"
 
-typedef struct	s_stack
+void	swap(t_stack *root)
 {
-	int	number;
-	int	position;
-	struct	s_stack	*prev;
-	struct	s_stack	*next;
-}	t_stack;
+	t_stack	*temp;
 
-int	wrongargs(char **argv);
-t_stack	*create_stack(int size, char** content);
-
-#endif
+	temp = *root;
+	temp->next = root->next->next;
+	root = root->next;
+	root->next = *temp;
+}
