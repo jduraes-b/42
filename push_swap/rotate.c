@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	rotate(t_stack *root)
+#include "push_swap.h"
+
+void	rotate(t_stack **root)
 {
 	t_stack	*temp;
 	t_stack	*curr;
 
-	temp = root;
-	root = root->next;
-	curr = root;
+	temp = *root;
+	*root = (*root)->next;
+	curr = *root;
 	while (curr->next != NULL)
 		curr = curr->next;
 	curr->next = temp;

@@ -15,16 +15,17 @@
 void	push_swap(int argc, char** argv)
 {
 	t_stack	*root;
-	//t_stack	*curr;
+	t_stack	*curr;
 
 	root = NULL;
 	root = create_stack(argc, argv);
-	/*curr = root;
+	rotate(&root);
+	curr = root;
 	while(curr != NULL)
 	{
 		ft_printf("%d\n", curr->number);
 		curr= curr->next;
-	}*/
+	}
 }
 
 int	main(int argc, char** argv)
