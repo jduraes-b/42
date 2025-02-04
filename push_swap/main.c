@@ -26,7 +26,7 @@ void	push_swap(int argc, char** argv)
 	curr = aroot;
 	while(curr != NULL)
 	{
-		ft_printf("%d %d\n", curr->number, curr->go);
+		ft_printf("%d %d\n", curr->number, curr->f_index);
 		curr= curr->next;
 	}
 	write(1, "\n", 1);
