@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:29:25 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/11 18:36:21 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:21:56 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static char	*get_buffer(int fd, char *stash)
 	}
 	temp[bytes] = '\0';
 	stash = ft_strjoin(stash, temp);
+	if (!stash)
+	{
+		free(stash);
+		return (NULL);
+	}
 	free(temp);
 	return (stash);
 }
@@ -68,9 +73,6 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!stash)
-		return (NULL);
 	line = get_line(fd, stash, line);
 	return (line);
 }

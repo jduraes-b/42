@@ -5,33 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 20:37:43 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/12 20:45:00 by jduraes-         ###   ########.fr       */
+/*   Created: 2023/06/13 20:26:07 by jduraes-          #+#    #+#             */
+/*   Updated: 2023/06/13 21:05:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_calloc(size_t num_elements, size_t element_size)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t			total_size;
-	void			*allocated_memory;
-	unsigned char	*mem_ptr;
-	size_t			bytes_written;
+	int		i;
+	int		ii;
+	char	*str;
 
-	total_size = num_elements * element_size;
-	allocated_memory = malloc(total_size);
-	if (allocated_memory != NULL)
+	i = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		mem_ptr = (unsigned char *)allocated_memory;
-		bytes_written = 0;
-		while (bytes_written < total_size)
-		{
-			mem_ptr[bytes_written] = 0;
-			bytes_written++;
-		}
+		str[i] = s1[i];
+		i++;
 	}
-	return (allocated_memory);
+	ii = 0;
+	while (s2[ii])
+	{
+		str[i] = s2[ii];
+		i++;
+		ii++;
+	}
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }
 
 int	ft_strlen(char *s)
@@ -39,11 +44,29 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 	{
 		i++;
 	}
 	return (i);
+}
+
+int	analyze(char **stash, int **i)
+{
+	**i = 0;
+	if (!(*stash))
+		return (-1);
+	while ((*stash)[**i])
+	{
+		if ((*stash)[**i] == '\n')
+		{
+			return (**i);
+		}
+		(**i)++;
+	}
+	return (-1);
 }
 
 char	*clean_stash(char **stash, int start, int newstashsize)
@@ -52,7 +75,7 @@ char	*clean_stash(char **stash, int start, int newstashsize)
 	static char	*new;
 
 	i = 0;
-	new = ft_calloc(newstashsize, sizeof(char));
+	new = malloc(sizeof(char) * newstashsize);
 	if ((*stash)[start] == '\n')
 		start++;
 	while ((*stash)[start])
@@ -66,37 +89,9 @@ char	*clean_stash(char **stash, int start, int newstashsize)
 	return (new);
 }
 
-char	*cut_stash(char **stash, int end)
+void	firststash(char **stash, int *begin)
 {
-	char	*line;
-	int		newstashsize;
-	int		i;
-
-	line = ft_calloc((end + 1), sizeof(char));
-	i = 0;
-	while (i <= end)
-	{
-		line[i] = (*stash)[i];
-		i++;
-	}
-	line[i] = '\0';
-	newstashsize = ft_strlen(*stash) - end;
-	*stash = clean_stash(stash, end, newstashsize);
-	return (line);
-}
-
-int	analyze(char **stash)
-{
-	int	i;
-
-	i = 0;
-	while ((*stash)[i])
-	{
-		if ((*stash)[i] == '\n')
-		{
-			return (i);
-		}
-		i++;
-	}
-	return (-1);
+	*stash = malloc(sizeof(char) * 1);
+	*stash[0] = '\0';
+	*(begin) = 1;
 }
