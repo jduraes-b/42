@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:19:15 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/10 19:02:11 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:26:42 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,23 @@ void	rrotate(t_stack **root)
 	*root = curr->next;
 	(*root)->next = temp;
 	curr->next = NULL;
+}
+
+void	ra(t_stack **a)
+{
+	write(1, "ra\n", 3);
+	rotate(a);
+}
+
+void	rb(t_stack **b)
+{
+	write(1, "rb\n", 3);
+	rotate(b);
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	write(1, "rr\n", 3);
+	rotate(a);
+	rotate(b);
 }

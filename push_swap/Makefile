@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap
-SRC =	main.c utils_1.c rotate.c
+SRC =	main.c utils_1.c rotate.c swap.c push.c
 OBJS =	${SRC:.c=.o}
 HEADER =	push_swap.h
 INCLUDE =	-I .

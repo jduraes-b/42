@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:59:31 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/11/06 18:34:47 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:27:53 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,17 @@ int	wrongargs(char **argv);
 t_stack	*create_stack(int size, char** content);
 void	rotate(t_stack **root);
 void	rrotate(t_stack **root);
-
+void	swap(t_stack **root);
+void	push(t_stack **source, t_stack **target);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **b, t_stack **a);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
 #endif
