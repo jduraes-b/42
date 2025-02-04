@@ -35,14 +35,14 @@ static char	*clean_stash(char *stash)
 	return (stash);
 }
 
-static char	*get_line(char *stash, int bytecheck)
+static char	*get_line(char *stash, int eof)
 {
 	char	*line;
 	int		end;
 	int		i;
 
 	i = 0;
-	if (bytecheck)
+	if (eof)
 		end = ft_strlenplus(stash, 0) + 1;
 	else
 		end = ft_strlenplus(stash, '\n') + 1;
@@ -58,7 +58,7 @@ static char	*get_line(char *stash, int bytecheck)
 	return (line);
 }
 
-static char	*get_stash(int fd, char *stash, int *bytecheck)
+static char	*get_stash(int fd, char *stash, int *eof)
 {
 	char	*temp;
 	int		bytes;
@@ -79,7 +79,7 @@ static char	*get_stash(int fd, char *stash, int *bytecheck)
 	}
 	free(temp);
 	if (bytes == 0)
-		*(bytecheck) = 1;
+		*(eof) = 1;
 	if (ft_strlenplus(stash, 0) != 0)
 		return (stash);
 	free(stash);
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 {
 	static char	*stash[FOPEN_MAX];
 	char		*line;
-	int			bytecheck;
+	int			eof;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
@@ -99,12 +99,12 @@ char	*get_next_line(int fd)
 		stash[fd] = malloc(sizeof(char) * 1);
 		stash[fd][0] = 0;
 	}
-	bytecheck = 0;
-	stash[fd] = get_stash(fd, stash[fd], &bytecheck);
+	eof = 0;
+	stash[fd] = get_stash(fd, stash[fd], &eof);
 	if (!stash[fd])
 		return (NULL);
-	line = get_line(stash[fd], bytecheck);
-	if (!bytecheck)
+	line = get_line(stash[fd], eof);
+	if (!eof)
 		stash[fd] = clean_stash(stash[fd]);
 	else
 		stash[fd][0] = 0;
