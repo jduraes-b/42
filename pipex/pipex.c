@@ -6,22 +6,22 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:59:55 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/06/29 21:02:34 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:58:15 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pipex(int f1, int f2, argv, envp)
+void	pipex(int f1, int f2, char **argv, char *envpath)
 {
 	int	fd[2];
 	pid_t	pid;
 
 	if (pipe(fd) == -1)
-		return (-1);
+		return;
 	pid = fork();
 	if (pid == -1)
-		return (-1);
+		return;
 	if (pid == 0)
 	{
 		dup2(fd[1], STDOUT_FILENO);
@@ -31,7 +31,7 @@ void	pipex(int f1, int f2, argv, envp)
 	}
 	else
 	{
-		dup2(fd[O], STDIN_FILENO);
+		dup2(fd[0], STDIN_FILENO);
 		dup2(f2, STDOUT_FILENO);
 		close(fd[1]);
 		parent_process(f1, f2, argv, envp);
