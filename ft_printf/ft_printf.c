@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:44:29 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/05/18 19:52:53 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:35:11 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ int	checktype(int i, va_list args)
 		return (ft_ischar(va_arg(args, int)));
 	if (i == 's')
 		return (ft_isstring(va_arg(args, char *)));
-//	if (i == 'p')
-//		return (ft_ispointer);
+	if (i == 'p')
+		return (ft_ispointer(va_arg(args, unsigned long long)));
 	if (i == 'i' || i == 'd')
 		return (ft_isint(va_arg(args, int)));
 	if (i == 'u')
 		return (ft_isu(va_arg(args, unsigned int)));
-//	if (i == 'x' || i == 'X')
-//		return (ft_ishexa(va_arg(args, void *);
+	if (i == 'x')
+		return (lowhex(va_arg(args, unsigned int)));
+	if (i == 'X')
+		return (caphex(va_arg(args, unsigned int)));
 	if (i == '%')
 	{
-		write (1, "%", 1);
+		write(1, "%", 1);
 		return (1);
 	}
 	else
@@ -37,9 +39,9 @@ int	checktype(int i, va_list args)
 
 int	ft_printf(const char *str, ...)
 {
-	int	i;
+	int		i;
 	va_list	args;
-	int	total;
+	int		total;
 
 	i = 0;
 	total = 0;
@@ -53,7 +55,7 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 		{
-			write (1, &str[i], 1);
+			write(1, &str[i], 1);
 			total++;
 		}
 		i++;
