@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <iomanip>
 
 /*char ft_uppercase(char c)
