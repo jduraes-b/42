@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*fillstash(int fd, char **stash, int *end)
+char	*fillstash(int fd, char **stash, int *end)
 {
 	char	*temp;
 	ssize_t	bytes;
@@ -40,7 +40,7 @@ static char	*fillstash(int fd, char **stash, int *end)
 	return (NULL);
 }
 
-static char	*get_line(char **stash, int end)
+char	*get_line(char **stash, int end)
 {
 	char	*line;
 	int		i;
