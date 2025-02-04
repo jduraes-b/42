@@ -21,7 +21,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 
-OUT = pipex
+NAME = pipex
 SRC =	pipex.c pipex_utils.c
 OBJS =	${SRC:.c=.o}
 HEADER =	pipex.h
@@ -34,11 +34,11 @@ CC =	cc -g
 .o:.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 	
-$(OUT):	$(OBJS)
+$(NAME):	$(OBJS)
 	make bonus -C $(LIBFT) all
-	$(CC) $(OBJS) -L $(LIBFT) -lft -o $(OUT)
+	$(CC) $(OBJS) -L $(LIBFT) -lft -o $(NAME)
 	
-all:	$(OUT)
+all:	$(NAME)
 
 clean:
 	$(RM) $(OBJS)

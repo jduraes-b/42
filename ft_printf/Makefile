@@ -6,7 +6,7 @@
 #    By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 20:32:32 by jduraes-          #+#    #+#              #
-#    Updated: 2023/05/24 18:29:23 by jduraes-         ###   ########.fr        #
+#    Updated: 2023/09/14 18:26:58 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,15 @@ LIBFT =	libft
 LIBFTPATH =	$(LIBFT)/libft.a
 RM =	rm -f
 CC =	cc -g
+
+all:	${NAME}
+
 %.o:%.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 ${NAME}:	${OBJS}
 	make bonus -C $(LIBFT) all
 	cp $(LIBFTPATH) $(NAME)
 	ar rcs ${NAME} ${OBJS} ${HEADER}
-all:	${NAME}
 clean:
 	${RM} ${OBJS}
 fclean:	clean
