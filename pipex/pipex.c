@@ -6,7 +6,7 @@
 /*   By: jduraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:23:32 by jduraes-          #+#    #+#             */
-/*   Updated: 2023/09/27 19:34:50 by jduraes-         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:00:39 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	execute(char *cmd, char **envp)
 
 	cmdpparam = ft_split(cmd, 32);
 	if (!cmd[0])
-		return;
+		return ;
 	if (cmd[0] == '/')
 		path = cmd;
 	else
@@ -27,7 +27,7 @@ void	execute(char *cmd, char **envp)
 	if (!path)
 	{
 		dup2(STDERR_FILENO, STDOUT_FILENO);
-		ft_printf("command not found: %s\n", cmdpparam[0]);
+		ft_printf("%s: command not found\n", cmdpparam[0]);
 		free(path);
 		doublefree(cmdpparam);
 		exit(127);
@@ -41,11 +41,24 @@ void	execute(char *cmd, char **envp)
 	}
 }
 
+void	parent(int *f, int *p, char **argv, int pid)
+{
+	if (!argv[3][0])
+	{
+		dup2(STDERR_FILENO, STDOUT_FILENO);
+		ft_printf("command '' not found\n");
+	}
+	waitpid(pid, NULL, WNOHANG);
+	close(p[1]);
+	dup2(p[0], STDIN_FILENO);
+	dup2(f[1], STDOUT_FILENO);
+}
+
 void	child(int *f, int *p, char **argv, char **envp)
 {
 	if (access(argv[1], R_OK) != 0)
 	{
-		perror("file");
+		perror("infile");
 		exit(1);
 	}
 	close(p[0]);
@@ -75,15 +88,12 @@ void	pipex(int *f, int *p, char **argv, char **envp)
 		child(f, p, argv, envp);
 	else
 	{
-		if (!argv[3][0])
+		if (f[1] == -1)
 		{
-			dup2(STDERR_FILENO, STDOUT_FILENO);
-			ft_printf("Command '' not found\n");
+			perror("outfile");
+			exit(1);
 		}
-		waitpid(pid, NULL, WNOHANG);
-		close(p[1]);
-		dup2(p[0], STDIN_FILENO);
-		dup2(f[1], STDOUT_FILENO);
+		parent(f, p, argv, pid);
 		execute(argv[3], envp);
 	}
 }
@@ -97,10 +107,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		f[0] = open(argv[1], O_RDONLY, 0644);
 		f[1] = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (f[1] == -1)
-		{
-			perror("outfile");
-		}
 		pipex(f, p, argv, envp);
 	}
 	else
