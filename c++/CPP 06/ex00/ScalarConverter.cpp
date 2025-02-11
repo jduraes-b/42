@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 20:24:18 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/02/08 20:12:17 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/02/09 19:06:09 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ void	tryChar(std::string const input)
 		else
 		{
 			std::stringstream ss(input);
-			int i;
-			ss >> i;
+			double d;
+			ss >> d;
+			int i = static_cast<int>(d);
 			if (ss.fail() || !ss.eof() || i < 0 || i > 127)
 				throw std::exception();
 			else if (std::isprint(i))
-				std::cout << "char: " << static_cast<char>(i) << std::endl;
+				std::cout << "char: \'" << static_cast<char>(i) << "\'" << std::endl;
 			else
 				std::cout << "char: Non displayable" << std::endl;
 		}	
