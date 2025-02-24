@@ -6,17 +6,17 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2025/02/10 19:25:31 by jduraes-         ###   ########.fr        #
+#    Updated: 2025/02/24 20:12:52 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.cpp Serializer.cpp
+SRC = main.cpp 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g #-pedantic 
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g#-pedantic 
 
-NAME = Serialization
+NAME = array
 
 all: $(NAME)
 
