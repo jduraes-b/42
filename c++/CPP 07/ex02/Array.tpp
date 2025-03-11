@@ -83,3 +83,4 @@ const char* Array<T>::OutOfBoundsException::what() const throw()
 {
 	return "Index is out of bounds.\n";
 }
+
