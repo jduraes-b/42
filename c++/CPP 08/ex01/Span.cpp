@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 20:05:41 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/02/24 20:08:46 by jduraes-         ###   ########.fr       */
+/*   Created: 2025/03/12 19:51:41 by jduraes-          #+#    #+#             */
+/*   Updated: 2025/03/12 20:30:31 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
+#include "Span.hpp"
 
-# include <iostream>
-
-template <typename T>
-void iter(T *array, size_t size, void (*f)(T const &))
+Span::Span(unsigned int N) : _N(N)
 {
-	for (size_t i = 0; i < size; i++)
-		f(array[i]);
 }
 
-template <typename T>
-void iter(T *array, size_t size, void (*f)(T &))
+Span& Span::operator=(const Span &other)
 {
-	for (size_t i = 0; i < size; i++)
-		f(array[i]);
+	if (_N != other._N)
+		_N = other._N;
+	return *this;
 }
 
-# endif
+Span::Span(const Span &other)
+{
+	*this = other;
+}
+
+Span::~Span()
+{
+}
+
+void	Span::addNumber(unsigned int N)
+{
+	
+}

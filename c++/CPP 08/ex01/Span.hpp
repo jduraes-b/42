@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 20:05:41 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/02/24 20:08:46 by jduraes-         ###   ########.fr       */
+/*   Created: 2025/03/12 19:37:46 by jduraes-          #+#    #+#             */
+/*   Updated: 2025/03/12 20:30:30 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
-# include <iostream>
+#include <iostream>
+#include <string>
 
-template <typename T>
-void iter(T *array, size_t size, void (*f)(T const &))
+class Span
 {
-	for (size_t i = 0; i < size; i++)
-		f(array[i]);
-}
+	private:
+		unsigned int	_N;
+		
+	public:
+		Span(unsigned int N);
+		Span(const Span &other);
+		Span& operator=(const Span &other);
+		~Span();
+		void	addNumber(unsigned int N);
+		unsigned int	shortestSpan();
+		unsigned int	longestSpan();
+};
 
-template <typename T>
-void iter(T *array, size_t size, void (*f)(T &))
-{
-	for (size_t i = 0; i < size; i++)
-		f(array[i]);
-}
-
-# endif
+#endif

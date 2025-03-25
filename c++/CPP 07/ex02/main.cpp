@@ -16,6 +16,7 @@ int	main(void)
 {
 	Array<int>	A(5);
 	Array<char>	C(4);
+	Array<int>	B;
 
 	for (int i = 0; i < 5; i++){
 		A[i] = i;
@@ -25,6 +26,7 @@ int	main(void)
 	}
 	std::cout << "Int Array size: " << A.size() << std::endl;
 	std::cout << "Char Array size: " <<  C.size() << std::endl;
+	std::cout << "Empty Array size: " <<  B.size() << std::endl;
 	for (int i = 0; i < 5; i++){
 		std::cout << A[i] << std::endl;
 	}

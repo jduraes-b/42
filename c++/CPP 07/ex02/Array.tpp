@@ -15,7 +15,7 @@
 #include <exception>
 
 template<typename T>
-Array<T>::Array()
+Array<T>::Array(): _l(0)
 {
 	std::cout << "Array default constructor called" << std::endl;
 }
