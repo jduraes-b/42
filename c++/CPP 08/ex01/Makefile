@@ -6,11 +6,11 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2025/03/11 19:32:31 by jduraes-         ###   ########.fr        #
+#    Updated: 2025/03/28 19:33:56 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.cpp 
+SRC = main.cpp Span.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
