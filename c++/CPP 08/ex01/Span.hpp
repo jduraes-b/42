@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:37:46 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/03/28 19:43:54 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/03/31 20:22:08 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class Span
 		void	addNumber(int newn);
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
+		void	addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		void	fillSpan();
 };
 
 #endif
