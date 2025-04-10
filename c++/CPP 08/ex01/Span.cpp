@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:51:41 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/03/31 21:13:45 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:01:23 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <climits>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
 
 Span::Span(unsigned int N) : _N(N)
 {
@@ -86,19 +87,9 @@ unsigned int	Span::longestSpan()
 {
 	if (_arr.size() <= 1)
 		throw std::runtime_error("No span to be found.\n");
-	
-	size_t	lp = 0;
-	std::vector<int>::iterator	ite = _arr.end();
-	std::vector<int>::iterator	it1 = _arr.begin();
-	std::vector<int>::iterator	it2;
-	while (it1 != ite)
-	{
-		it2 = it1;
-		while(++it2 != ite)
-			lp = (::tabs((*it1) - (*it2)) > lp) ? ::tabs((*it1) - (*it2)) : lp;
-		++it1;
-	}
-	return lp;
+	int min = *std::min_element(_arr.begin(), _arr.end());
+	int max = *std::max_element(_arr.begin(), _arr.end());
+	return max - min;
 }
 
 void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
