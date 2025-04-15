@@ -6,40 +6,13 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/11 19:59:05 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:49:22 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-BitcoinExchange::BitcoinExchange(const std::string& file)
-{
-	std::ifstream infile(file.c_str());
-	if(!infile.is_open())
-		throw std::runtime_error("Couldn't open file.\n");
-	std::string	line;
-	while(std::getline(infile, line))
-	{
-		std::istringstream ss(line);
-		_data[extField(ss)] = static_cast<float>(std::atof(extField(ss).c_str()));	
-	}
-}
-
-static std::string extField(std::istringstream& ss)
-{
-    std::string field;
-    
-	if(std::getline(ss, field, ','))
-	{
-		if(!field)
-			throw std::runtime_error("Empety field\n");
-		else if(!isValidDate)
-			throw std::runtime_error("Invalid date format: " + field + "\n");
-	}
-	else
-		field = parseValue(field);
-    return field;
-}
+#include <sstream>
+#include <cstdlib>
 
 static bool isValidDate(const std::string& date)
 {
@@ -71,4 +44,45 @@ static std::string parseValue(const std::string& value)
     if (result < 0)
         throw std::runtime_error("Negative value not allowed: " + value);
     return value;
+}
+
+static std::string extField(std::string line, int t)
+{
+    std::string field;
+	if(t==0)
+	{	 
+		field = line.substr(0, 10);
+		//std::cout<<"line: " + field + "\n";
+		if (field.empty())
+    		throw std::runtime_error("Empty field\n");
+		if (!isValidDate(field))
+			throw std::runtime_error("Invalid date format: " + field + "\n");
+	}
+	else
+		field = parseValue(line.substr(11));
+	return field;
+}
+
+BitcoinExchange::BitcoinExchange(const std::string& file)
+{
+	std::ifstream infile(file.c_str());
+	if(!infile.is_open())
+		throw std::runtime_error("Couldn't open file.\n");
+	std::string	line;
+	std::getline(infile, line);
+	if (line != "date,exchange_rate")
+		throw std::runtime_error("First line of CSV should be: date,exchange_rate; not " + line + "\n");
+	while(std::getline(infile, line))
+	{
+		//std::istringstream ss(line);
+		_data[extField(line,0)] = static_cast<float>(std::atof(extField(line,1).c_str()));	
+	}
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+}
+const std::map<std::string, float>& BitcoinExchange::getData() const
+{
+    return _data;
 }
