@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/15 19:49:22 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/16 19:51:08 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sstream>
 #include <cstdlib>
 
-static bool isValidDate(const std::string& date)
+bool BitcoinExchange::isValidDate(const std::string& date)
 {
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return false;
@@ -31,18 +31,18 @@ static bool isValidDate(const std::string& date)
     return true;
 }
 
-static std::string parseValue(const std::string& value)
+std::string BitcoinExchange::parseValue(const std::string& value)
 {
     if (value.empty())
-        throw std::runtime_error("Empty value field");
+        throw std::runtime_error("empty value field");
     for (size_t i = 0; i < value.length(); ++i)
     {
         if (!std::isdigit(value[i]) && value[i] != '.')
-            throw std::runtime_error("Invalid value format: " + value);
+            throw std::runtime_error("bad input -> " + value);
     }
     float result = static_cast<float>(std::atof(value.c_str()));
     if (result < 0)
-        throw std::runtime_error("Negative value not allowed: " + value);
+        throw std::runtime_error("not a positive number.");
     return value;
 }
 
@@ -54,9 +54,9 @@ static std::string extField(std::string line, int t)
 		field = line.substr(0, 10);
 		//std::cout<<"line: " + field + "\n";
 		if (field.empty())
-    		throw std::runtime_error("Empty field\n");
+    		throw std::runtime_error("empty field\n");
 		if (!isValidDate(field))
-			throw std::runtime_error("Invalid date format: " + field + "\n");
+			throw std::runtime_error("bad input ->" + field);
 	}
 	else
 		field = parseValue(line.substr(11));
@@ -67,11 +67,11 @@ BitcoinExchange::BitcoinExchange(const std::string& file)
 {
 	std::ifstream infile(file.c_str());
 	if(!infile.is_open())
-		throw std::runtime_error("Couldn't open file.\n");
+		throw std::runtime_error("couldn't open file.");
 	std::string	line;
 	std::getline(infile, line);
 	if (line != "date,exchange_rate")
-		throw std::runtime_error("First line of CSV should be: date,exchange_rate; not " + line + "\n");
+		throw std::runtime_error("first line of CSV should be: date,exchange_rate; not " + line);
 	while(std::getline(infile, line))
 	{
 		//std::istringstream ss(line);
@@ -85,4 +85,20 @@ BitcoinExchange::~BitcoinExchange()
 const std::map<std::string, float>& BitcoinExchange::getData() const
 {
     return _data;
+}
+
+void	BitcoinExchange::eval(std::string& edate, std::string& evalue)
+{
+    float inputValue = std::atof(evalue.c_str());
+    std::map<std::string, float>::const_iterator it = _data.find(edate);
+    if (it != _data.end())
+    {
+        float exchangeRate = it->second;
+        float result = inputValue * exchangeRate;
+        std::cout << edate << " => " << evalue << " = " << result << std::endl;
+    }
+    else
+    {
+        std::cerr << "Error: missing date: " << edate << std::endl;
+    }
 }
