@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/16 19:51:08 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:11:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,41 @@
 #include <sstream>
 #include <cstdlib>
 
-bool BitcoinExchange::isValidDate(const std::string& date)
+void BitcoinExchange::isValidDate(const std::string& date)
 {
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-        return false;
+		throw std::runtime_error("bad input -> " + date);
     int year = std::atoi(date.substr(0, 4).c_str());
     int month = std::atoi(date.substr(5, 2).c_str());
     int day = std::atoi(date.substr(8, 2).c_str());
     if (year < 2009 || year > 2025 || month < 1 || month > 12 || day < 1)
-        return false;
+        throw std::runtime_error("bad input -> " + date);
     int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     if (month == 2 && (year % 4 == 0))
         daysInMonth[1] = 29;
     if (day > daysInMonth[month - 1])
-        return false;
-    return true;
+		throw std::runtime_error("bad input -> " + date);;
 }
 
 std::string BitcoinExchange::parseValue(const std::string& value)
 {
-    if (value.empty())
+	int d = 0;
+	if (value.empty())
         throw std::runtime_error("empty value field");
+	if (value[0] == '-')
+        throw std::runtime_error("not a positive number.");
     for (size_t i = 0; i < value.length(); ++i)
     {
-        if (!std::isdigit(value[i]) && value[i] != '.')
+        if (!std::isdigit(value[i]) && (value[i] == '.' && d))
             throw std::runtime_error("bad input -> " + value);
+		if (value[i] == '.')
+			d++;
     }
-    float result = static_cast<float>(std::atof(value.c_str()));
-    if (result < 0)
-        throw std::runtime_error("not a positive number.");
+    //float result = static_cast<float>(std::atof(value.c_str()));
     return value;
 }
 
-static std::string extField(std::string line, int t)
+std::string	BitcoinExchange::extField(std::string line, int t)
 {
     std::string field;
 	if(t==0)
@@ -55,8 +57,7 @@ static std::string extField(std::string line, int t)
 		//std::cout<<"line: " + field + "\n";
 		if (field.empty())
     		throw std::runtime_error("empty field\n");
-		if (!isValidDate(field))
-			throw std::runtime_error("bad input ->" + field);
+		isValidDate(field);
 	}
 	else
 		field = parseValue(line.substr(11));
