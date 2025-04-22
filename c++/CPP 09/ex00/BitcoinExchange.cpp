@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/17 19:11:26 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:40:30 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,20 @@ BitcoinExchange::BitcoinExchange(const std::string& file)
 		//std::istringstream ss(line);
 		_data[extField(line,0)] = static_cast<float>(std::atof(extField(line,1).c_str()));	
 	}
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	_data = other._data;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this != &other)
+	{
+		_data = other._data;
+	}
+	return *this;
 }
 
 BitcoinExchange::~BitcoinExchange()
