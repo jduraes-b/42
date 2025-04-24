@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/21 18:40:30 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:09:08 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,32 @@ const std::map<std::string, float>& BitcoinExchange::getData() const
     return _data;
 }
 
-void	BitcoinExchange::eval(std::string& edate, std::string& evalue)
+static bool dateCompare(const std::string& date1, const std::string& date2)
+{
+    return date1 <= date2; // Lexicographical comparison works for "YYYY-MM-DD"
+}
+
+void BitcoinExchange::eval(std::string& edate, std::string& evalue)
 {
     float inputValue = std::atof(evalue.c_str());
-    std::map<std::string, float>::const_iterator it = _data.find(edate);
-    if (it != _data.end())
+    std::string previousDate = ""; // To store the most recent valid date
+
+    for (std::map<std::string, float>::const_iterator it = _data.begin(); it != _data.end(); ++it)
     {
-        float exchangeRate = it->second;
-        float result = inputValue * exchangeRate;
-        std::cout << edate << " => " << evalue << " = " << result << std::endl;
+        if (dateCompare(it->first, edate))
+            previousDate = it->first; // Update the most recent valid date
+        else
+            break; // Stop iterating once we pass the evaluation date
     }
-    else
+
+    if (previousDate.empty())
     {
-        std::cerr << "Error: missing date: " << edate << std::endl;
+        std::cerr << "Error: evaluating before database start.\n";
+        return;
     }
+
+    // Use the most recent valid date for the operation
+    float exchangeRate = _data[previousDate];
+    float result = inputValue * exchangeRate;
+    std::cout << edate << " => " << evalue << " = " << result << std::endl;
 }
