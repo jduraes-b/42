@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*   PemergeMe.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 19:45:54 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/05/05 19:59:22 by jduraes-         ###   ########.fr       */
+/*   Created: 2025/05/05 19:56:46 by jduraes-          #+#    #+#             */
+/*   Updated: 2025/05/05 20:07:52 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMERGEME_HPP
-# define PMERGEME_HPP
-// vector, deque
-#include <iostream>
-#include <string>
-#include <vector>
-#include <deque>
+#include "PemergeMe.hpp"
 
-class	PmergeMe
+PemergeMe::PemergeMe(int argc, char** argv): _size(argc - 1)
 {
-	private:
-		std::vector<int>	_v;
-		std::deque<int>	_d;
-		int	_size;
-	public:
-		PemergeMe(int argc, char** argv);
-		~PemergeMe();
-		
-};
-
-# endif
+	for (int i = 1; i < argc; ++i)
+    {
+        char* arg = argv[i];
+        for (int j = 0; arg[j] != '\0'; ++j)
+        {
+			int value = std::atoi(arg);
+			_v.push_back(value);
+			_d.push_back(value);
+        }
+    }
+}
