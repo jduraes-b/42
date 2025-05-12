@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:45:54 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/05/05 19:59:22 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:11:19 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class	PmergeMe
 	public:
 		PemergeMe(int argc, char** argv);
 		~PemergeMe();
+		mergeSort();
 		
 };
 
