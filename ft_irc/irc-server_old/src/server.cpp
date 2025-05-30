@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:56:57 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/05/26 20:32:04 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:34:02 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <cstring> // For strerror
 #include <sstream>
 
-Server::Server(int port/*, int pass*/): _port(port), _epoll_fd(-1), _server_fd(-1)
+Server::Server(int port): _port(port), _epoll_fd(-1), _server_fd(-1)
 {
 }
 
@@ -113,67 +113,96 @@ void Server::acceptClient() {
     }
 }
 
-void Server::handleClient() //PLACEHOLDER FOR TESTING
+void Server::handleClient()
 {
-	for (std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); ) {
+    for (std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); ) {
         try {
             std::string msg = (*it)->receiveMessage();
             if (msg.empty()) {
                 ++it;
                 continue;
             }
-
             // Split by lines (IRC commands end with \r\n)
             size_t start = 0, end;
             while ((end = msg.find("\r\n", start)) != std::string::npos) {
                 std::string line = msg.substr(start, end - start);
                 start = end + 2;
 
-                // Parse cmd and argument
-                std::istringstream iss(line);
-                std::string cmd;
-                iss >> cmd;
-
-                if (cmd == "CAP") { //no support yet
-                    (*it)->sendMessage("CAP * LS :\r\n");
-				} else if (cmd == "PASS") {
-                    std::string pass;
-                    iss >> pass;
-                    (*it)->setPass(pass);
-				} else if (cmd == "NICK") {
-                    std::string nick;
-                    iss >> nick;
-                    (*it)->setNick(nick);
-                } else if (cmd == "USER") {
-                    std::string user;
-                    iss >> user;
-                    (*it)->setUser(user);
-                } else if (cmd == "PING") {
-                    std::string token;
-                    iss >> token;
-                    (*it)->sendMessage("PONG " + token + "\r\n");
-                } else if (cmd == "QUIT") {
-                    throw std::runtime_error("Client disconnected");
-                }
-
-                // Authenticate if both nick and user are set
-                if (!(*it)->getNick().empty() && !(*it)->getUser().empty() && !(*it)->isAuthenticated()) 
-				{
-					if ((*it)->getPass().empty())
-					{
-						(*it)->sendMessage(":irc.local NOTICE * :A password is required for authentication.\r\n");
-						throw std::runtime_error("Missing password");
-					}
-                    (*it)->authenticate();
-					std::cout << "New user authenticated: nick='" << (*it)->getNick()
-					<< "', user='" << (*it)->getUser() << "', fd=" << (*it)->getFd() << std::endl;
-                    (*it)->sendMessage(":irc.local 001 " + (*it)->getNick() + " :Welcome to the IRC server!\r\n");
-                }
+				handleCommand(**it, line);
             }
             ++it;
         } catch (const std::runtime_error &e) {
             delete *it;
             it = _clients.erase(it);
         }
-    }	
+    }
+}
+
+void Server::handleCommand(Client &client, const std::string &line)
+{
+    std::istringstream iss(line);
+    std::string cmd;
+    iss >> cmd;
+
+    if (cmd == "CAP") {
+        client.sendMessage("CAP * LS :\r\n");
+    } else if (cmd == "PASS") {
+		std::string pass;
+		iss >> pass;
+		if (client.isAuthenticated()) {
+			client.sendMessage(":irc.local 462 " + client.getNick() + " :You may not reregister\r\n");
+			return;  //THESE DO NOT WORK SINCE APPARENTLY IN HEXCHAT PASS IS A CLIENT-SIDE COMMAND
+		}			//MEANING WHEN /PASS IS TYPED ON HEXCHAT NOTHING IS ACTUALLY SENT TO THE SERVER
+		if (pass.empty()) {
+			client.sendMessage(":irc.local 461 " + client.getNick() + " PASS :Not enough parameters\r\n");
+			return; //SO YOU CANT CHECK FOR THESE ERRORS
+		}           //										SHOULD PROBABLY BE REMOVED
+		client.setPass(pass);
+    } else if (cmd == "NICK") {
+        std::string nick;
+        iss >> nick;
+        if (nick.empty()) {
+            client.sendMessage(":irc.local 431 * :No nickname given\r\n");
+            return;
+        }
+        // Check for nickname uniqueness
+        for (std::vector<Client*>::iterator it = _clients.begin(); it != _clients.end(); ++it) {
+            if (*it != &client && (*it)->getNick() == nick) {
+                client.sendMessage(":irc.local 433 * " + nick + " :Nickname is already in use\r\n");
+                return;
+            }
+        }
+        std::string oldNick = client.getNick();
+        client.setNick(nick);
+        // Send NICK reply to client
+        if (!oldNick.empty()) {
+            client.sendMessage(":" + oldNick + " NICK :" + nick + "\r\n");
+        } else
+            client.sendMessage(":" + nick + " NICK :" + nick + "\r\n");
+    } else if (cmd == "USER") {
+        std::string user, mode, unused, realname;
+        iss >> user >> mode >> unused;
+        std::getline(iss, realname);
+        if (!realname.empty() && realname[0] == ' ')
+            realname = realname.substr(1);
+        if (!realname.empty() && realname[0] == ':')
+            realname = realname.substr(1);
+        client.setUser(user);
+    } else if (cmd == "PING") {
+        std::string token;
+        iss >> token;
+        client.sendMessage("PONG " + token + "\r\n");
+    } else if (cmd == "QUIT")
+        throw std::runtime_error("Client disconnected");
+
+    if (!client.getNick().empty() && !client.getUser().empty() && !client.isAuthenticated()) {
+        if (client.getPass().empty()) {
+            client.sendMessage(":irc.local NOTICE * :A password is required for authentication.\r\n");
+            throw std::runtime_error("Missing password");
+        }
+        client.authenticate();
+        std::cout << "New user authenticated: nick='" << client.getNick()
+                  << "', user='" << client.getUser() << "', fd=" << client.getFd() << std::endl;
+        client.sendMessage(":irc.local 001 " + client.getNick() + " :Welcome to the IRC server!\r\n");
+    }
 }
