@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:58:19 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/05/05 19:54:55 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:03:26 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int	main(int argc, char** argv)
 {
 	if (!easyParser(argc, argv))
 		return 1;
-	
+	PmergeMe pmerge(argc, argv);
+	pmerge.mergeInsertSort();
 }
