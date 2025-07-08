@@ -12,6 +12,7 @@
 
 #include "PmergeMe.hpp"
 #include <cstdlib>
+#include <vector>
 #include <ctime>
 
 PmergeMe::PmergeMe(int argc, char** argv) : _size(argc - 1)
@@ -43,7 +44,7 @@ std::vector<size_t> jacobsthal_sequence(size_t n)
     return seq;
 }
 
-void PmergeMe::ford_johnson_sort(std::vector<size_t>& arr)
+/*void PmergeMe::ford_johnson_sort(std::vector<size_t>& arr)
 {
     size_t n = arr.size();
     if (n <= 1) return;
@@ -59,8 +60,8 @@ void PmergeMe::ford_johnson_sort(std::vector<size_t>& arr)
             larges.push_back(arr[i]);
         }
     }
-    bool has_straggler = (n % 2 != 0);
-    size_t straggler = has_straggler ? arr[n-1] : 0;
+	// Check for odd size array and save the straggler
+	size_t straggler = (n % 2 != 0) ? arr[n-1] : 0;
     // Recursively sort the larger group
     ford_johnson_sort(larges);
     // Prepare Jacobsthal insertion order
@@ -90,22 +91,22 @@ void PmergeMe::ford_johnson_sort(std::vector<size_t>& arr)
         result.insert(pos, straggler);
     }
     arr = result;
-}
+}*/
 
 void	PmergeMe::mergeInsertSort()
 {
+	std::cout << "Before: ";
+	printContainer(_v);
 	clock_t vstart = clock();
 	ford_johnson_sort(_v);
 	clock_t vend = clock();
-	std::cout << "vector result contents: ";
-    for (size_t i = 0; i < _v.size(); ++i){
-        std::cout << _v[i] << " ";}
-	std::cout << "\n";
-	double vtime = static_cast<double>(vend - vstart) / CLOCKS_PER_SEC;
-	std::cout << "Vector sort time: " << vtime << "s\n";
+	std::cout << "After: ";
+	printContainer(_v);
+	double vtime = static_cast<double>(vend - vstart) * 1e6 / CLOCKS_PER_SEC;
+	std::cout << "Vector sort time: " << vtime << " us\n";
 	clock_t dstart = clock();
-
+	ford_johnson_sort(_d);
 	clock_t dend = clock();
-	double dtime = static_cast<double>(dend - dstart) / CLOCKS_PER_SEC;
-	std::cout << "Deque sort time: " << dtime << "s\n";
+	double dtime = static_cast<double>(dend - dstart) * 1e6 / CLOCKS_PER_SEC;
+	std::cout << "Deque sort time: " << dtime << " us\n";
 }
