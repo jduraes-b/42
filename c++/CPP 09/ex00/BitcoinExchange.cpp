@@ -6,13 +6,14 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/24 19:09:08 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:46:59 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <sstream>
 #include <cstdlib>
+#include <fstream>
 
 void BitcoinExchange::isValidDate(const std::string& date)
 {

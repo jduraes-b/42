@@ -14,6 +14,9 @@
 #include <cstdlib>
 #include <vector>
 #include <ctime>
+#include <iomanip>
+#include <sys/time.h>
+#include <time.h>
 
 PmergeMe::PmergeMe(int argc, char** argv) : _size(argc - 1)
 {
@@ -95,18 +98,25 @@ std::vector<size_t> jacobsthal_sequence(size_t n)
 
 void	PmergeMe::mergeInsertSort()
 {
+	struct timespec t0, t1;
 	std::cout << "Before: ";
 	printContainer(_v);
-	clock_t vstart = clock();
+	clock_gettime(CLOCK_MONOTONIC, &t0);
 	ford_johnson_sort(_v);
-	clock_t vend = clock();
+	clock_gettime(CLOCK_MONOTONIC, &t1);
+	double vtime_us = (t1.tv_sec - t0.tv_sec) * 1e6 + (t1.tv_nsec - t0.tv_nsec) / 1e3;
 	std::cout << "After: ";
 	printContainer(_v);
-	double vtime = static_cast<double>(vend - vstart) * 1e6 / CLOCKS_PER_SEC;
-	std::cout << "Vector sort time: " << vtime << " us\n";
-	clock_t dstart = clock();
-	ford_johnson_sort(_d);
-	clock_t dend = clock();
-	double dtime = static_cast<double>(dend - dstart) * 1e6 / CLOCKS_PER_SEC;
-	std::cout << "Deque sort time: " << dtime << " us\n";
+	std::cout << "Time to process a range of " << _v.size()
+              << " elements with std::vector : "
+              << std::fixed << std::setprecision(5)
+              << vtime_us << " us\n";
+    clock_gettime(CLOCK_MONOTONIC, &t0);
+    ford_johnson_sort(_d);
+    clock_gettime(CLOCK_MONOTONIC, &t1);
+	double dtime_us = (t1.tv_sec - t0.tv_sec) * 1e6 + (t1.tv_nsec - t0.tv_nsec) / 1e3;
+	std::cout << "Time to process a range of " << _d.size()
+              << " elements with std::deque : "
+              << std::fixed << std::setprecision(5)
+              << dtime_us << " us\n";
 }
