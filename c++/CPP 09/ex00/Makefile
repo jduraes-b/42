@@ -6,13 +6,13 @@
 #    By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 20:19:56 by jduraes-          #+#    #+#              #
-#    Updated: 2025/04/14 19:50:23 by jduraes-         ###   ########.fr        #
+#    Updated: 2025/07/11 17:49:41 by jduraes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp BitcoinExchange.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = g++
+CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g#-pedantic 
 

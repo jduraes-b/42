@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:45:16 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/22 21:42:03 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:42:33 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <cstring>
 #include <exception>
 
 class	RPN
@@ -29,7 +30,6 @@ class	RPN
 		~RPN();
 		void	solve(char* input);
 		int	result();
-}
-
+};
 
 # endif

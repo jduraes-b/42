@@ -28,9 +28,22 @@ PmergeMe::PmergeMe(int argc, char** argv) : _size(argc - 1)
     }
 }
 
+PmergeMe::PmergeMe(const PmergeMe& other): _v(other._v), _d(other._d), _size(other._size)
+{
+}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& other)
+{
+    if (this != &other) {
+        _v     = other._v;
+        _d     = other._d;
+        _size  = other._size;
+    }
+    return *this;
+}
+
 PmergeMe::~PmergeMe() 
 {
-    // No manual cleanup needed
 }
 
 //Generate Jacobsthal sequence up to n

@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 19:01:20 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/07/09 18:46:59 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:47:43 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void BitcoinExchange::eval(std::string& edate, std::string& evalue)
         std::cerr << "Error: evaluating before database start.\n";
         return;
     }
-
     // Use the most recent valid date for the operation
     float exchangeRate = _data[previousDate];
     float result = inputValue * exchangeRate;

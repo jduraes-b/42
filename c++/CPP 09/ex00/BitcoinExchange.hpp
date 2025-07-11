@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:38:13 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/21 18:38:21 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:47:20 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <map>
 #include <fstream>
 
-class	BitcoinExchange  //MAP
+class	BitcoinExchange
 {
 	private:
 		std::map<std::string, float>	_data;

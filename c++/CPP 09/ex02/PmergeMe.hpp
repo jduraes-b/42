@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:45:54 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/07/08 18:32:17 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:38:50 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ class	PmergeMe
 		std::vector<size_t>	_v;
 		std::deque<size_t>	_d;
 		size_t	_size;
+	
 	public:
 		PmergeMe(int argc, char** argv);
+		PmergeMe(const PmergeMe& other);
+    	PmergeMe& operator=(const PmergeMe& other);
 		~PmergeMe();
 		template<typename Container>
 		void	ford_johnson_sort(Container& arr);
