@@ -6,7 +6,7 @@
 /*   By: jduraes- <jduraes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 18:48:26 by jduraes-          #+#    #+#             */
-/*   Updated: 2025/04/22 21:42:03 by jduraes-         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:20:54 by jduraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	RPN::solve(char* input)
 		{
 			if (_data.size() < 2)
 				throw std::exception();
-			int a = _data.top(); _data.pop();
 			int b = _data.top(); _data.pop();
+			int a = _data.top(); _data.pop();
 			switch(input[i])
 			{
 				case '+':	_data.push(a + b); break;
